@@ -1,276 +1,288 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Ôn thi Đại sứ Văn hóa Agribank</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
-  
-  <style>
-    :root {
-      --red: #8b0d1a;
-      --red-hover: #a31120;
-      --red-dark: #650713;
-      --gold: #f6c453;
-      --gold-light: #fef0c7;
-      --green: #15803d;
-      --green-light: #dcfce7;
-      --gray-50: #f9fafb;
-      --gray-100: #f3f4f6;
-      --gray-200: #e5e7eb;
-      --gray-500: #6b7280;
-      --gray-800: #1f2937;
-      --bg-color: #fff8f2;
-      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-      --shadow-red: 0 8px 20px rgba(139, 13, 26, 0.2);
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Ôn thi Đại sứ Văn hóa Agribank</title>
+    <!-- Nhúng font Roboto chuẩn của Google để hiển thị tiếng Việt không bị lỗi -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --agri-red: #8b0d1a;
+            --agri-red-hover: #a31120;
+            --agri-red-dark: #5a060f;
+            --agri-gold: #f6c453;
+            --agri-gold-light: #fef0c7;
+            --agri-green: #15803d;
+            --agri-bg: #fff8f2;
+            --text-main: #1f2937;
+            --text-muted: #6b7280;
+            --border-color: #e5e7eb;
+            --card-bg: #ffffff;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+            --shadow-md: 0 8px 20px rgba(139,13,26,0.08);
+        }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { 
-      font-family: 'Roboto', Arial, Helvetica, sans-serif; 
-      background: var(--bg-color);
-      background-image: radial-gradient(#f6c453 0.5px, transparent 0.5px), radial-gradient(#f6c453 0.5px, #fff8f2 0.5px);
-      background-size: 20px 20px;
-      background-position: 0 0, 10px 10px;
-      background-attachment: fixed;
-      color: var(--gray-800);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { 
+            font-family: 'Roboto', Arial, sans-serif; 
+            background: radial-gradient(circle at top, #fff 0%, var(--agri-bg) 100%);
+            color: var(--text-main);
+            min-height: 100vh;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
 
-    .header { 
-      background: linear-gradient(135deg, var(--red-dark) 0%, var(--red) 100%);
-      padding: 15px; 
-      box-shadow: var(--shadow-lg);
-      position: sticky;
-      top: 0;
-      z-index: 50;
-    }
-    .brand-container { 
-      max-width: 1000px; 
-      margin: 0 auto; 
-      display: flex; 
-      flex-direction: column;
-      align-items: center; 
-    }
-    .hero-banner { 
-      display: block; 
-      width: 100%; 
-      height: auto; /* Tự động co giãn theo tỷ lệ thực của ảnh */
-      object-fit: contain; 
-      border-radius: 12px; 
-      box-shadow: 0 6px 16px rgba(0,0,0,0.4); 
-      background: transparent;
-      transition: transform 0.3s ease;
-    }
-    @media (hover: hover) and (min-width: 768px) {
-      .hero-banner:hover { transform: scale(1.015); }
-    }
-    .fallback-title {
-      display: none; color: white; text-align: center; font-size: 1.5rem; font-weight: 900; margin: 10px 0; text-transform: uppercase; letter-spacing: 1px;
-    }
+        .app-header {
+            /* Nền đỏ gradient sang trọng tiệp màu với banner */
+            background: linear-gradient(135deg, var(--agri-red) 0%, var(--agri-red-dark) 100%);
+            padding: 16px 20px; /* Giảm khoảng cách padding để header gọn hơn */
+            box-shadow: 0 4px 25px rgba(0,0,0,0.3);
+            border-bottom: 4px solid var(--agri-gold);
+            text-align: center;
+        }
+        .header-container {
+            max-width: 760px; /* Thu nhỏ chiều rộng tối đa trên máy tính */
+            margin: 0 auto;
+        }
+        .hero-banner {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-height: 250px; /* Khống chế chiều cao tối đa không quá lớn */
+            margin: 0 auto;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            background-color: transparent;
+            transition: transform 0.3s ease;
+        }
+        @media (hover: hover) and (min-width: 768px) {
+            .hero-banner:hover { transform: scale(1.02); }
+        }
+        .fallback-title {
+            display: none; color: #fff; font-size: 24px; font-weight: 900; 
+            text-transform: uppercase; text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
 
-    .main-container { 
-      max-width: 900px; 
-      margin: 20px auto; 
-      padding: 0 15px;
-      width: 100%;
-      flex-grow: 1;
-    }
-    .card { 
-      background: rgba(255, 255, 255, 0.98); 
-      border-radius: 20px; 
-      box-shadow: var(--shadow-md); 
-      padding: 24px; 
-      margin-bottom: 20px; 
-      border: 1px solid rgba(139, 13, 26, 0.1);
-      backdrop-filter: blur(10px);
-    }
-    
-    .control-grid { 
-      display: grid; grid-template-columns: 1fr; gap: 15px; align-items: end; margin-bottom: 20px;
-    }
-    @media (min-width: 768px) {
-      .control-grid { grid-template-columns: 1fr 2fr; }
-    }
-    .input-group label { display: block; font-weight: 700; font-size: 0.9rem; color: var(--gray-500); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;}
-    .input-group select, .input-group input { 
-      width: 100%; padding: 12px 16px; border: 2px solid var(--gray-200); border-radius: 12px; 
-      font-size: 1rem; background: white; outline: none; transition: all 0.2s ease; font-family: inherit; font-weight: 500;
-    }
-    .input-group select:focus, .input-group input:focus { 
-      border-color: var(--red); box-shadow: 0 0 0 4px rgba(139,13,26,.1); 
-    }
-    .search-wrapper { position: relative; display: flex; align-items: stretch; gap: 8px;}
-    .search-wrapper input { border-color: var(--red); padding-right: 40px;}
-    .btn-clear {
-      position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
-      background: none; border: none; font-size: 1rem; cursor: pointer; color: var(--gray-500);
-      padding: 5px; box-shadow: none; min-width: auto; height: auto;
-    }
-    .btn-clear:hover { color: var(--red); transform: translateY(-50%) scale(1.1); box-shadow: none;}
+        /* Tối ưu Banner cho Mobile: Không tràn viền, thu nhỏ và bo góc */
+        @media (max-width: 768px) {
+            .app-header { padding: 12px 16px; border-bottom: 3px solid var(--agri-gold); }
+            .header-container { max-width: 100%; }
+            .hero-banner { 
+                border-radius: 10px; 
+                box-shadow: 0 4px 12px rgba(0,0,0,0.2); 
+                border: 1px solid rgba(246,196,83,0.3); 
+                max-height: 140px; /* Khống chế chiều cao trên mobile để nhường chỗ cho phần thi */
+            }
+        }
 
-    .action-buttons { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
-    .btn { 
-      flex: 1 1 auto;
-      border: none; border-radius: 12px; padding: 12px 20px; font-weight: 700; font-size: 1rem;
-      cursor: pointer; color: white; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px;
-      font-family: inherit;
-    }
-    .btn-primary { background: linear-gradient(135deg, var(--red), var(--red-hover)); box-shadow: var(--shadow-red); }
-    .btn-primary:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(139, 13, 26, 0.3); }
-    .btn-secondary { background: var(--gray-800); box-shadow: var(--shadow-md); }
-    .btn-secondary:hover:not(:disabled) { background: #111827; transform: translateY(-2px); }
-    .btn-success { background: linear-gradient(135deg, #166534, var(--green)); box-shadow: 0 8px 20px rgba(21, 128, 61, 0.2); }
-    .btn-success:hover:not(:disabled) { transform: translateY(-2px); }
-    .btn-outline { background: white; color: var(--gray-800); border: 2px solid var(--gray-200); box-shadow: var(--shadow-sm); }
-    .btn-outline:hover:not(:disabled) { background: var(--gray-50); border-color: var(--gray-500); }
-    .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none !important; box-shadow: none !important; }
-    
-    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 15px; }
-    @media (max-width: 480px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
-    .stat-box { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 12px; padding: 12px 8px; text-align: center; transition: transform 0.2s;}
-    .stat-box:hover { transform: translateY(-2px); border-color: var(--gold); }
-    .stat-value { font-size: 1.5rem; font-weight: 900; color: var(--red); display: block; line-height: 1; }
-    .stat-label { font-size: 0.75rem; color: var(--gray-500); font-weight: 700; text-transform: uppercase; margin-top: 6px; display: block; letter-spacing: 0.5px;}
-    
-    .progress-bar-bg { height: 12px; background: var(--gray-200); border-radius: 999px; overflow: hidden; }
-    .progress-bar-fill { height: 100%; width: 0; background: linear-gradient(90deg, var(--red), var(--gold)); transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .main-content {
+            max-width: 960px;
+            margin: 20px auto 40px;
+            padding: 0 15px;
+        }
+        .card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: var(--shadow-md);
+            padding: 24px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(139,13,26,0.05);
+        }
 
-    .quiz-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 10px;}
-    .quiz-badge { background: var(--gold-light); color: #b45309; padding: 6px 12px; border-radius: 999px; font-weight: 800; font-size: 0.85rem; letter-spacing: 0.5px;}
-    .quiz-badge.primary { background: #ffe4e6; color: var(--red); }
-    
-    .question-text { font-size: 1.25rem; font-weight: 900; color: var(--gray-800); line-height: 1.5; margin-bottom: 20px; }
-    @media (min-width: 768px) { .question-text { font-size: 1.4rem; } }
-    
-    .options-list { display: flex; flex-direction: column; gap: 12px; }
-    .option-item { 
-      display: flex; align-items: center; gap: 15px; padding: 16px; border: 2px solid var(--gray-200); 
-      border-radius: 16px; cursor: pointer; transition: all 0.2s ease; background: white; line-height: 1.5; font-size: 1.05rem; font-weight: 500; color: var(--gray-800);
-    }
-    .option-item:hover { border-color: var(--red); transform: translateY(-2px); box-shadow: var(--shadow-md); }
-    .option-letter { 
-      flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--gray-100); 
-      display: flex; align-items: center; justify-content: center; font-weight: 900; color: var(--gray-500); font-size: 1.1rem; transition: all 0.2s;
-    }
-    
-    .option-item.selected { border-color: var(--red); background: #fff1f2; }
-    .option-item.selected .option-letter { background: var(--red); color: white; }
-    .option-item.correct { border-color: var(--green); background: var(--green-light); }
-    .option-item.correct .option-letter { background: var(--green); color: white; }
-    .option-item.wrong { border-color: var(--bad); opacity: 0.7; }
-    .option-item.wrong .option-letter { background: var(--bad); color: white; }
-    
-    .feedback-box { 
-      display: none; margin-top: 20px; padding: 16px; border-radius: 12px; font-size: 1rem; line-height: 1.6; animation: fadeIn 0.4s ease-out; font-weight: 500;
-    }
-    .feedback-box.show { display: block; }
-    .feedback-box.correct { background: var(--green-light); color: #166534; border: 1px solid #bbf7d0; }
-    .feedback-box.incorrect { background: #fff1f2; color: #991b1b; border: 1px solid #fecdd3; }
-    .feedback-title { font-weight: 900; font-size: 1.1rem; margin-bottom: 8px; display: flex; align-items: center; gap: 8px;}
-    .explanation-text { margin-top: 10px; padding-top: 10px; border-top: 1px dashed currentColor; font-style: italic;}
-    
-    .quiz-nav { display: flex; justify-content: space-between; margin-top: 25px; gap: 10px;}
-    .quiz-nav .btn { flex: 1; }
+        .control-grid {
+            display: grid; grid-template-columns: 1fr 2fr; gap: 16px; align-items: end; margin-bottom: 20px;
+        }
+        .input-group label {
+            display: block; font-weight: 700; font-size: 13px; color: var(--text-muted);
+            margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .input-control {
+            width: 100%; padding: 12px 16px; border: 2px solid var(--border-color);
+            border-radius: 12px; font-size: 15px; background: #fff;
+            outline: none; transition: all 0.2s ease; font-family: inherit; font-weight: 500;
+        }
+        .input-control:focus {
+            border-color: var(--agri-red); box-shadow: 0 0 0 4px rgba(139,13,26,0.1);
+        }
+        .search-wrapper { position: relative; display: flex; align-items: stretch; gap: 10px; }
+        .search-wrapper input { padding-right: 40px; border-color: var(--agri-red); background: #fffafa; flex: 1; }
+        .btn-clear {
+            background: #f3f4f6; border: none; border-radius: 10px; padding: 0 15px;
+            font-size: 14px; font-weight: 700; cursor: pointer; color: var(--text-main);
+            transition: 0.2s; white-space: nowrap;
+        }
+        .btn-clear:hover { background: #e5e7eb; color: var(--agri-red); }
 
-    .search-hint { font-size: 0.95rem; color: var(--red); font-weight: 700; margin-bottom: 15px; display: flex; align-items: center; gap: 8px; background: #fff1f2; padding: 10px 15px; border-radius: 8px;}
-    .search-result-item { 
-      background: white; border-left: 6px solid var(--red); border-radius: 12px; padding: 16px; margin-bottom: 15px; box-shadow: var(--shadow-sm); border-top: 1px solid var(--gray-200); border-right: 1px solid var(--gray-200); border-bottom: 1px solid var(--gray-200);
-    }
-    .search-result-item h3 { font-size: 1.1rem; margin-bottom: 10px; line-height: 1.4; color: var(--gray-800);}
-    .search-answer { background: var(--green-light); color: #166534; padding: 12px; border-radius: 8px; font-weight: 700; display: flex; align-items: flex-start; gap: 10px; border: 1px solid #bbf7d0;}
-    
-    .review-item { padding: 15px; border-radius: 12px; margin-bottom: 15px; background: var(--gray-50); border: 1px solid var(--gray-200); border-left-width: 6px;}
-    .review-item.ok { border-left-color: var(--green); }
-    .review-item.bad { border-left-color: var(--red); }
-    .review-question { font-weight: 700; font-size: 1.1rem; margin-bottom: 10px; color: var(--gray-800); line-height: 1.4;}
-    .review-detail { font-size: 0.95rem; line-height: 1.5; color: var(--gray-800);}
-    
-    .empty-state { padding: 40px 20px; text-align: center; color: var(--gray-500); border: 2px dashed var(--gray-200); border-radius: 16px; font-size: 1.1rem; font-weight: 500; line-height: 1.6;}
-    .empty-state b { color: var(--red); }
-    .hidden { display: none !important; }
-    
-    .footer { text-align: center; padding: 20px; font-size: 0.85rem; color: var(--gray-500); font-weight: 500;}
-    .footer b { color: var(--red); font-weight: 900;}
+        .btn-group { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 24px; }
+        .btn {
+            flex: 1 1 auto; padding: 14px 20px; border: none; border-radius: 14px;
+            font-size: 15px; font-weight: 700; cursor: pointer; text-align: center;
+            transition: all 0.2s; display: inline-flex; justify-content: center; align-items: center;
+            gap: 8px; font-family: inherit; text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none !important; box-shadow: none !important; }
+        .btn-primary { background: linear-gradient(135deg, var(--agri-red), var(--agri-red-hover)); color: white; box-shadow: 0 6px 15px rgba(139,13,26,0.25); }
+        .btn-primary:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(139,13,26,0.35); }
+        .btn-secondary { background: var(--text-main); color: white; box-shadow: 0 6px 15px rgba(31,41,55,0.2); }
+        .btn-secondary:hover:not(:disabled) { transform: translateY(-2px); background: #111827; }
+        .btn-success { background: linear-gradient(135deg, #166534, var(--agri-green)); color: white; box-shadow: 0 6px 15px rgba(21,128,61,0.25); }
+        .btn-success:hover:not(:disabled) { transform: translateY(-2px); }
+        .btn-outline { background: white; color: var(--text-main); border: 2px solid var(--border-color); }
+        .btn-outline:hover:not(:disabled) { background: #f9fafb; border-color: #d1d5db; }
 
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-  </style>
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
+        .stat-box {
+            background: #f9fafb; border: 1px solid var(--border-color); border-radius: 16px;
+            padding: 14px 10px; text-align: center; transition: 0.2s;
+        }
+        .stat-box:hover { border-color: var(--agri-gold); transform: translateY(-2px); background: #fff; box-shadow: var(--shadow-sm);}
+        .stat-val { display: block; font-size: 26px; font-weight: 900; color: var(--agri-red); line-height: 1; margin-bottom: 6px; }
+        .stat-label { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;}
+        
+        .progress-bg { height: 10px; background: var(--border-color); border-radius: 999px; overflow: hidden; }
+        .progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, var(--agri-red), var(--agri-gold)); transition: width 0.4s ease; }
+
+        .quiz-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 10px;}
+        .badge { background: var(--agri-gold-light); color: #b45309; padding: 6px 12px; border-radius: 999px; font-weight: 700; font-size: 12px; letter-spacing: 0.5px; text-transform: uppercase;}
+        .badge.primary { background: #ffe4e6; color: var(--agri-red); }
+        
+        .question-text { font-size: 20px; font-weight: 900; color: var(--text-main); line-height: 1.5; margin-bottom: 24px; }
+        
+        .options-list { display: flex; flex-direction: column; gap: 14px; }
+        .option-item {
+            display: flex; align-items: flex-start; gap: 14px; padding: 16px; 
+            border: 2px solid var(--border-color); border-radius: 16px; cursor: pointer; 
+            background: #fff; transition: all 0.2s ease; font-size: 16px; line-height: 1.5; font-weight: 500; color: #374151;
+        }
+        .option-item:hover { border-color: var(--agri-red); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+        .option-letter {
+            flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; background: #f3f4f6;
+            display: flex; align-items: center; justify-content: center; font-weight: 900; color: var(--text-muted); font-size: 14px; transition: 0.2s;
+        }
+        
+        .option-item.selected { border-color: var(--agri-red); background: #fff5f6; font-weight: 700; color: var(--agri-red-dark);}
+        .option-item.selected .option-letter { background: var(--agri-red); color: white; }
+        
+        .option-item.correct { border-color: var(--agri-green); background: #ecfdf3; font-weight: 700; color: #14532d;}
+        .option-item.correct .option-letter { background: var(--agri-green); color: white; }
+        
+        .option-item.wrong { border-color: #b91c1c; background: #fff1f2; opacity: 0.8;}
+        .option-item.wrong .option-letter { background: #b91c1c; color: white; }
+
+        .feedback-box {
+            display: none; margin-top: 24px; padding: 18px; border-radius: 16px; font-size: 15px; line-height: 1.6; animation: fadeIn 0.4s ease;
+        }
+        .feedback-box.show { display: block; }
+        .feedback-box.ok { background: #ecfdf3; border: 1px solid #bbf7d0; color: #14532d; }
+        .feedback-box.bad { background: #fff1f2; border: 1px solid #fecdd3; color: #7f1d1d; }
+        .fb-title { font-weight: 900; font-size: 18px; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        .fb-explain { margin-top: 12px; padding-top: 12px; border-top: 1px dashed currentColor; font-style: italic; }
+
+        .empty-state { padding: 40px 20px; text-align: center; color: var(--text-muted); border: 2px dashed var(--border-color); border-radius: 20px; font-size: 16px; line-height: 1.6; background: #fafafa;}
+        .empty-state b { color: var(--agri-red); font-weight: 900; }
+        .hidden { display: none !important; }
+
+        .review-item { padding: 16px; border-radius: 16px; margin-bottom: 16px; background: #f9fafb; border: 1px solid var(--border-color); border-left-width: 6px; font-size: 15px; line-height: 1.6;}
+        .review-item.ok { border-left-color: var(--agri-green); background: #f4fdf7;}
+        .review-item.bad { border-left-color: #b91c1c; background: #fffbfc;}
+        .rv-q { font-weight: 700; font-size: 16px; color: var(--text-main); margin-bottom: 8px;}
+
+        .search-hint { font-size: 14px; font-weight: 700; color: var(--agri-red); margin-bottom: 16px; background: #fff5f6; padding: 12px; border-radius: 12px;}
+        .search-card { background: #fff; border-left: 5px solid var(--agri-red); border-radius: 16px; padding: 16px; margin-bottom: 16px; box-shadow: var(--shadow-sm); border: 1px solid #eee; border-left-width: 5px;}
+        .search-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 10px; line-height: 1.4; color: var(--text-main);}
+        .search-ans { background: #ecfdf3; color: #14532d; padding: 12px; border-radius: 10px; font-weight: 700; border: 1px solid #bbf7d0;}
+
+        .footer { text-align: center; padding: 25px 15px; font-size: 13px; color: var(--text-muted); font-weight: 500;}
+        .footer b { color: var(--agri-red); font-weight: 900;}
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 768px) {
+            .control-grid { grid-template-columns: 1fr; gap: 12px; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .btn-group { display: grid; grid-template-columns: 1fr 1fr; }
+            .btn-group .btn-success { grid-column: 1 / -1; }
+            .question-text { font-size: 18px; }
+            .option-item { font-size: 15px; padding: 14px; }
+        }
+    </style>
 </head>
 <body>
 
-<header class="header">
-  <div class="brand-container">
-    <!-- KHU VỰC ẢNH BANNER: Đảm bảo file ảnh tên banner.jpg nằm cùng thư mục với file HTML này -->
-    <img id="bannerImg" class="hero-banner" src="banner.jpg" alt="Banner Ôn thi Đại sứ Văn hóa Agribank" onerror="this.style.display='none';document.getElementById('fallbackTitle').style.display='block';" />
-    <h1 id="fallbackTitle" class="fallback-title">Ôn thi Đại sứ Văn hóa Agribank</h1>
-  </div>
+<header class="app-header">
+    <div class="header-container">
+        <img id="bannerImg" class="hero-banner" src="banner.jpg" alt="Banner Ôn thi Đại sứ Văn hóa Agribank" onerror="this.style.display='none';document.getElementById('fallbackTitle').style.display='block';" />
+        <h1 id="fallbackTitle" class="fallback-title">Ôn thi Đại sứ Văn hóa Agribank</h1>
+    </div>
 </header>
 
-<main class="main-container">
-  <section class="card">
-    <div class="control-grid">
-      <div class="input-group">
-        <label for="mode">Chế độ học tập</label>
-        <select id="mode">
-          <option value="practice">📖 Ôn luyện (Xem giải thích & đáp án ngay)</option>
-          <option value="exam">⏱️ Thi thử (Ẩn đáp án, chấm điểm cuối bài)</option>
-        </select>
-      </div>
-      <div class="input-group">
-        <label for="search">🔍 Phao cứu sinh (Tra cứu nhanh)</label>
-        <div class="search-wrapper">
-          <input id="search" type="text" placeholder="Nhập từ khóa hoặc chữ viết tắt (VD: bmsth)..." autocomplete="off" />
-          <button id="clearSearchBtn" class="btn-clear" title="Xóa tìm kiếm">✖</button>
+<main class="main-content">
+    <section class="card">
+        <div class="control-grid">
+            <div class="input-group">
+                <label for="mode">Chế độ học tập</label>
+                <select id="mode" class="input-control">
+                    <option value="practice">📖 Ôn luyện (Hiện đáp án ngay)</option>
+                    <option value="exam">⏱️ Thi thử (Ẩn đáp án, chấm điểm)</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="search">🔍 Phao cứu sinh (Tra cứu nhanh)</label>
+                <div class="search-wrapper">
+                    <input id="search" type="text" class="input-control" placeholder="Nhập từ khóa (VD: bmsth)..." autocomplete="off" />
+                    <button id="clearSearchBtn" class="btn-clear" title="Xóa tìm kiếm">Xóa</button>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    
-    <div class="action-buttons">
-      <button id="startBtn" class="btn btn-primary">🚀 Bắt đầu làm bài</button>
-      <button id="shuffleBtn" class="btn btn-secondary">🔀 Thi ngẫu nhiên</button>
-      <button id="finishBtn" class="btn btn-success" disabled>✅ Nộp bài</button>
-      <button id="resetBtn" class="btn btn-outline">↩️ Làm lại</button>
-    </div>
-    
-    <div class="stats-grid">
-      <div class="stat-box"><span id="totalStat" class="stat-value">250</span><span class="stat-label">Tổng câu</span></div>
-      <div class="stat-box"><span id="doneStat" class="stat-value">0</span><span class="stat-label">Đã làm</span></div>
-      <div class="stat-box"><span id="correctStat" class="stat-value" style="color:var(--green)">0</span><span class="stat-label">Câu đúng</span></div>
-      <div class="stat-box"><span id="scoreStat" class="stat-value" style="color:var(--gray-800)">0%</span><span class="stat-label">Tỷ lệ</span></div>
-    </div>
-    
-    <div class="progress-bar-bg">
-      <div id="bar" class="progress-bar-fill"></div>
-    </div>
-  </section>
+        
+        <div class="btn-group">
+            <button id="startBtn" class="btn btn-primary">🚀 Bắt đầu làm bài</button>
+            <button id="shuffleBtn" class="btn btn-secondary">🔀 Thi ngẫu nhiên</button>
+            <button id="finishBtn" class="btn btn-success" disabled>✅ Nộp bài xem điểm</button>
+            <button id="resetBtn" class="btn btn-outline">↩️ Làm lại từ đầu</button>
+        </div>
+        
+        <div class="stats-grid">
+            <div class="stat-box"><span id="totalStat" class="stat-val">250</span><span class="stat-label">Tổng câu</span></div>
+            <div class="stat-box"><span id="doneStat" class="stat-val" style="color:var(--text-main)">0</span><span class="stat-label">Đã làm</span></div>
+            <div class="stat-box"><span id="correctStat" class="stat-val" style="color:var(--agri-green)">0</span><span class="stat-label">Câu đúng</span></div>
+            <div class="stat-box"><span id="scoreStat" class="stat-val" style="color:#2563eb">0%</span><span class="stat-label">Tỷ lệ</span></div>
+        </div>
+        
+        <div class="progress-bg">
+            <div id="bar" class="progress-bar"></div>
+        </div>
+    </section>
 
-  <section id="searchResults" class="hidden"></section>
+    <!-- Vùng tra cứu kết quả -->
+    <section id="searchResults" class="hidden"></section>
 
-  <section id="quizCard" class="card">
-    <div class="empty-state">
-      Sẵn sàng chinh phục kiến thức Đại sứ Văn hóa Agribank?<br><br>
-      Bấm <b>Bắt đầu làm bài</b> (theo thứ tự) hoặc <b>Thi ngẫu nhiên</b> để kiểm tra năng lực!
-    </div>
-  </section>
+    <!-- Vùng hiển thị câu hỏi -->
+    <section id="quizCard" class="card">
+        <div class="empty-state">
+            Khởi động hành trình chinh phục kiến thức Đại sứ Văn hóa Agribank!<br><br>
+            Bấm <b>Bắt đầu làm bài</b> hoặc <b>Thi ngẫu nhiên</b> để kiểm tra năng lực.
+        </div>
+    </section>
 
-  <section id="reviewCard" class="card hidden">
-    <h2 style="color: var(--red); font-weight: 900; font-size: 1.8rem; text-align: center; margin-bottom: 20px; text-transform: uppercase;">Kết quả bài thi</h2>
-    <div id="reviewList"></div>
-    <div style="text-align: center; margin-top: 20px;">
-      <button onclick="document.getElementById('resetBtn').click()" class="btn btn-primary" style="display: inline-flex; font-size: 1.1rem;">Làm lại một lượt mới 🔄</button>
-    </div>
-  </section>
+    <!-- Vùng hiển thị kết quả (Review) -->
+    <section id="reviewCard" class="card hidden">
+        <h2 style="color: var(--agri-red); font-weight: 900; font-size: 24px; text-align: center; margin-bottom: 24px; text-transform: uppercase; border-bottom: 2px solid #eee; padding-bottom: 15px;">Kết quả bài thi</h2>
+        <div id="reviewList"></div>
+        <div style="text-align: center; margin-top: 30px;">
+            <button onclick="document.getElementById('resetBtn').click()" class="btn btn-primary" style="padding: 16px 30px; font-size: 16px;">🔄 Thử sức lại lượt mới</button>
+        </div>
+    </section>
 </main>
 
 <footer class="footer">
-  &copy; <b>Trần Xuân Trường</b> - Phòng Khách Hàng Agribank Chi nhánh Lê Lợi Thái Bình
+    &copy; <b>Trần Xuân Trường</b> - Phòng Khách Hàng Agribank Chi nhánh Lê Lợi Thái Bình
 </footer>
 
 <script>
@@ -537,6 +549,7 @@ const QUESTIONS = RAW_DATA.map((item, index) => {
 
   return {
     id: 'q_' + index,
+    chapter: 'Ôn tập tổng hợp',
     number: index + 1,
     question: item.question,
     answer: correctLabel,
@@ -544,7 +557,7 @@ const QUESTIONS = RAW_DATA.map((item, index) => {
       label: labels[i],
       text: optText,
     })),
-    explanation: item.explanation
+    explanation: item.explanation || `Đáp án đúng là: ${item.answer}`
   };
 });
 
@@ -552,26 +565,40 @@ let currentSet = [], currentIndex = 0, answers = {}, checked = {};
 let isQuizActive = false;
 
 const $ = id => document.getElementById(id);
-const modeEl = $('mode'), searchEl = $('search');
-const quizCard = $('quizCard'), reviewCard = $('reviewCard'), reviewList = $('reviewList'), searchResults = $('searchResults');
+const modeEl = $('mode'), searchEl = $('search'), clearSearchBtn = $('clearSearchBtn');
+const quizCard = $('quizCard'), reviewCard = $('reviewCard'), reviewList = $('reviewList');
+const searchResults = $('searchResults');
 
 function safeText(v) { return String(v ?? '').replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim(); }
+
 function removeVietnameseTones(str) {
   return safeText(str).normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D').toLowerCase().replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();
 }
-function getInitials(str) { return removeVietnameseTones(str).split(/\s+/).filter(Boolean).map(w => w[0]).join(''); }
-function escapeHtml(s) { return safeText(s).replace(/[&<>'"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[ch])); }
+
+function getInitials(str) {
+  return removeVietnameseTones(str).split(/\s+/).filter(Boolean).map(w => w[0]).join('');
+}
+
+function escapeHtml(s) {
+  return safeText(s).replace(/[&<>'"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[ch]));
+}
+
 function shuffle(a) {
   const x = [...a];
-  for (let i = x.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [x[i], x[j]] = [x[j], x[i]]; }
+  for (let i = x.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [x[i], x[j]] = [x[j], x[i]];
+  }
   return x;
 }
 
 function handleQuickSearch() {
   const kw = removeVietnameseTones(searchEl.value);
+  
   if (!kw) {
     searchResults.classList.add('hidden');
-    quizCard.classList.remove('hidden');
+    if (isQuizActive) quizCard.classList.remove('hidden');
+    else quizCard.classList.remove('hidden'); 
     return;
   }
 
@@ -584,37 +611,47 @@ function handleQuickSearch() {
     const noTones = removeVietnameseTones(fullText);
     const initials = getInitials(fullText);
     const qInitials = getInitials(q.question);
+    
     return noTones.includes(kw) || initials.includes(kw) || qInitials.includes(kw);
   });
 
   if (matched.length === 0) {
-    searchResults.innerHTML = '<div class="empty-state">Không tìm thấy câu hỏi nào phù hợp với từ khóa: <b>' + escapeHtml(searchEl.value) + '</b></div>';
+    searchResults.innerHTML = '<div class="empty-state">Không tìm thấy câu hỏi nào phù hợp với từ khóa của bạn.</div>';
     return;
   }
 
   const html = matched.map(q => {
     const correctOpt = q.options.find(o => o.label === q.answer);
     return `
-      <div class="search-result-item">
-        <h3><span class="quiz-badge primary">Câu ${q.number}</span> ${escapeHtml(q.question)}</h3>
-        <div class="search-answer">✅ Đáp án: ${correctOpt ? escapeHtml(correctOpt.text) : q.answer}</div>
+      <div class="search-card">
+        <h3><span class="badge primary">Câu ${q.number}</span> ${escapeHtml(q.question)}</h3>
+        <div class="search-ans">
+          <span>✅ <b>Đáp án:</b> ${correctOpt ? escapeHtml(correctOpt.text) : q.answer}</span>
+        </div>
       </div>
     `;
   }).join('');
 
-  searchResults.innerHTML = `<div class="search-hint">💡 Đang chế độ tra cứu: Đã tìm thấy ${matched.length} câu. (Xóa ô tìm kiếm để tiếp tục làm bài)</div>` + html;
+  searchResults.innerHTML = `<div class="search-hint">💡 Đang chế độ tra cứu nhanh: Đã tìm thấy ${matched.length} câu. (Xóa ô tìm kiếm để quay lại làm bài)</div>` + html;
 }
 
 searchEl.addEventListener('input', handleQuickSearch);
-$('clearSearchBtn').addEventListener('click', () => { searchEl.value = ''; handleQuickSearch(); searchEl.focus(); });
+
+clearSearchBtn.addEventListener('click', () => {
+  searchEl.value = '';
+  handleQuickSearch();
+});
 
 function startQuiz(doShuffle = false) {
   isQuizActive = true;
-  searchEl.value = ''; handleQuickSearch();
+  searchEl.value = '';
+  searchResults.classList.add('hidden');
   quizCard.classList.remove('hidden');
   reviewCard.classList.add('hidden');
+  $('finishBtn').disabled = false;
 
   currentSet = [...QUESTIONS]; 
+  
   if (doShuffle) {
     currentSet = shuffle(currentSet).map(q => ({ ...q, options: shuffle(q.options) }));
   }
@@ -625,7 +662,7 @@ function startQuiz(doShuffle = false) {
   
   renderQuestion();
   updateStats();
-  quizCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function chooseAnswer(id, label) {
@@ -636,6 +673,30 @@ function chooseAnswer(id, label) {
   updateStats();
 }
 
+function checkAnswer() {
+  const q = currentSet[currentIndex];
+  if (!q || !answers[q.id]) return;
+  checked[q.id] = true;
+  renderQuestion();
+  updateStats();
+}
+
+function nextQuestion() {
+  if (currentIndex < currentSet.length - 1) {
+    currentIndex++;
+    renderQuestion();
+  } else {
+    showReview();
+  }
+}
+
+function prevQuestion() {
+  if (currentIndex > 0) {
+    currentIndex--;
+    renderQuestion();
+  }
+}
+
 function renderQuestion() {
   const q = currentSet[currentIndex];
   if (!q) return;
@@ -644,46 +705,46 @@ function renderQuestion() {
   const showFb = checked[q.id];
   const isPractice = modeEl.value === 'practice';
   const correctOpt = q.options.find(o => o.label === q.answer);
+  const selectedOpt = q.options.find(o => o.label === selected);
 
   const optsHtml = q.options.map(o => {
     let cls = 'option-item';
     if (selected === o.label) cls += ' selected';
-    if (showFb) {
-      if (o.label === q.answer) cls += ' correct';
-      else if (selected === o.label) cls += ' wrong';
-    }
+    if (showFb && o.label === q.answer) cls += ' correct';
+    if (showFb && selected === o.label && selected !== q.answer) cls += ' wrong';
     
-    return `<div class="${cls}" onclick="chooseAnswer('${q.id}', '${o.label}')">
-              <div class="option-letter">${o.label}</div>
+    return `<div class="${cls}" data-label="${o.label}">
+              <span class="option-letter">${o.label}</span>
               <div>${escapeHtml(o.text)}</div>
             </div>`;
   }).join('');
 
   const fbHtml = showFb ? `
-    <div class="feedback-box show ${selected === q.answer ? 'correct' : 'incorrect'}">
-      <div class="feedback-title">${selected === q.answer ? '✅ Tuyệt vời! Đáp án chính xác.' : '❌ Rất tiếc! Đáp án chưa đúng.'}</div>
-      <div>Đáp án chuẩn: <b>${q.answer} - ${correctOpt ? escapeHtml(correctOpt.text) : ''}</b></div>
-      ${q.explanation ? `<div class="explanation-text">💡 Giải thích: ${escapeHtml(q.explanation)}</div>` : ''}
-    </div>
+    <div class="fb-title">${selected === q.answer ? '✅ Chính xác!' : '❌ Chưa đúng!'}</div>
+    <div><b>Bạn chọn:</b> ${escapeHtml(selected || 'Chưa chọn')} ${selectedOpt ? '- ' + escapeHtml(selectedOpt.text) : ''}</div>
+    <div><b>Đáp án đúng:</b> ${q.answer} ${correctOpt ? '- ' + escapeHtml(correctOpt.text) : ''}</div>
+    <div class="fb-explain"><b>Giải thích:</b> ${escapeHtml(q.explanation)}</div>
   ` : '';
 
   quizCard.innerHTML = `
     <div class="quiz-header">
-      <span class="quiz-badge primary">CÂU ${currentIndex + 1} / ${currentSet.length}</span>
-      <span class="quiz-badge">${isPractice ? 'CHẾ ĐỘ ÔN LUYỆN' : 'CHẾ ĐỘ THI THỬ'}</span>
+      <span class="badge primary">CÂU ${currentIndex + 1}/${currentSet.length}</span>
+      <span class="badge">${isPractice ? 'CHẾ ĐỘ: ÔN LUYỆN' : 'CHẾ ĐỘ: THI THỬ'}</span>
     </div>
-    <h2 class="question-text">${escapeHtml(q.question)}</h2>
+    <div class="question-text">${escapeHtml(q.question)}</div>
     <div class="options-list">${optsHtml}</div>
-    ${fbHtml}
-    <div class="quiz-nav">
-      <button class="btn btn-outline" id="prevBtn" ${currentIndex === 0 ? 'disabled' : ''}>⬅ CÂU TRƯỚC</button>
-      <button class="btn btn-primary" id="nextBtn">${currentIndex === currentSet.length - 1 ? 'KẾT THÚC 🏁' : 'CÂU TIẾP ➡'}</button>
+    <div class="feedback-box ${showFb ? 'show ' + (selected === q.answer ? 'ok' : 'bad') : ''}">${fbHtml}</div>
+    <div class="quiz-header" style="margin-top: 24px;">
+      <button class="btn btn-outline" id="prevBtn" ${currentIndex === 0 ? 'disabled' : ''}>⬅ Câu trước</button>
+      ${(!showFb && isPractice) ? `<button class="btn btn-primary" id="checkBtn" ${!selected ? 'disabled' : ''}>Kiểm tra</button>` : ''}
+      <button class="btn btn-secondary" id="nextBtn">${currentIndex === currentSet.length - 1 ? 'Xem kết quả 🏁' : 'Câu tiếp ➡'}</button>
     </div>
   `;
 
-  $('prevBtn').onclick = () => { if (currentIndex > 0) { currentIndex--; renderQuestion(); } };
-  $('nextBtn').onclick = () => { if (currentIndex < currentSet.length - 1) { currentIndex++; renderQuestion(); } else { showReview(); } };
-  $('finishBtn').disabled = false;
+  quizCard.querySelectorAll('.option-item').forEach(el => el.onclick = () => chooseAnswer(q.id, el.dataset.label));
+  $('prevBtn').onclick = prevQuestion;
+  if($('checkBtn')) $('checkBtn').onclick = checkAnswer;
+  $('nextBtn').onclick = nextQuestion;
 }
 
 function showReview() {
@@ -693,32 +754,39 @@ function showReview() {
   reviewCard.classList.remove('hidden');
   $('finishBtn').disabled = true;
   
-  currentSet.forEach(q => checked[q.id] = true);
+  if (modeEl.value === 'exam') {
+    currentSet.forEach(q => checked[q.id] = true);
+  }
   
   reviewList.innerHTML = currentSet.map((q, i) => {
-    const ua = answers[q.id] || 'Chưa làm';
+    const ua = answers[q.id] || 'Chưa chọn';
     const ok = ua === q.answer;
     const co = q.options.find(o => o.label === q.answer);
     return `
       <div class="review-item ${ok ? 'ok' : 'bad'}">
-        <div class="review-question">Câu ${i + 1}: ${escapeHtml(q.question)}</div>
-        <div class="review-detail">
-          <span style="color: ${ok ? 'var(--green)' : 'var(--red)'}"><b>Bạn chọn:</b> ${escapeHtml(ua)}</span><br>
-          ${!ok ? `<span style="color: var(--green)"><b>Đáp án đúng:</b> ${q.answer} - ${co ? escapeHtml(co.text) : ''}</span>` : ''}
+        <div class="rv-q">Câu ${i + 1}: ${escapeHtml(q.question)}</div>
+        <div>
+            Bạn chọn: <b>${escapeHtml(ua)}</b><br>
+            ${!ok ? `<span style="color: var(--agri-green);">Đáp án đúng: <b>${q.answer}</b> ${co ? '- ' + escapeHtml(co.text) : ''}</span>` : ''}
         </div>
       </div>`;
   }).join('');
   
   updateStats();
-  reviewCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  reviewCard.scrollIntoView({ behavior: 'smooth' });
 }
 
 function resetQuiz() {
   isQuizActive = false;
-  currentSet = []; answers = {}; checked = {}; currentIndex = 0;
-  quizCard.innerHTML = '<div class="empty-state">Đã xóa tiến trình.<br>Bấm <b>Bắt đầu làm bài</b> để tạo lượt thi mới.</div>';
+  currentSet = [];
+  answers = {};
+  checked = {};
+  currentIndex = 0;
+  quizCard.innerHTML = '<div class="empty-state">Đã xóa lượt làm hiện tại.<br><br>Bấm <b>Bắt đầu làm bài</b> để tạo phiên làm bài mới.</div>';
   quizCard.classList.remove('hidden');
   reviewCard.classList.add('hidden');
+  searchResults.classList.add('hidden');
+  searchEl.value = '';
   $('finishBtn').disabled = true;
   updateStats();
 }
@@ -727,17 +795,15 @@ function updateStats() {
   const total = currentSet.length || QUESTIONS.length;
   const done = Object.keys(answers).length;
   const correct = currentSet.filter(q => answers[q.id] === q.answer).length;
-  const score = total ? Math.round((correct / total) * 100) : 0;
-  const progress = total ? Math.min(100, Math.round((done / total) * 100)) : 0;
+  const score = total ? Math.round(correct / total * 100) : 0;
   
   $('totalStat').textContent = total;
   $('doneStat').textContent = done;
   $('correctStat').textContent = correct;
   $('scoreStat').textContent = score + '%';
-  $('bar').style.width = progress + '%';
+  $('bar').style.width = total ? Math.min(100, Math.round(done / total * 100)) + '%' : '0%';
 }
 
-// Khởi tạo
 $('startBtn').onclick = () => startQuiz(false);
 $('shuffleBtn').onclick = () => startQuiz(true);
 $('finishBtn').onclick = showReview;
