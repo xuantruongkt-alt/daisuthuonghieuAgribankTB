@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Ôn thi Đại sứ Văn hóa Agribank</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --red: #8b0d1a;
+      --red-hover: #a31120;
+      --red-dark: #650713;
+      --gold: #f6c453;
+      --gold-light: #fef0c7;
+      --green: #15803d;
+      --green-light: #dcfce7;
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-500: #6b7280;
+      --gray-800: #1f2937;
+      --bg-color: #fff8f2;
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --shadow-red: 0 8px 20px rgba(139, 13, 26, 0.2);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { 
+      font-family: 'Roboto', Arial, Helvetica, sans-serif; 
+      background: var(--bg-color);
+      background-image: radial-gradient(#f6c453 0.5px, transparent 0.5px), radial-gradient(#f6c453 0.5px, #fff8f2 0.5px);
+      background-size: 20px 20px;
+      background-position: 0 0, 10px 10px;
+      background-attachment: fixed;
+      color: var(--gray-800);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header { 
+      background: linear-gradient(135deg, var(--red-dark) 0%, var(--red) 100%);
+      padding: 15px; 
+      box-shadow: var(--shadow-lg);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .brand-container { 
+      max-width: 1000px; 
+      margin: 0 auto; 
+      display: flex; 
+      flex-direction: column;
+      align-items: center; 
+    }
+    .hero-banner { 
+      display: block; 
+      width: 100%; 
+      height: auto; /* Tự động co giãn theo tỷ lệ thực của ảnh */
+      object-fit: contain; 
+      border-radius: 12px; 
+      box-shadow: 0 6px 16px rgba(0,0,0,0.4); 
+      background: transparent;
+      transition: transform 0.3s ease;
+    }
+    @media (hover: hover) and (min-width: 768px) {
+      .hero-banner:hover { transform: scale(1.015); }
+    }
+    .fallback-title {
+      display: none; color: white; text-align: center; font-size: 1.5rem; font-weight: 900; margin: 10px 0; text-transform: uppercase; letter-spacing: 1px;
+    }
+
+    .main-container { 
+      max-width: 900px; 
+      margin: 20px auto; 
+      padding: 0 15px;
+      width: 100%;
+      flex-grow: 1;
+    }
+    .card { 
+      background: rgba(255, 255, 255, 0.98); 
+      border-radius: 20px; 
+      box-shadow: var(--shadow-md); 
+      padding: 24px; 
+      margin-bottom: 20px; 
+      border: 1px solid rgba(139, 13, 26, 0.1);
+      backdrop-filter: blur(10px);
+    }
+    
+    .control-grid { 
+      display: grid; grid-template-columns: 1fr; gap: 15px; align-items: end; margin-bottom: 20px;
+    }
+    @media (min-width: 768px) {
+      .control-grid { grid-template-columns: 1fr 2fr; }
+    }
+    .input-group label { display: block; font-weight: 700; font-size: 0.9rem; color: var(--gray-500); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;}
+    .input-group select, .input-group input { 
+      width: 100%; padding: 12px 16px; border: 2px solid var(--gray-200); border-radius: 12px; 
+      font-size: 1rem; background: white; outline: none; transition: all 0.2s ease; font-family: inherit; font-weight: 500;
+    }
+    .input-group select:focus, .input-group input:focus { 
+      border-color: var(--red); box-shadow: 0 0 0 4px rgba(139,13,26,.1); 
+    }
+    .search-wrapper { position: relative; display: flex; align-items: stretch; gap: 8px;}
+    .search-wrapper input { border-color: var(--red); padding-right: 40px;}
+    .btn-clear {
+      position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+      background: none; border: none; font-size: 1rem; cursor: pointer; color: var(--gray-500);
+      padding: 5px; box-shadow: none; min-width: auto; height: auto;
+    }
+    .btn-clear:hover { color: var(--red); transform: translateY(-50%) scale(1.1); box-shadow: none;}
+
+    .action-buttons { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+    .btn { 
+      flex: 1 1 auto;
+      border: none; border-radius: 12px; padding: 12px 20px; font-weight: 700; font-size: 1rem;
+      cursor: pointer; color: white; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px;
+      font-family: inherit;
+    }
+    .btn-primary { background: linear-gradient(135deg, var(--red), var(--red-hover)); box-shadow: var(--shadow-red); }
+    .btn-primary:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(139, 13, 26, 0.3); }
+    .btn-secondary { background: var(--gray-800); box-shadow: var(--shadow-md); }
+    .btn-secondary:hover:not(:disabled) { background: #111827; transform: translateY(-2px); }
+    .btn-success { background: linear-gradient(135deg, #166534, var(--green)); box-shadow: 0 8px 20px rgba(21, 128, 61, 0.2); }
+    .btn-success:hover:not(:disabled) { transform: translateY(-2px); }
+    .btn-outline { background: white; color: var(--gray-800); border: 2px solid var(--gray-200); box-shadow: var(--shadow-sm); }
+    .btn-outline:hover:not(:disabled) { background: var(--gray-50); border-color: var(--gray-500); }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none !important; box-shadow: none !important; }
+    
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 15px; }
+    @media (max-width: 480px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
+    .stat-box { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 12px; padding: 12px 8px; text-align: center; transition: transform 0.2s;}
+    .stat-box:hover { transform: translateY(-2px); border-color: var(--gold); }
+    .stat-value { font-size: 1.5rem; font-weight: 900; color: var(--red); display: block; line-height: 1; }
+    .stat-label { font-size: 0.75rem; color: var(--gray-500); font-weight: 700; text-transform: uppercase; margin-top: 6px; display: block; letter-spacing: 0.5px;}
+    
+    .progress-bar-bg { height: 12px; background: var(--gray-200); border-radius: 999px; overflow: hidden; }
+    .progress-bar-fill { height: 100%; width: 0; background: linear-gradient(90deg, var(--red), var(--gold)); transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+
+    .quiz-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 10px;}
+    .quiz-badge { background: var(--gold-light); color: #b45309; padding: 6px 12px; border-radius: 999px; font-weight: 800; font-size: 0.85rem; letter-spacing: 0.5px;}
+    .quiz-badge.primary { background: #ffe4e6; color: var(--red); }
+    
+    .question-text { font-size: 1.25rem; font-weight: 900; color: var(--gray-800); line-height: 1.5; margin-bottom: 20px; }
+    @media (min-width: 768px) { .question-text { font-size: 1.4rem; } }
+    
+    .options-list { display: flex; flex-direction: column; gap: 12px; }
+    .option-item { 
+      display: flex; align-items: center; gap: 15px; padding: 16px; border: 2px solid var(--gray-200); 
+      border-radius: 16px; cursor: pointer; transition: all 0.2s ease; background: white; line-height: 1.5; font-size: 1.05rem; font-weight: 500; color: var(--gray-800);
+    }
+    .option-item:hover { border-color: var(--red); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+    .option-letter { 
+      flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--gray-100); 
+      display: flex; align-items: center; justify-content: center; font-weight: 900; color: var(--gray-500); font-size: 1.1rem; transition: all 0.2s;
+    }
+    
+    .option-item.selected { border-color: var(--red); background: #fff1f2; }
+    .option-item.selected .option-letter { background: var(--red); color: white; }
+    .option-item.correct { border-color: var(--green); background: var(--green-light); }
+    .option-item.correct .option-letter { background: var(--green); color: white; }
+    .option-item.wrong { border-color: var(--bad); opacity: 0.7; }
+    .option-item.wrong .option-letter { background: var(--bad); color: white; }
+    
+    .feedback-box { 
+      display: none; margin-top: 20px; padding: 16px; border-radius: 12px; font-size: 1rem; line-height: 1.6; animation: fadeIn 0.4s ease-out; font-weight: 500;
+    }
+    .feedback-box.show { display: block; }
+    .feedback-box.correct { background: var(--green-light); color: #166534; border: 1px solid #bbf7d0; }
+    .feedback-box.incorrect { background: #fff1f2; color: #991b1b; border: 1px solid #fecdd3; }
+    .feedback-title { font-weight: 900; font-size: 1.1rem; margin-bottom: 8px; display: flex; align-items: center; gap: 8px;}
+    .explanation-text { margin-top: 10px; padding-top: 10px; border-top: 1px dashed currentColor; font-style: italic;}
+    
+    .quiz-nav { display: flex; justify-content: space-between; margin-top: 25px; gap: 10px;}
+    .quiz-nav .btn { flex: 1; }
+
+    .search-hint { font-size: 0.95rem; color: var(--red); font-weight: 700; margin-bottom: 15px; display: flex; align-items: center; gap: 8px; background: #fff1f2; padding: 10px 15px; border-radius: 8px;}
+    .search-result-item { 
+      background: white; border-left: 6px solid var(--red); border-radius: 12px; padding: 16px; margin-bottom: 15px; box-shadow: var(--shadow-sm); border-top: 1px solid var(--gray-200); border-right: 1px solid var(--gray-200); border-bottom: 1px solid var(--gray-200);
+    }
+    .search-result-item h3 { font-size: 1.1rem; margin-bottom: 10px; line-height: 1.4; color: var(--gray-800);}
+    .search-answer { background: var(--green-light); color: #166534; padding: 12px; border-radius: 8px; font-weight: 700; display: flex; align-items: flex-start; gap: 10px; border: 1px solid #bbf7d0;}
+    
+    .review-item { padding: 15px; border-radius: 12px; margin-bottom: 15px; background: var(--gray-50); border: 1px solid var(--gray-200); border-left-width: 6px;}
+    .review-item.ok { border-left-color: var(--green); }
+    .review-item.bad { border-left-color: var(--red); }
+    .review-question { font-weight: 700; font-size: 1.1rem; margin-bottom: 10px; color: var(--gray-800); line-height: 1.4;}
+    .review-detail { font-size: 0.95rem; line-height: 1.5; color: var(--gray-800);}
+    
+    .empty-state { padding: 40px 20px; text-align: center; color: var(--gray-500); border: 2px dashed var(--gray-200); border-radius: 16px; font-size: 1.1rem; font-weight: 500; line-height: 1.6;}
+    .empty-state b { color: var(--red); }
+    .hidden { display: none !important; }
+    
+    .footer { text-align: center; padding: 20px; font-size: 0.85rem; color: var(--gray-500); font-weight: 500;}
+    .footer b { color: var(--red); font-weight: 900;}
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body>
+
+<header class="header">
+  <div class="brand-container">
+    <!-- KHU VỰC ẢNH BANNER: Đảm bảo file ảnh tên banner.jpg nằm cùng thư mục với file HTML này -->
+    <img id="bannerImg" class="hero-banner" src="banner.jpg" alt="Banner Ôn thi Đại sứ Văn hóa Agribank" onerror="this.style.display='none';document.getElementById('fallbackTitle').style.display='block';" />
+    <h1 id="fallbackTitle" class="fallback-title">Ôn thi Đại sứ Văn hóa Agribank</h1>
+  </div>
+</header>
+
+<main class="main-container">
+  <section class="card">
+    <div class="control-grid">
+      <div class="input-group">
+        <label for="mode">Chế độ học tập</label>
+        <select id="mode">
+          <option value="practice">📖 Ôn luyện (Xem giải thích & đáp án ngay)</option>
+          <option value="exam">⏱️ Thi thử (Ẩn đáp án, chấm điểm cuối bài)</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label for="search">🔍 Phao cứu sinh (Tra cứu nhanh)</label>
+        <div class="search-wrapper">
+          <input id="search" type="text" placeholder="Nhập từ khóa hoặc chữ viết tắt (VD: bmsth)..." autocomplete="off" />
+          <button id="clearSearchBtn" class="btn-clear" title="Xóa tìm kiếm">✖</button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="action-buttons">
+      <button id="startBtn" class="btn btn-primary">🚀 Bắt đầu làm bài</button>
+      <button id="shuffleBtn" class="btn btn-secondary">🔀 Thi ngẫu nhiên</button>
+      <button id="finishBtn" class="btn btn-success" disabled>✅ Nộp bài</button>
+      <button id="resetBtn" class="btn btn-outline">↩️ Làm lại</button>
+    </div>
+    
+    <div class="stats-grid">
+      <div class="stat-box"><span id="totalStat" class="stat-value">250</span><span class="stat-label">Tổng câu</span></div>
+      <div class="stat-box"><span id="doneStat" class="stat-value">0</span><span class="stat-label">Đã làm</span></div>
+      <div class="stat-box"><span id="correctStat" class="stat-value" style="color:var(--green)">0</span><span class="stat-label">Câu đúng</span></div>
+      <div class="stat-box"><span id="scoreStat" class="stat-value" style="color:var(--gray-800)">0%</span><span class="stat-label">Tỷ lệ</span></div>
+    </div>
+    
+    <div class="progress-bar-bg">
+      <div id="bar" class="progress-bar-fill"></div>
+    </div>
+  </section>
+
+  <section id="searchResults" class="hidden"></section>
+
+  <section id="quizCard" class="card">
+    <div class="empty-state">
+      Sẵn sàng chinh phục kiến thức Đại sứ Văn hóa Agribank?<br><br>
+      Bấm <b>Bắt đầu làm bài</b> (theo thứ tự) hoặc <b>Thi ngẫu nhiên</b> để kiểm tra năng lực!
+    </div>
+  </section>
+
+  <section id="reviewCard" class="card hidden">
+    <h2 style="color: var(--red); font-weight: 900; font-size: 1.8rem; text-align: center; margin-bottom: 20px; text-transform: uppercase;">Kết quả bài thi</h2>
+    <div id="reviewList"></div>
+    <div style="text-align: center; margin-top: 20px;">
+      <button onclick="document.getElementById('resetBtn').click()" class="btn btn-primary" style="display: inline-flex; font-size: 1.1rem;">Làm lại một lượt mới 🔄</button>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  &copy; <b>Trần Xuân Trường</b> - Phòng Khách Hàng Agribank Chi nhánh Lê Lợi Thái Bình
+</footer>
+
+<script>
+'use strict';
+
+const RAW_DATA = [
+  {"question": "Bảo mật sinh trắc học được áp dụng đối với dịch vụ nào sau đây?", "options": ["SMS Banking", "Agribank Plus", "Cả đáp án 1 và 2"], "answer": "Agribank Plus", "explanation": "Bảo mật sinh trắc học (vân tay, khuôn mặt) hiện được triển khai trên ứng dụng ngân hàng số Agribank Plus để tăng cường an toàn."},
+  {"question": "Sản phẩm dịch vụ nào không thuộc nhóm sản phẩm Ngân hàng điện tử của Agribank?", "options": ["SMS Banking.", "Agribank Plus.", " Sản phẩm Thẻ."], "answer": " Sản phẩm Thẻ.", "explanation": "Sản phẩm thẻ vật lý được phân loại riêng thành dịch vụ thẻ, không nằm trong nhóm ngân hàng điện tử (E-Banking)."},
+  {"question": "Dịch vụ VnTopUp là dịch vụ gì?", "options": ["Dịch vụ cho phép khách hàng thanh toán hóa đơn, các loại hàng hóa, dịch vụ", "Dịch vụ cho phép khách hàng nạp tiền điện thoại, nạp tiền dịch vụ khác", "Dịch vụ cho phép khách hàng chuyển khoản trong hệ thống Agribank"], "answer": "Dịch vụ cho phép khách hàng nạp tiền điện thoại, nạp tiền dịch vụ khác", "explanation": "VnTopUp chuyên biệt cho tính năng nạp tiền điện thoại trả trước/trả sau và ví điện tử."},
+  {"question": "Theo Quy định 641/QyĐ-NHNo-KHCN ngày 24/3/2026, khách hàng được quyền đề nghị tra soát, khiếu nại trong thời hạn bao nhiêu ngày kể từ ngày phát sinh giao dịch?", "options": ["Trong vòng 120 ngày", "Trong vòng 150 ngày", "Trong vòng 60 ngày", "Trong vòng 90 ngày"], "answer": "Trong vòng 60 ngày", "explanation": "Quy định quy chuẩn mốc 60 ngày để đảm bảo tính kịp thời trong việc tra soát dòng tiền."},
+  {"question": "Kênh nào sau đây KHÔNG thuộc các kênh tiếp nhận thông tin tra soát, khiếu nại chính thức của Agribank?", "options": ["Bất kỳ điểm giao dịch nào của Agribank trên toàn quốc", "Qua Tổng đài hỗ trợ khách hàng 24/7", "Qua chức năng Tra soát online trên dịch vụ Agribank Plus", "Qua tin nhắn cá nhân của cán bộ ngân hàng"], "answer": "Qua tin nhắn cá nhân của cán bộ ngân hàng", "explanation": "Kênh cá nhân không có lưu vết hệ thống giám sát nên không được coi là kênh tiếp nhận khiếu nại chính thức."},
+  {"question": "Dịch vụ phi tài chính của dịch vụ SMS banking là dịch vụ nào?", "options": ["Sao kê 05 giao dịch gần nhất.", "Chuyển khoản liên ngân hàng.", "Chuyển khoản trong hệ thống Agribank.", "Tất cả các đáp án trên đều đúng."], "answer": "Sao kê 05 giao dịch gần nhất.", "explanation": "Dịch vụ phi tài chính là dịch vụ truy vấn thông tin, không làm thay đổi số dư tài khoản."},
+  {"question": "Trong các dịch vụ sau của Agribank, dịch vụ nào là dịch vụ tài chính trên SMS Banking?", "options": ["Tự động thông báo số dư tài khoản khi có biến động", "ATransfer: Dịch vụ cho phép khách hàng chuyển khoản trong hệ thống Agribank", "Tra cứu thông tin; Quản lý đầu tư"], "answer": "ATransfer: Dịch vụ cho phép khách hàng chuyển khoản trong hệ thống Agribank", "explanation": "ATransfer thực hiện việc trích tiền từ tài khoản này sang tài khoản khác, nên nó là dịch vụ tài chính."},
+  {"question": "Agribank KHÔNG cung cấp dịch vụ ngân hàng điện tử trong trường hợp nào sau đây?", "options": ["Tài khoản khách hàng hoạt động bình thường", "Tài khoản tạm khóa hoặc phong tỏa hoạt động", "Tài khoản có giao dịch chuyển khoản liên ngân hàng", "Tài khoản đang có số dư lớn"], "answer": "Tài khoản tạm khóa hoặc phong tỏa hoạt động", "explanation": "Khi tài khoản bị phong tỏa/tạm khóa do rủi ro hoặc yêu cầu pháp lý, toàn bộ dịch vụ e-banking sẽ bị ngưng kết nối."},
+  {"question": "Khách hàng có được phép chỉnh sửa các giao dịch đã được chuyển đến hệ thống điện tử của Agribank không?", "options": ["Có, nếu chưa quá 5 phút", "Có, nếu giao dịch dưới 10 triệu đồng", "Không được phép", "Có, nếu gọi tổng đài trong 10 phút"], "answer": "Không được phép", "explanation": "Giao dịch điện tử xử lý theo thời gian thực (Real-time). Khi lệnh đã vào hệ thống thì không thể tự ý sửa đổi."},
+  {"question": "Theo Quy định 4286/QyĐ-NHNo-KHCN ngày 12/12/2025 về cho vay KHCN mua nhà ở, nhận chuyển nhượng quyền sử dụng đất, quyền sở hữu tài sản gắn liền với đất, quy định nào sau đây là đúng về thỏa thuận đối với kỳ hạn trả nợ gốc?", "options": ["Agribank nơi cho vay thỏa thuận với khách hàng về kỳ hạn trả nợ gốc phù hợp với nguồn trả nợ của khách hàng nhưng không quá 03 tháng/kỳ", "Agribank nơi cho vay thỏa thuận với khách hàng về kỳ hạn trả nợ gốc phù hợp với nguồn trả nợ của khách hàng nhưng không quá 06 tháng/kỳ", "Agribank nơi cho vay thỏa thuận với khách hàng về kỳ hạn trả nợ gốc phù hợp với nguồn trả nợ của khách hàng nhưng không quá 09 tháng/kỳ", "Agribank nơi cho vay thỏa thuận với khách hàng về kỳ hạn trả nợ gốc phù hợp với nguồn trả nợ của khách hàng nhưng không quá 12 tháng/kỳ"], "answer": "Agribank nơi cho vay thỏa thuận với khách hàng về kỳ hạn trả nợ gốc phù hợp với nguồn trả nợ của khách hàng nhưng không quá 12 tháng/kỳ", "explanation": "Chính sách mới mở rộng kỳ hạn trả gốc tối đa lên 12 tháng/kỳ để giảm áp lực trả nợ cho khách hàng mua nhà."},
+  {"question": "Theo Quy định 4286/QyĐ-NHNo-KHCN ngày 12/12/2025 về cho vay KHCN mua nhà ở, nhận chuyển nhượng quyền sử dụng đất, quyền sở hữu tài sản gắn liền với đất; thời hạn cho vay tối đa đối với khách hàng cá nhân có quốc tịch Việt Nam là bao nhiêu?", "options": ["Tối đa 10 năm", "Tối đa 15 năm", "Tối đa 20 năm", "Tối đa 30 năm"], "answer": "Tối đa 30 năm", "explanation": "Cho vay mua nhà/đất là khoản vay vốn lớn, Agribank hỗ trợ thời hạn lên tới 30 năm (360 tháng)."},
+  {"question": "Theo Quy định 4286/QyĐ-NHNo-KHCN ngày 12/12/2025 về cho vay KHCN mua nhà ở, nhận chuyển nhượng quyền sử dụng đất, quyền sở hữu tài sản gắn liền với đất; mức cho vay tối đa 85% tổng nhu cầu vốn áp dụng đối với tài sản bảo đảm nào sau đây?", "options": ["Tài sản là nhà ở/quyền sử dụng đất/quyền sử dụng đất và quyền sở hữu tài sản gắn liền với đất thuộc quyền sở hữu, quyền sử dụng của bên thứ 3 là người thân của khách hàng; tài sản riêng của vợ/chồng khách hàng", "Tài sản là nhà ở/quyền sử dụng đất/quyền sử dụng đất và quyền sở hữu tài sản gắn liền với đất thuộc quyền sở hữu, quyền sử dụng của khách hàng", "Tài sản là xe ô tô có giấy chứng nhận quyền sở hữu mang tên chính khách hàng", "Tài sản là chứng chỉ tiền gửi, trái phiếu, số dư tiền gửi do Agribank phát hành"], "answer": "Tài sản là nhà ở/quyền sử dụng đất/quyền sử dụng đất và quyền sở hữu tài sản gắn liền với đất thuộc quyền sở hữu, quyền sử dụng của bên thứ 3 là người thân của khách hàng; tài sản riêng của vợ/chồng khách hàng", "explanation": ""},
+  {"question": "Theo Quyết định 239/QĐ-NHNo-TTKH về quy trình dịch vụ chuyển tiền Agri-pay, khách hàng nhận tiền có thể nhận tiền tại:", "options": ["Chỉ tại chi nhánh, phòng giao dịch cùng tỉnh, thành phố với chi nhánh chuyển tiền đi", "Chỉ tại chi nhánh, phòng giao dịch khác tỉnh, thành phố với chi nhánh chuyển tiền đi", "Tại bất kỳ chi nhánh, phòng giao dịch thuộc hệ thống Agribank", "Tại chi nhánh, phòng giao dịch  được chỉ định trên lệnh thanh toán"], "answer": "Tại bất kỳ chi nhánh, phòng giao dịch thuộc hệ thống Agribank", "explanation": "Agri-pay là hệ thống thanh toán kết nối toàn quốc, cho phép nhận tiền ở bất cứ đâu thuộc Agribank."},
+  {"question": "Theo quy định tại Quyết định 239/QĐ-NHNo-TTKH của Agribank về quy trình dịch vụ chuyển tiền Agri-pay, Chi nhánh chỉ được chi tiền cho người thụ hưởng khi nào?", "options": ["Khách hàng cung cấp đầy đủ, chính xác mã số chuyển tiền", "Khách hàng cung cấp giấy tờ tùy thân hợp lệ", "Khách hàng cung cấp đầy đủ, chính xác thông tin trên phiếu nhận tiền, mã số chuyển tiền và Giấy tờ tùy thân hợp lệ"], "answer": "Khách hàng cung cấp đầy đủ, chính xác thông tin trên phiếu nhận tiền, mã số chuyển tiền và Giấy tờ tùy thân hợp lệ", "explanation": "Yêu cầu khắt khe 3 yếu tố: Phiếu nhận, Mã số (PIN) và Giấy tờ tùy thân để phòng chống gian lận rút hộ."},
+  {"question": "Theo quy định tại Quyết định 239/QĐ-NHNo-TTKH của Agribank về quy trình dịch vụ chuyển tiền Agri-pay, chi nhánh phải xử lý đối với các giao dịch chuyển tiền Agri-pay sau thời gian bao lâu không có người nhận?", "options": ["3 tháng", "6 tháng", "9 tháng", "12 tháng"], "answer": "6 tháng", "explanation": "Các khoản tiền treo không người nhận sẽ bị kết toán/hoàn trả sau 6 tháng để dọn dẹp sổ sách."},
+  {"question": "Loại tài khoản nào được rút tiền ngoại tệ tại quầy của chi nhánh khác chi nhánh mở tài khoản?", "options": ["Tài khoản thanh toán của khách hàng cá nhân", "Tài khoản thanh toán của khách hàng tổ chức", "Tài khoản tiền gửi có kỳ hạn của khách hàng tổ chức", "Cả đáp án 1 và 2"], "answer": "Tài khoản thanh toán của khách hàng cá nhân", "explanation": "Chỉ áp dụng cho Tài khoản thanh toán của KH cá nhân nhằm tạo điều kiện rút tiền chi tiêu tiện lợi toàn quốc."},
+  {"question": "Hạn mức giao dịch Agri-pay tại quầy tối đa là bao nhiêu tiền trên một giao dịch?", "options": ["100 triệu đồng", "200 triệu đồng", "300 triệu đồng", "400 triệu đồng"], "answer": "300 triệu đồng", "explanation": ""},
+  {"question": "Theo Quyết định 239/QĐ-NHNo-TTKH về quy trình dịch vụ chuyển tiền Agri-pay, khi thực hiện điều chỉnh sai sót, Chi nhánh không được phép điều chỉnh yếu tố nào sau đây?", "options": ["Số tiền giao dịch", "Thông tin giấy tờ tùy thân của người nhận", "Tên khách hàng nhận"], "answer": "Số tiền giao dịch", "explanation": "Số tiền là yếu tố hạch toán kế toán cốt lõi. Nếu sai số tiền, phải hủy bỏ lệnh và làm lệnh mới."},
+  {"question": "Theo quy định tại Quy trình số 1786/QTr-NHNo-TTKH ngày 26/6/2025, loại tiền tệ được sử dụng trong nghiệp vụ chuyển tiền đi đối với dịch vụ MoneyGram là loại tiền tệ nào?", "options": ["USD, EUR.", "VND, USD.", "VND, USD, EUR."], "answer": "VND, USD.", "explanation": "MoneyGram chiều chuyển đi từ VN chỉ chấp nhận thu VND hoặc USD."},
+  {"question": "Theo quy định hiện hành của Agribank, chi nhánh xử lý giao dịch kiều hối qua Western Union và Money Gram trên hệ thống nào?", "options": ["Host To Host", "IPCAS", "ARS"], "answer": "ARS", "explanation": "Hệ thống ARS (Agribank Remittance System) là phần mềm chuyên biệt quản lý tập trung kiều hối."},
+  {"question": "Quy định cung cấp chứng từ đối với hồ sơ giao dịch của khách hàng được sử dụng để chuyển tiền nhiều lần đối với nghiệp vụ chuyển tiền ngoại tệ cá nhân ra nước ngoài tại Agribank là:", "options": ["Khách hàng phải cung cấp đủ hồ sơ của tất cả các lần giao dịch", "Khách hàng không cần cung cấp lại các chứng từ còn hiệu lực đã có trong hồ sơ giao dịch của những lần chuyển tiền trước đó", "Khách hàng chỉ cần cung cấp hồ sơ giao dịch cho lần đầu tiên, không cần cung cấp hồ sơ trong những lần chuyển tiền tiếp theo"], "answer": "Khách hàng không cần cung cấp lại các chứng từ còn hiệu lực đã có trong hồ sơ giao dịch của những lần chuyển tiền trước đó", "explanation": "Giảm thiểu thủ tục hành chính: Hồ sơ nào còn hạn (vd giấy báo học phí cả năm) thì không phải nộp lại ở các lần chuyển sau."},
+  {"question": "Theo quy định hiện hành về chuyển tiền ngoại tệ cá nhân ra nước ngoài, chuyển tiền thanh toán cho mục đích công tác, du lịch, thăm viếng ở nước ngoài áp dụng cho đối tượng khách hàng nào sau đây?", "options": ["Người đi công tác, du lịch, thăm viếng là Người cư trú có quốc tịch Việt Nam.", "Người nước ngoài đến Việt Nam công tác, du lịch, thăm viếng.", "Người không cư trú đi công tác du lịch, thăm viếng tại nước ngoài.", "Tất cả đáp án trên."], "answer": "Người đi công tác, du lịch, thăm viếng là Người cư trú có quốc tịch Việt Nam.", "explanation": ""},
+  {"question": "Thời gian giao dịch của dịch vụ Western Union và Money Gram tại Điểm giao dịch trên hệ thống là:", "options": ["07h00 đến 17h00 các ngày làm việc trong tuần", "09h00 đến 16h00 các ngày làm việc trong tuần", "07h00 đến 17h00 các ngày làm việc trong tuần, trừ những Điểm giao dịch đăng ký thời gian giao dịch khác với thời gian trên hệ thống", "08h00 đến 16h00 các ngày làm việc trong tuần, trừ những Điểm giao dịch đăng ký thời gian giao dịch khác với thời gian trên hệ thống"], "answer": "07h00 đến 17h00 các ngày làm việc trong tuần, trừ những Điểm giao dịch đăng ký thời gian giao dịch khác với thời gian trên hệ thống", "explanation": ""},
+  {"question": "Agribank chấm dứt phong tỏa hoặc giải tỏa phong tỏa tài khoản thanh toán khi nào?", "options": ["Chưa kết thúc thời hạn phong tỏa", "Kết thúc thời hạn phong tỏa và phải có văn bản yêu cầu của cơ quan có thẩm quyền về việc chấm dứt tạm khóa tài khoản thanh toán", "Đã xử lý xong sai sót, nhầm lẫn trong thanh toán chuyển tiền", "Tất cả đáp án trên đều đúng"], "answer": "Đã xử lý xong sai sót, nhầm lẫn trong thanh toán chuyển tiền", "explanation": ""},
+  {"question": "Việc chấm dứt phong tỏa tài khoản thanh toán của khách hàng được thực hiện tại đâu?", "options": ["Agribank nơi giao dịch", "Agribank nơi thực hiện phong tỏa tài khoản thanh toán của khách hàng", "Agribank nơi khách hàng mở tài khoản thanh toán", "Tại bất kỳ chi nhánh nào"], "answer": "Agribank nơi thực hiện phong tỏa tài khoản thanh toán của khách hàng", "explanation": "Nguyên tắc: Đơn vị nào thực hiện lệnh phong tỏa thì đơn vị đó có thẩm quyền giải tỏa."},
+  {"question": "Agribank chuyển trạng thái tài khoản thanh toán từ trạng thái hoạt động sang trạng thái tài khoản thanh toán không hoạt động khi nào?", "options": ["Tài khoản thanh toán không đủ số dư tối thiểu theo quy định của Agribank và không phát sinh giao dịch trong thời gian 09 (chín) tháng liên tục kể từ ngày không đủ số dư tối thiểu", "Tài khoản thanh toán không đủ số dư tối thiểu theo quy định của Agribank và không phát sinh giao dịch trong thời gian 06 (sáu) tháng liên tục kể từ ngày không đủ số dư tối thiểu", "Tài khoản thanh toán không đủ số dư tối thiểu theo quy định của Agribank và không phát sinh giao dịch do chính khách hàng thực hiện trong thời gian 12 (mười hai) tháng liên tục kể từ ngày không đủ số dư tối thiểu", "Tài khoản thanh toán không đủ số dư tối thiểu theo quy định của Agribank và không phát sinh giao dịch do chính khách hàng thực hiện trong thời gian 06 (sáu) tháng liên tục kể từ ngày không đủ số dư tối thiểu"], "answer": "Tài khoản thanh toán không đủ số dư tối thiểu theo quy định của Agribank và không phát sinh giao dịch do chính khách hàng thực hiện trong thời gian 12 (mười hai) tháng liên tục kể từ ngày không đủ số dư tối thiểu", "explanation": "Tài khoản bị đóng băng (Dormant) sau 1 năm (12 tháng) vắng bóng giao dịch chủ động và hết số dư tối thiểu."},
+  {"question": "Số tiền gửi tối thiểu của sản phẩm tiền gửi sinh lời thông minh là bao nhiêu?", "options": ["1.000.000 VND ", "5.000.000 VND ", "10.000.000 VND ", "Không quy định "], "answer": "5.000.000 VND ", "explanation": ""},
+  {"question": "Khi gửi tiền gửi tiết kiệm chung, người nào phải trực tiếp đến địa điểm giao dịch của Agribank?", "options": ["Tất cả người gửi tiền", "Người được ủy quyền", "Người đứng tên trên sổ tiết kiệm chung", "Ít nhất 02 người gửi tiền"], "answer": "Tất cả người gửi tiền", "explanation": "Để phòng ngừa rủi ro pháp lý về tài sản chung, tất cả đồng sở hữu phải có mặt ký chữ ký gốc khi mở."},
+  {"question": "Theo Quyết định số 2209/QĐ-NHNo-KHNV, khi rút tiền gửi tiết kiệm, người gửi tiền phải xuất trình giấy tờ xác minh thông tin của tất cả người gửi tiền trong trường hợp nào?", "options": ["Tiền gửi tiết kiệm của nhiều người gửi tiền/một người gửi tiền", "Tiền gửi tiết kiệm chung ", "Tiền gửi tiết kiệm chung thỏa thuận tất cả người gửi tiền cùng thực hiện"], "answer": "Tiền gửi tiết kiệm chung thỏa thuận tất cả người gửi tiền cùng thực hiện", "explanation": ""},
+  {"question": "Việc cấp lại thẻ tiết kiệm mới trong trường hợp Thẻ tiết kiệm bị mất, hỏng được thực hiện tại đâu?", "options": ["Các chi nhánh, phòng giao dịch Agribank", "Agribank nơi mở thẻ tiết kiệm", "Agribank nơi giao dịch ", "Chi nhánh nơi khách hàng mở tài khoản thanh toán"], "answer": "Agribank nơi mở thẻ tiết kiệm", "explanation": "Hồ sơ gốc lưu ở đâu thì phải về đúng chi nhánh đó để đối chiếu chữ ký và cấp lại phôi sổ mới."},
+  {"question": "Theo Quyết định số 656/QĐ-HĐTV-KHNV, khách hàng nào dưới đây không thuộc đối tượng gửi tiền gửi có kỳ hạn?", "options": ["Người cư trú là tổ chức, cá nhân", " Cơ quan đại diện ngoại giao, lãnh sự, cơ quan đại diện của tổ chức quốc tế tại Việt Nam; Văn phòng đại diện, văn phòng dự án của các tổ chức nước ngoài tại Việt Nam", "Cá nhân nước ngoài được phép cư trú tại Việt Nam với thời hạn dưới 6 (sáu) tháng", "Công dân Việt Nam đi du lịch, học tập, chữa bệnh và thăm viếng ở nước ngoài"], "answer": "Cá nhân nước ngoài được phép cư trú tại Việt Nam với thời hạn dưới 6 (sáu) tháng", "explanation": "Luật quản lý ngoại hối cấm người nước ngoài cư trú ngắn hạn (< 6 tháng) gửi tiết kiệm để chống rửa tiền/đầu cơ."},
+  {"question": "Đối với TGTK có kỳ hạn trả lãi sau, trường hợp người gửi tiền rút TGTK trước hạn, tiền lãi rút trước hạn được tính trên cơ sở nào?", "options": ["Tính trên cơ sở số dư, số ngày duy trì số dư tiền gửi thực tế, hình thức trả lãi và mức lãi suất rút trước hạn TGTK.", "Tính trên số ngày thực tế gửi.", "Tính trên số ngày thực tế gửi và mức lãi suất trên sổ."], "answer": "Tính trên cơ sở số dư, số ngày duy trì số dư tiền gửi thực tế, hình thức trả lãi và mức lãi suất rút trước hạn TGTK.", "explanation": ""},
+  {"question": "Tiền lãi tiền gửi tiết kiệm được tính trên cơ sở nào?", "options": ["Số dư và lãi suất tiền gửi tiết kiệm tại ngày gửi tiền tùy theo đặc tính của từng loại sản phẩm tiền gửi tiết kiệm", "Số dư, lãi suất và số ngày duy trì số dư tiền gửi thực tế tùy theo đặc tính của từng loại sản phẩm tiền gửi tiết kiệm", "Số dư và lãi suất tiền gửi tiết kiệm tại ngày đến hạn tùy theo đặc tính của từng loại sản phẩm tiền gửi tiết kiệm"], "answer": "Số dư, lãi suất và số ngày duy trì số dư tiền gửi thực tế tùy theo đặc tính của từng loại sản phẩm tiền gửi tiết kiệm", "explanation": ""},
+  {"question": "Theo Quy định về tiền gửi tiết kiệm trong hệ thống Agribank, số ngày duy trì số dư tiền gửi thực tế được xác định như thế nào?  ", "options": ["Được tính từ ngày người gửi tiền gửi tiền vào Agribank đến ngày người gửi tiền rút tiền (tính ngày đầu và ngày cuối)", "Được tính từ sau ngày người gửi tiền gửi tiền vào Agribank đến hết ngày liền kề trước ngày người gửi tiền rút tiền (bỏ ngày đầu, tính ngày cuối)", "Được tính từ ngày người gửi tiền gửi tiền vào Agribank đến hết ngày liền kề trước ngày người gửi tiền rút tiền (tính ngày đầu, bỏ ngày cuối)"], "answer": "Được tính từ ngày người gửi tiền gửi tiền vào Agribank đến hết ngày liền kề trước ngày người gửi tiền rút tiền (tính ngày đầu, bỏ ngày cuối)", "explanation": "Nguyên tắc kế toán phổ quát trong ngân hàng là 'Tính ngày đầu gửi vào, bỏ ngày cuối cùng rút ra'."},
+  {"question": "Agribank quy định phương thức trả lãi đối với tiền gửi tiết kiệm không kỳ hạn như thế nào?", "options": ["Lãi được chi trả (hoặc nhập gốc) hàng tháng và vào ngày tất toán tài khoản", "Lãi được chi trả vào ngày khách hàng gửi tiền", "Lãi được chi trả định kỳ cho khách hàng vào ngày đầu tháng"], "answer": "Lãi được chi trả (hoặc nhập gốc) hàng tháng và vào ngày tất toán tài khoản", "explanation": ""},
+  {"question": "Cấp nào tại Agribank quy định biểu phí đối với các giao dịch tiền gửi tiết kiệm, dịch vụ liên quan đến tiền gửi tiết kiệm?", "options": ["Chủ tịch Hội đồng thành viên", "Hội đồng thành viên", "Trưởng Ban Kế hoạch chiến lược", "Tổng Giám đốc"], "answer": "Tổng Giám đốc", "explanation": "Thẩm quyền ban hành các biểu phí dịch vụ thuộc về Tổng Giám đốc (Ban Điều hành)."},
+  {"question": "Agribank cấp lại Thẻ tiết kiệm cho người gửi tiền trong thời gian bao lâu kể từ ngày người gửi tiền hoàn tất thủ tục báo mất Thẻ tiết kiệm (trường hợp các thông tin được xác định đúng, đầy đủ, không có tranh chấp, khiếu kiện)?", "options": ["Sau 3 ngày làm việc.", "Sau 5 ngày làm việc.", "Sau 7 ngày làm việc.", "Sau 10 ngày làm việc."], "answer": "Sau 10 ngày làm việc.", "explanation": ""},
+  {"question": "Theo Quyết định số 2209/QĐ-NHNo-KHNV ngày 18/10/2019 của Agribank, đồng tiền chi trả tiền gửi tiết kiệm là loại nào?", "options": ["VND và USD", "Người gửi tiền gửi tiết kiệm bằng đồng tiền nào thì được chi trả tiền gửi tiết kiệm (gốc và lãi) bằng đồng tiền đó", "Người gửi tiền gửi tiết kiệm bằng ngoại tệ được rút ra bằng đồng Việt Nam", "Theo yêu cầu của người gửi tiền"], "answer": "Người gửi tiền gửi tiết kiệm bằng đồng tiền nào thì được chi trả tiền gửi tiết kiệm (gốc và lãi) bằng đồng tiền đó", "explanation": ""},
+  {"question": "Theo quy định, Agribank có thể nhận tiền gửi tiết kiệm đối với loại tiền nào?", "options": ["VND, USD và JPY", "VND, USD và EUR", "VND, USD và GBP"], "answer": "VND, USD và EUR", "explanation": ""},
+  {"question": "Theo quy định của Agribank, thủ tục chuyển quyền sở hữu tiền gửi tiết kiệm được thực hiện tại đâu?", "options": ["Các chi nhánh, phòng giao dịch Agribank", "Agribank nơi mở Thẻ tiết kiệm ", "Trên ứng dụng Agribank Plus ", "Tất cả các đáp án trên"], "answer": "Agribank nơi mở Thẻ tiết kiệm ", "explanation": ""},
+  {"question": "Số dư bảo lãnh đối với một khách hàng hoặc một khách hàng và người có liên quan bao gồm?", "options": ["Số dư phát hành Cam kết bảo lãnh", "Số dư phát hành Cam kết bảo lãnh đối ứng, số dư phát hành Cam kết xác nhận bảo lãnh ", "Số dư phát hành Cam kết bảo lãnh, số dư phát hành Cam kết bảo lãnh đối ứng, số dư phát hành Cam kết bảo lãnh trên cơ sở bảo lãnh đối ứng, số dư phát hành Cam kết xác nhận bảo lãnh cho khách hàng đó, khách hàng đó và người có liên quan"], "answer": "Số dư phát hành Cam kết bảo lãnh, số dư phát hành Cam kết bảo lãnh đối ứng, số dư phát hành Cam kết bảo lãnh trên cơ sở bảo lãnh đối ứng, số dư phát hành Cam kết xác nhận bảo lãnh cho khách hàng đó, khách hàng đó và người có liên quan", "explanation": ""},
+  {"question": "Khoản cho vay phục vụ nhu cầu đời sống có mức giá trị nhỏ không vượt quá số tiền bao nhiêu?", "options": ["50 triệu VND", "100 triệu VND", "200 triệu VND", "500 triệu VND"], "answer": "100 triệu VND", "explanation": "Các khoản vay tiêu dùng dưới 100 triệu VND được nới lỏng hồ sơ thẩm định theo quy định."},
+  {"question": "Đối với trường hợp đồng tiền bảo lãnh là ngoại tệ, phí bảo lãnh được thu như thế nào?", "options": ["Các bên phải thu phí bảo lãnh bằng ngoại tệ.", "Các bên thỏa thuận thu phí bảo lãnh bằng ngoại tệ hoặc quy đổi ra đồng Việt Nam theo tỷ giá bán của Agribank tại thời điểm thu phí hoặc tại thời điểm thông báo thu phí.", "Các bên thỏa thuận thu phí bảo lãnh bằng ngoại tệ hoặc quy đổi ra đồng Việt Nam theo tỷ giá bán của Agribank tại thời điểm ký Thỏa thuận cấp bảo lãnh.", "Các bên thỏa thuận thu phí bảo lãnh bằng ngoại tệ hoặc quy đổi ra đồng Việt Nam theo tỷ giá bán của Agribank tại thời điểm bất kỳ. "], "answer": "Các bên thỏa thuận thu phí bảo lãnh bằng ngoại tệ hoặc quy đổi ra đồng Việt Nam theo tỷ giá bán của Agribank tại thời điểm thu phí hoặc tại thời điểm thông báo thu phí.", "explanation": ""},
+  {"question": "Trường hợp khách hàng có nợ quá hạn thì Agribank thu nợ theo thứ tự như thế nào?", "options": ["Nợ gốc thu trước, nợ lãi tiền vay thu sau.", "Thu lãi trước, gốc sau.", "Thu gốc đến đâu lãi đến đấy.", "Thu nợ gốc và lãi theo thỏa thuận với khách hàng."], "answer": "Nợ gốc thu trước, nợ lãi tiền vay thu sau.", "explanation": "Nguyên tắc bảo toàn vốn: Phải thu hồi Nợ Gốc (tiền gốc của ngân hàng) trước khi thu Lãi khi có rủi ro quá hạn."},
+  {"question": "Một trong những căn cứ để xác định thời hạn cho vay, kỳ hạn trả nợ đối với cho vay phục vụ hoạt động kinh doanh?", "options": ["Khả năng trả nợ của khách hàng.", "Khả năng phát mại tài sản bảo đảm.", "Nhu cầu của khách hàng về thời hạn vay vốn.", "Tất cả đáp án trên."], "answer": "Khả năng trả nợ của khách hàng.", "explanation": ""},
+  {"question": "Một trong những căn cứ để xác định thời hạn cho vay phục vụ hoạt động kinh doanh là gì?", "options": ["Phương án sử dụng vốn của khách hàng.", "Khả năng phát mại tài sản bảo đảm.", "Nhu cầu của khách hàng về thời hạn vay vốn.", "Tất cả đáp án trên."], "answer": "Phương án sử dụng vốn của khách hàng.", "explanation": ""},
+  {"question": "Mức cấp tín dụng tối đa so với giá trị TSBĐ là trái phiếu chính phủ (bằng đồng Việt Nam) có thời hạn thanh toán còn lại trên 01 năm?", "options": ["Mức cấp tín dụng tối đa 95% mệnh giá.", "Mức cấp tín dụng tối đa 90% mệnh giá.", "Mức cấp tín dụng tối đa 80% mệnh giá.", "Mức cấp tín dụng tối đa 75% mệnh giá."], "answer": "Mức cấp tín dụng tối đa 90% mệnh giá.", "explanation": ""},
+  {"question": "Mức cấp tín dụng tối đa đối với TSBĐ là cổ phiếu, chứng chỉ quỹ do doanh nghiệp (kể cả tổ chức tín dụng) phát hành được niêm yết chính thức trên Sở giao dịch chứng khoán?", "options": ["50% giá trị TSBĐ", "55% giá trị TSBĐ", "85% giá trị TSBĐ", "90% giá trị TSBĐ"], "answer": "50% giá trị TSBĐ", "explanation": "Cổ phiếu là tài sản rủi ro biến động giá cao, nên tỷ lệ cho vay chỉ áp mức 50% để phòng hờ rớt giá."},
+  {"question": "Việc kiểm tra sử dụng vốn vay đối với pháp nhân phải được thực hiện chậm nhất trong vòng bao nhiêu ngày?", "options": ["10 ngày sau khi giải ngân vốn vay.", "15 ngày sau khi giải ngân vốn vay.", "20 ngày sau khi giải ngân vốn vay.", "30 ngày kể từ ngày giải ngân vốn vay."], "answer": "30 ngày kể từ ngày giải ngân vốn vay.", "explanation": ""},
+  {"question": "Khách hàng có tổng mức dư nợ cấp tín dụng (bao gồm cả mức dư nợ cho vay mà khách hàng đang đề nghị cho vay) là bao nhiêu phải cung cấp thông vị trí về người có liên quan?", "options": ["Lớn hơn hoặc bằng 0,1% vốn tự có của Agribank tại cuối ngày làm việc cuối quý gần nhất.", "Lớn hơn hoặc bằng 0,1% vốn tự có của Agribank tại cuối ngày làm việc cuối tháng gần nhất.", "Lớn hơn hoặc bằng 0,1% vốn tự có của Agribank tại cuối ngày làm việc gần nhất.", "Lớn hơn hoặc bằng 0,2% vốn tự có của Agribank tại cuối ngày làm việc gần nhất."], "answer": "Lớn hơn hoặc bằng 0,1% vốn tự có của Agribank tại cuối ngày làm việc gần nhất.", "explanation": ""},
+  {"question": "Theo Quy chế số 879/QC-HĐTV-TD: Trường hợp hợp đồng cấp tín dụng bị vô hiệu hoặc bị hủy bỏ, bị đơn phương chấm dứt thực hiện mà các bên đã thực hiện một phần thì (nếu có Hợp đồng bảo đảm)? ", "options": ["Hợp đồng bảo đảm chấm dứt", "Hợp đồng bảo đảm không chấm dứt", "Hợp đồng bảo đảm vô hiệu", "Hợp đồng bảo đảm không vô hiệu"], "answer": "Hợp đồng bảo đảm không chấm dứt", "explanation": ""},
+  {"question": "Việc kiểm tra đối với tài sản thế chấp là quyền đòi nợ được thực hiện như thế nào?", "options": ["03 tháng kiểm tra tối thiểu 01 lần", "06 tháng kiểm tra tối thiểu 01 lần", "09 tháng kiểm tra tối thiểu 01 lần", "12 tháng kiểm tra tối thiểu 01 lần"], "answer": "03 tháng kiểm tra tối thiểu 01 lần", "explanation": ""},
+  {"question": "Trường hợp nào thì Agribank nơi cấp bảo lãnh không bắt buộc phải ký Thỏa thuận cấp bảo lãnh?", "options": ["Phát hành bảo lãnh thực hiện nghĩa vụ ký quỹ để bảo đảm thực hiện dự án đầu tư.", "Phát hành bảo lãnh trên cơ sở bảo lãnh đối ứng.", "Phát hành bảo lãnh nhà ở hình thành trong tương lai.", "Phát hành bảo lãnh bảo đảm chất lượng sản phẩm."], "answer": "Phát hành bảo lãnh trên cơ sở bảo lãnh đối ứng.", "explanation": ""},
+  {"question": "Theo Quy chế 910/QC-HĐTV-RRTD ngày 31/07/2024, Khoản nợ nào sau đây được phân loại nợ Nhóm 4?", "options": ["Khoản nợ quá hạn từ 190 ngày đến 365 ngày", "Khoản nợ quá hạn trên 360 ngày", "Khoản nợ quá hạn từ 181 ngày đến 360 ngày"], "answer": "Khoản nợ quá hạn từ 181 ngày đến 360 ngày", "explanation": ""},
+  {"question": "Theo Quy chế 910/QC-HĐTV-RRTD ngày 31/07/2024, tỷ lệ trích lập dự phòng cụ thể đối với nợ Nhóm 2 là bao nhiêu?", "options": ["20%", "5%", "50%", "100%"], "answer": "5%", "explanation": ""},
+  {"question": "Theo quy định hiện hành của Agribank, Thỏa thuận cho vay được quy định như thế nào? ", "options": ["Thỏa thuận cho vay phải được ký kết bởi người đại diện có thẩm quyền của Agribank và khách hàng.", "Thỏa thuận cho vay phải được giao kết bởi người đại diện có thẩm quyền của Agribank và khách hàng theo quy định của pháp luật.", "Thỏa thuận cho vay được ký kết bởi người đại diện có thẩm quyền theo quy định của pháp luật của Agribank và khách hàng.", "Thỏa thuận cho vay được ký kết bởi người đại diện của Agribank và khách hàng."], "answer": "Thỏa thuận cho vay phải được giao kết bởi người đại diện có thẩm quyền của Agribank và khách hàng theo quy định của pháp luật.", "explanation": ""},
+  {"question": "Theo quy định của Agribank, cho vay phục vụ nhu cầu đời sống là như thế nào? ", "options": ["Agribank cho vay đối với khách hàng là cá nhân để thanh toán các chi phí cho mục đích tiêu dùng, sinh hoạt của cá nhân, gia đình của cá nhân đó.", "Agribank cho vay đối với khách hàng là cá nhân để thanh toán các chi phí cho mục đích sản xuất nông nghiệp của cá nhân.", "Agribank cho vay đối với khách hàng là cá nhân để thanh toán các chi phí cho mục đích kinh doanh của cá nhân, gia đình của cá nhân đó."], "answer": "Agribank cho vay đối với khách hàng là cá nhân để thanh toán các chi phí cho mục đích tiêu dùng, sinh hoạt của cá nhân, gia đình của cá nhân đó.", "explanation": ""},
+  {"question": "Đối với cho vay trung, dài hạn thực hiện dự án đầu tư phục vụ hoạt động kinh doanh, giải ngân vốn đối ứng là giá trị ngày công tự làm, tài sản khác của khách hàng cá nhân tham gia thực hiện như thế nào?", "options": ["Tài sản khác thực hiện theo tiến độ kế hoạch, phần vốn đối ứng còn lại giải ngân trước khi giải ngân vốn vay.", "Chi phí ngày công thực hiện theo tiến độ kế hoạch, phần vốn đối ứng còn lại giải ngân trước khi giải ngân vốn vay.", "Chi phí ngày công, tài sản khác thực hiện theo tiến độ kế hoạch, phần vốn đối ứng còn lại giải ngân trước khi giải ngân vốn vay.", "Chi phí ngày công, tài sản khác thực hiện theo tiến độ kế hoạch, phần vốn đối ứng còn lại giải ngân sau khi giải ngân vốn vay."], "answer": "Chi phí ngày công, tài sản khác thực hiện theo tiến độ kế hoạch, phần vốn đối ứng còn lại giải ngân trước khi giải ngân vốn vay.", "explanation": ""},
+  {"question": "Người có liên quan của khách hàng KHÔNG bao gồm trường hợp nào sau đây?", "options": ["Cha dượng, mẹ kế của khách hàng.", "Anh, chị, em ruột của khách hàng.", "Cháu ngoại của khách hàng.", "Em họ, anh họ của khách hàng."], "answer": "Em họ, anh họ của khách hàng.", "explanation": "Theo quy định, anh chị em họ không nằm trong diện 'người có liên quan' phải báo cáo."},
+  {"question": "Trong Hướng dẫn cho vay khách hàng pháp nhân trả nợ trước hạn khoản vay tại tổ chức tín dụng khác, thời hạn cho vay tối đa được xác định như thế nào?", "options": ["Không vượt quá thời hạn cho vay của khoản vay tại TCTD đã cho vay.", "Không vượt quá 01 tỷ đồng.", "Không vượt quá 03 tỷ đồng.", "Không vượt quá thời hạn cho vay còn lại của khoản vay tại TCTD đã cho vay."], "answer": "Không vượt quá thời hạn cho vay còn lại của khoản vay tại TCTD đã cho vay.", "explanation": ""},
+  {"question": "Hiện tại Agribank đang phát hành những loại thẻ tín dụng quốc tế mang thương hiệu nào?", "options": ["Visa/MasterCard/JCB", "Amex", "UnionPay", "Chỉ có thẻ Visa"], "answer": "Visa/MasterCard/JCB", "explanation": ""},
+  {"question": "Thẻ Lộc Việt tích hợp hai sản phẩm trên cùng một con chip, bao gồm những sản phẩm thẻ gì?", "options": ["Thẻ tín dụng nội địa hạng chuẩn và thẻ ghi nợ nội địa hạng chuẩn.", "Thẻ tín dụng nội địa hạng chuẩn và thẻ tín dụng quốc tế MasterCard hạng vàng.", "Thẻ tín dụng nội địa hạng chuẩn và thẻ tín dụng quốc tế Visa hạng chuẩn.", "Thẻ tín dụng nội địa hạng vàng và thẻ tín dụng quốc tế JCB hạng vàng."], "answer": "Thẻ tín dụng nội địa hạng chuẩn và thẻ ghi nợ nội địa hạng chuẩn.", "explanation": "Thẻ Lộc Việt là thẻ nội địa Dual-chip độc đáo tích hợp cả Ghi nợ và Tín dụng."},
+  {"question": "Hiện tại Agribank đang có sản phẩm thẻ tín dụng mang thương thiệu JCB với hạng nào?", "options": ["Hạng chuẩn và hạng vàng.", "Hạng vàng và hạng bạch kim.", "Hạng vàng và hạng kim cương.", "Hạng kim cương."], "answer": "Hạng vàng và hạng bạch kim.", "explanation": ""},
+  {"question": "Hiện tại Agribank phát hành thẻ tín dụng nội địa nào?", "options": ["Lộc Việt.", "Visa.", "MasterCard.", "Tất cả các đáp án trên."], "answer": "Lộc Việt.", "explanation": ""},
+  {"question": "Yếu tố bảo mật CAV2 có mặt trên loại thẻ nào do Agribank phát hành?", "options": ["Visa.", "MasterCard.", "JCB.", "Success."], "answer": "JCB.", "explanation": ""},
+  {"question": "Hãy cho biết thời hạn hiệu lực của Thẻ liên kết thương hiệu?", "options": ["Tối đa 03 năm kể từ ngày phát hành.", "Tối đa 05 năm kể từ ngày phát hành.", "Tối đa 02 năm kể từ ngày phát hành.", "Tối đa 01 năm kể từ ngày phát hành."], "answer": "Tối đa 05 năm kể từ ngày phát hành.", "explanation": ""},
+  {"question": "Hãy cho biết thời hạn hiệu lực của Thẻ ghi nợ nội địa hạng chuẩn?", "options": ["03 năm kể từ ngày phát hành.", "05 năm kể từ ngày phát hành.", "02 năm kể từ ngày phát hành.", "06 năm kể từ ngày phát hành."], "answer": "06 năm kể từ ngày phát hành.", "explanation": ""},
+  {"question": "Hãy cho biết thời hạn hiệu lực của Thẻ liên kết sinh viên?", "options": ["Tối thiểu 02 năm kể từ ngày phát hành và phù hợp với thời gian đào tạo theo khóa học của trường.", "Tối thiểu 03 năm kể từ ngày phát hành và phù hợp với thời gian đào tạo theo khóa học của trường.", "Tối thiểu 04 năm kể từ ngày phát hành và phù hợp với thời gian đào tạo theo khóa học của trường.", "Tối thiểu 05 năm kể từ ngày phát hành và phù hợp với thời gian đào tạo theo khóa học của trường."], "answer": "Tối thiểu 02 năm kể từ ngày phát hành và phù hợp với thời gian đào tạo theo khóa học của trường.", "explanation": ""},
+  {"question": "Hạn mức gửi tiền mặc định trong ngày của thẻ tín dụng quốc tế tại CDM là bao nhiêu?", "options": ["Tùy theo từng loại máy CDM, tối đa 150 triệu đồng (tối đa 300 tờ)", "Tối đa 500 triệu đồng (tối đa 1000 tờ)", "Không áp dụng", "Tối đa 300 triệu đồng (tối đa 600 tờ)"], "answer": "Không áp dụng", "explanation": "Thẻ tín dụng không có chức năng nhận tiền nộp (gửi tiền) tại máy CDM."},
+  {"question": "Tại ATM, hạn mức giao dịch chuyển khoản mặc định trong ngày của thẻ ghi nợ hạng vàng là bao nhiêu?", "options": ["100 triệu đồng.", "150 triệu đồng.", "200 triệu đồng.", "300 triệu đồng."], "answer": "300 triệu đồng.", "explanation": ""},
+  {"question": "Loại thẻ nào không có chức năng chuyển khoản tại ATM?", "options": ["Thẻ ghi nợ nội địa", "Thẻ tín dụng", "Thẻ ghi nợ quốc tế hạng chuẩn", "Thẻ ghi nợ quốc tế hạng vàng"], "answer": "Thẻ tín dụng", "explanation": "Để chống trục lợi rút tiền mặt qua chuyển khoản, thẻ tín dụng bị chặn tính năng này."},
+  {"question": "Hạn mức ứng tiền mặt tối đa đối với thẻ tín dụng quốc tế là bao nhiêu?", "options": ["Bằng hạn mức tín dụng thẻ ", "Không áp dụng", "Bằng 50% hạn mức tín dụng được cấp.", "Do chi nhánh phát hành phê duyệt"], "answer": "Bằng 50% hạn mức tín dụng được cấp.", "explanation": ""},
+  {"question": "Hạn mức ứng tiền mặt tối đa của thẻ tín dụng nội địa là bao nhiêu?", "options": ["100% hạn mức tín dụng được cấp", "Do chi nhánh phát hành phê duyệt", "30% hạn mức tín dụng được cấp", "10% hạn mức tín dụng được cấp"], "answer": "100% hạn mức tín dụng được cấp", "explanation": ""},
+  {"question": "Mỗi khách hàng chỉ được phát hành bao nhiêu thẻ vật lý qua kênh Agribank Digital?", "options": ["02 (hai) thẻ/01 (một) loại sản phẩm thẻ/01 (một) tài khoản", "01 (một) thẻ/01 (một) loại sản phẩm thẻ/01 (một) tài khoản", "03 (ba) thẻ/01 (một) loại sản phẩm thẻ/01 (một) tài khoản", "05 (năm) thẻ/01 (một) loại sản phẩm thẻ/01 (một) tài khoản"], "answer": "01 (một) thẻ/01 (một) loại sản phẩm thẻ/01 (một) tài khoản", "explanation": ""},
+  {"question": "Đối với thẻ tín dụng, trường hợp dư nợ nhỏ hơn 200.000 VND, hệ thống sẽ tự động thu bao nhiêu? ", "options": ["Không quy định", "100.000 đồng", "150.000 đồng", "Toàn bộ dư nợ"], "answer": "Toàn bộ dư nợ", "explanation": ""},
+  {"question": "Trong bối cảnh chuyển đổi số ngành ngân hàng, yếu tố nào trực tiếp làm thay đổi cách thức tổ chức hoạt động chăm sóc khách hàng của ngân hàng?", "options": ["Gia tăng quy mô mạng lưới chi nhánh.", "Sự trỗi dậy của Fintech và kỳ vọng khách hàng tăng cao.", "Chính sách lãi suất của Ngân hàng Nhà nước.", "Tăng trưởng bán lẻ các sản phẩm dịch vụ."], "answer": "Sự trỗi dậy của Fintech và kỳ vọng khách hàng tăng cao.", "explanation": ""},
+  {"question": "Theo mô hình Omnichannel, yêu cầu cốt lõi đối với ngân hàng khi phục vụ khách hàng đa kênh là gì?", "options": ["Mỗi kênh có quy trình phục vụ riêng biệt", "Khách hàng phải xác thực lại thông tin ở mỗi kênh", "Một trải nghiệm (Một hồ sơ khách hàng – một lịch sử tương tác) - nhiều kênh ứng dụng", "Ưu tiên kênh số thay thế hoàn toàn quầy truyền thống"], "answer": "Một trải nghiệm (Một hồ sơ khách hàng – một lịch sử tương tác) - nhiều kênh ứng dụng", "explanation": ""},
+  {"question": "Điểm khác biệt mang tính “bản chất” giữa Omnichannel và việc chỉ mở rộng nhiều kênh chăm sóc khách hàng là gì?", "options": ["Omnichannel sử dụng nhiều nền tảng công nghệ hơn", "Omnichannel yêu cầu đồng nhất quy trình nội bộ", "Omnichannel đảm bảo trải nghiệm liền mạch, không lặp lại thông tin", "Omnichannel ưu tiên kênh số hơn kênh truyền thống"], "answer": "Omnichannel đảm bảo trải nghiệm liền mạch, không lặp lại thông tin", "explanation": ""},
+  {"question": "Chuẩn kỳ vọng mới của khách hàng trong môi trường số KHÔNG bao gồm nội dung nào sau đây?", "options": ["Nhanh – đơn giản – minh bạch", "Phản hồi gần như tức thì", "Trải nghiệm tương tự các nền tảng số", "Quy trình phức tạp nhưng an toàn tuyệt đối"], "answer": "Quy trình phức tạp nhưng an toàn tuyệt đối", "explanation": "Khách hàng ngày nay không chấp nhận sự phức tạp, họ cần dịch vụ an toàn nhưng phải Đơn giản."},
+  {"question": "Chăm sóc khách hàng được coi là “trung tâm tối ưu vận hành” vì lý do nào sau đây?", "options": ["Là bộ phận tiếp xúc khách hàng nhiều nhất", "Góp phần giảm lỗi, giảm khiếu nại và giảm chi phí", "Thực hiện bán chéo sản phẩm hiệu quả", "Hỗ trợ marketing và truyền thông"], "answer": "Góp phần giảm lỗi, giảm khiếu nại và giảm chi phí", "explanation": ""},
+  {"question": "Thách thức lớn nhất của chuyển đổi số trong chăm sóc khách hàng liên quan đến văn hóa doanh nghiệp là gì?", "options": ["Thiếu ngân sách đầu tư công nghệ", "Nhân viên chưa quen quy trình mới", "Cần thay đổi tư duy và cách làm việc của toàn doanh nghiệp/tổ chức", "Khách hàng chưa sẵn sàng sử dụng dịch vụ số"], "answer": "Cần thay đổi tư duy và cách làm việc của toàn doanh nghiệp/tổ chức", "explanation": ""},
+  {"question": "Trong các thách thức của chuyển đổi số trong chăm sóc khách hàng, vì sao bảo mật dữ liệu được xem là “hàng rào an toàn” chứ không chỉ là yêu cầu tuân thủ?", "options": ["Vì bảo mật giúp giảm chi phí xử lý khiếu nại/khủng hoảng truyền thông", "Vì bảo mật tạo lợi thế cạnh tranh về công nghệ", "Vì rủi ro dữ liệu có thể phá vỡ niềm tin khách hàng và uy tín thương hiệu", "Vì bảo mật là yêu cầu bắt buộc của cơ quan quản lý"], "answer": "Vì rủi ro dữ liệu có thể phá vỡ niềm tin khách hàng và uy tín thương hiệu", "explanation": ""},
+  {"question": "Trong bán hàng và chăm sóc khách hàng đa kênh (omnichannel), vai trò quan trọng nhất của nhân viên ngân hàng là gì?", "options": ["Là người trực tiếp chốt bán sản phẩm trên từng kênh riêng lẻ.", "Là người kiểm soát và điều phối toàn bộ hành vi của khách hàng.", "Là người tạo áp lực hoặc cảm giác khan hiếm để thúc đẩy khách hàng ra quyết định nhanh.", "Là “điểm nối” giúp thông tin, trải nghiệm và cảm xúc của khách hàng được liền mạch xuyên suốt các kênh."], "answer": "Là “điểm nối” giúp thông tin, trải nghiệm và cảm xúc của khách hàng được liền mạch xuyên suốt các kênh.", "explanation": ""},
+  {"question": "Trong bán hàng và chăm sóc khách hàng chuyên nghiệp thời kỳ chuyển đổi số, việc cá nhân hóa quá mức (over-personalization) có thể dẫn đến rủi ro nào lớn nhất dưới đây?", "options": ["Làm tăng thời gian xử lý giao dịch.", "Làm khách hàng cảm thấy bị theo dõi, xâm phạm quyền riêng tư và làm suy giảm niềm tin.", "Làm giảm mức độ tự động hóa của hệ thống.", "Khiến thông tin tư vấn trở nên kém chính xác."], "answer": "Làm khách hàng cảm thấy bị theo dõi, xâm phạm quyền riêng tư và làm suy giảm niềm tin.", "explanation": ""},
+  {"question": "Trong bán hàng và chăm sóc khách hàng chuyên nghiệp thời kỳ chuyển đổi số, việc phân nhóm Digital Persona nhằm đạt được mục tiêu cốt lõi nào sau đây?", "options": ["Chuẩn hóa cách tư vấn giống nhau cho mọi khách hàng.", "Tăng tốc độ xử lý giao dịch trên tất cả các kênh.", "Giảm số lượng nhân sự tham gia bán hàng.", "Điều chỉnh cách giao tiếp, tốc độ tư vấn và mức độ chi tiết cho phù hợp với từng nhóm khách hàng."], "answer": "Điều chỉnh cách giao tiếp, tốc độ tư vấn và mức độ chi tiết cho phù hợp với từng nhóm khách hàng.", "explanation": ""},
+  {"question": "Ở giai đoạn trước giao dịch, khách hàng thường có tâm lý như thế nào?", "options": ["Hào hứng trải nghiệm.", "Lo lắng về an toàn.", "Bức xúc vì chậm trễ.", "Không quan tâm."], "answer": "Lo lắng về an toàn.", "explanation": ""},
+  {"question": "Trong giai đoạn đang thực hiện giao dịch, trạng thái cảm xúc nào sau đây thường hay xuất hiện nhất ở khách hàng?", "options": ["Hài lòng và hoàn toàn yên tâm về kết quả giao dịch.", "Bối rối và lo lắng vì sợ thao tác sai hoặc phát sinh rủi ro.", "Bức xúc do chi phí dịch vụ không minh bạch.", "Thờ ơ vì giao dịch đã quen thuộc."], "answer": "Bối rối và lo lắng vì sợ thao tác sai hoặc phát sinh rủi ro.", "explanation": ""},
+  {"question": "Sau giao dịch, nhu cầu tâm lý nổi bật của khách hàng đối với ngân hàng là gì?", "options": ["Được giải thích chi tiết quy trình.", "Được giảm phí.", "Được sự cam kết từ ngân hàng và có cảm giác yên tâm.", "Được ưu tiên xử lý."], "answer": "Được sự cam kết từ ngân hàng và có cảm giác yên tâm.", "explanation": ""},
+  {"question": "Nguyên tắc “đóng vòng” trong xử lý yêu cầu của khách hàng không chỉ nhằm hoàn tất nghiệp vụ mà còn nhằm mục tiêu quan trọng nào sau đây?", "options": ["Đáp ứng đủ chỉ tiêu KPI của đơn vị.", "Giảm khối lượng công việc phát sinh cho các bộ phận liên quan.", "Giảm lo âu của khách hàng và ngăn ngừa khiếu nại phát sinh hoặc leo thang.", "Rút ngắn tối đa thời gian xử lý nội bộ."], "answer": "Giảm lo âu của khách hàng và ngăn ngừa khiếu nại phát sinh hoặc leo thang.", "explanation": ""},
+  {"question": "Customer Effort của khách hàng thường tăng cao nhất trong trường hợp nào sau đây?", "options": ["Khi quy trình được giải thích chi tiết, rõ ràng.", "Khi khách hàng phát sinh cảm xúc tiêu cực ngày càng tăng.", "Khi nhân viên xác nhận lại thông tin để tránh sai sót.", "Khi ngân hàng có một đầu mối theo dõi xuyên suốt hồ sơ của khách hàng."], "answer": "Khi khách hàng phát sinh cảm xúc tiêu cực ngày càng tăng.", "explanation": ""},
+  {"question": "Nội dung nào dưới đây là nguyên nhân phổ biến gây bức xúc cho khách hàng?", "options": ["Khách phải nhập lại thông tin đã cung cấp.", "Bị hỏi lại từ đầu về những thông tin đã cung cấp và không ai/bộ phận nào đứng ra chịu trách nhiệm.", "Cả đáp án 1&2.", "Quyền lợi khách hàng được bảo đảm đầy đủ."], "answer": "Cả đáp án 1&2.", "explanation": ""},
+  {"question": "Nguyên tắc “Giảm effort trong 60 giây” trong chăm sóc khách hàng nhấn mạnh điều gì quan trọng nhất đối với trải nghiệm của khách hàng?", "options": ["Tăng tốc độ xử lý bằng mọi cách.", "Đơn giản hóa thao tác và tạo trải nghiệm liền mạch cho khách hàng.", "Chuẩn hóa toàn bộ biểu mẫu và quy trình nội bộ.", "Gia tăng số lượng tương tác giữa nhân viên và khách hàng."], "answer": "Đơn giản hóa thao tác và tạo trải nghiệm liền mạch cho khách hàng.", "explanation": ""},
+  {"question": "Trong nguyên tắc “đóng vòng” sau xử lý, yếu tố nào sau đây có tác động mạnh nhất trong việc giúp khách hàng giảm lo lắng và yên tâm chờ kết quả?", "options": ["Giải thích chi tiết quy trình nội bộ của đơn vị xử lý.", "Cập nhật rõ ràng, kịp thời về trạng thái xử lý vấn đề của khách hàng.", "Chuyển tuyến hồ sơ nhanh sang bộ phận liên quan.", "Yêu cầu khách hàng chủ động liên hệ lại khi cần."], "answer": "Cập nhật rõ ràng, kịp thời về trạng thái xử lý vấn đề của khách hàng.", "explanation": ""},
+  {"question": "Đâu KHÔNG thuộc 3 mảnh ghép “đóng vòng” sau xử lý?", "options": ["Trạng thái.", "Mốc thời gian.", "Cam kết.", "Ưu đãi."], "answer": "Ưu đãi.", "explanation": ""},
+  {"question": "Khi khách hàng gặp sự cố trong quá trình sử dụng dịch vụ, yếu tố nào sau đây có vai trò quyết định việc họ có thể tiếp tục quay lại và gắn bó với ngân hàng?", "options": ["Tốc độ xử lý sự cố nhanh hơn so với các đơn vị khác.", "Ngôn từ giao tiếp lịch sự, chuẩn mực của nhân viên.", "Cảm giác được giao dịch viên ngân hàng theo dõi, cam kết hỗ trợ và giải quyết vấn đề đến cùng.", "Các chương trình ưu đãi hoặc bồi thường sau sự cố."], "answer": "Cảm giác được giao dịch viên ngân hàng theo dõi, cam kết hỗ trợ và giải quyết vấn đề đến cùng.", "explanation": ""},
+  {"question": "Nguyên tắc quan trọng khi đọc tín hiệu tâm lý khách hàng là: ", "options": ["Suy đoán nhanh.", "Phán đoán theo kinh nghiệm.", "Không suy đoán – luôn xác nhận lại.", "Dựa vào cảm xúc cá nhân."], "answer": "Không suy đoán – luôn xác nhận lại.", "explanation": ""},
+  {"question": "Trong quá trình chăm sóc khách hàng  thời kỳ ngân hàng chuyển đổi số, việc chủ động thông báo trước các mốc thời gian xử lý giúp đáp ứng tốt nhất nhu cầu tâm lý nào của khách hàng?", "options": ["Nhu cầu được kiểm soát hoàn toàn quá trình xử lý.", "Nhu cầu được minh bạch thông tin và giảm cảm giác chờ đợi mơ hồ.", "Nhu cầu được ưu tiên xử lý trước các khách hàng khác.", "Nhu cầu được bồi thường khi phát sinh sự cố."], "answer": "Nhu cầu được minh bạch thông tin và giảm cảm giác chờ đợi mơ hồ.", "explanation": ""},
+  {"question": "Trong chăm sóc khách hàng số, vì sao việc “xác nhận lại thông tin” trước khi xử lý được coi là bước quan trọng về mặt tâm lý?", "options": ["Để tuân thủ quy trình nghiệp vụ bắt buộc", "Để kéo dài thời gian xử lý trong các tình huống phức tạp", "Để tránh hiểu sai và giảm nguy cơ xung đột", "Để thu thập thêm dữ liệu phục vụ báo cáo"], "answer": "Để tránh hiểu sai và giảm nguy cơ xung đột", "explanation": ""},
+  {"question": "“Trust – Time – Fairness” là nhóm từ khóa giúp nhân viên ngân hàng làm gì?", "options": ["Bán hàng hiệu quả", "Bắt đúng nhu cầu tâm lý khách hàng", "Đánh giá rủi ro tín dụng", "Xử lý các vấn đề nội bộ"], "answer": "Bắt đúng nhu cầu tâm lý khách hàng", "explanation": ""},
+  {"question": "Vì sao khi đọc tín hiệu tâm lý khách hàng cần kết hợp đồng thời cả 3 yếu tố: hành vi, lời nói và bối cảnh?", "options": ["Để rút ngắn thời gian xử lý và tăng tốc độ phản hồi.", "Để tránh suy đoán chủ quan, “chụp mũ” khách hàng và hiểu sai nhu cầu thực sự.", "Để tuân thủ đúng quy trình chăm sóc khách hàng.", "Để thu thập thêm dữ liệu phục vụ báo cáo nội bộ."], "answer": "Để tránh suy đoán chủ quan, “chụp mũ” khách hàng và hiểu sai nhu cầu thực sự.", "explanation": ""},
+  {"question": "Đọc sai tín hiệu tâm lý khách hàng dễ dẫn đến hậu quả nào dưới đây?", "options": ["Rút ngắn thời gian xử lý giao dịch.", "Hiểu lầm về mong muốn, nhu cầu của khách hàng và gia tăng xung đột.", "Khách hàng lo lắng về chất lượng dịch vụ.", "Khách hàng cảm thấy chưa muốn sử dụng sản phẩm dịch vụ."], "answer": "Hiểu lầm về mong muốn, nhu cầu của khách hàng và gia tăng xung đột.", "explanation": ""},
+  {"question": "Trong kỹ năng đọc tín hiệu tâm lý khách hàng, yếu tố “bối cảnh” phản ánh nội dung nào dưới đây?", "options": ["Thái độ cá nhân của khách hàng đối với nhân viên.", "Điều kiện và hoàn cảnh đang chi phối hành vi, cảm xúc của khách hàng.", "Mức độ hiểu biết của khách hàng về sản phẩm.", "Lịch sử giao dịch trước đây của khách hàng."], "answer": "Điều kiện và hoàn cảnh đang chi phối hành vi, cảm xúc của khách hàng.", "explanation": ""},
+  {"question": "Khi nhân viên đọc sai bối cảnh (hoàn cảnh, điều kiện chi phối) của khách hàng, rủi ro lớn nhất nào sau đây có thể xảy ra trong quá trình chăm sóc khách hàng?", "options": ["Kéo dài thời gian xử lý nghiệp vụ.", "Gia tăng chi phí vận hành cho đơn vị.", "Làm leo thang xung đột và phá vỡ niềm tin của khách hàng.", "Tất cả các đáp án trên."], "answer": "Làm leo thang xung đột và phá vỡ niềm tin của khách hàng.", "explanation": ""},
+  {"question": "Việc khách hàng né tránh ánh mắt khi checklist tại quầy thường liên quan đến trạng thái tâm lý nào dưới đây?", "options": ["Căng thẳng hoặc giận dữ.", "Bối rối hoặc xấu hổ, nghi ngờ.", "Nghi ngờ rủi ro/lừa đảo.", "Mất kiên nhẫn vì chờ đợi."], "answer": "Bối rối hoặc xấu hổ, nghi ngờ.", "explanation": ""},
+  {"question": "Khi khách hàng nghi ngờ rủi ro/lừa đảo, nhân viên ngân hàng cần ưu tiên điều gì?", "options": ["Cung cấp thông tin rõ ràng.", "Trấn an khách hàng.", "Cam kết hỗ trợ bảo vệ quyền lợi của khách hàng.", "Tất cả các đáp án trên."], "answer": "Tất cả các đáp án trên.", "explanation": ""},
+  {"question": "Dấu hiệu “nhịp cảm xúc tăng” trên chat/call thường cho thấy điều gì ở khách hàng?", "options": ["Khách hàng đang hiểu rõ vấn đề được giải thích.", "Mức độ bức xúc hoặc căng thẳng của khách hàng đang gia tăng.", "Khách hàng có nhu cầu tìm hiểu thêm sản phẩm mới.", "Khách hàng sẵn sàng kết thúc cuộc trao đổi."], "answer": "Mức độ bức xúc hoặc căng thẳng của khách hàng đang gia tăng.", "explanation": ""},
+  {"question": "Khi khách hàng liên tục hỏi lặp lại cùng một nội dung trên kênh chat, hành vi này thường phản ánh điều gì về trạng thái tâm lý của họ?", "options": ["Khách hàng đang tìm kiếm thêm thông tin sản phẩm khác.", "Khách hàng chưa được giải thích đầy đủ về quy trình.", "Dấu hiệu cho thấy mức độ lo lắng chưa yên tâm hoặc chưa hiểu chưa tin của khách hàng.", "Khách hàng muốn kéo dài thời gian trao đổi."], "answer": "Dấu hiệu cho thấy mức độ lo lắng chưa yên tâm hoặc chưa hiểu chưa tin của khách hàng.", "explanation": ""},
+  {"question": "Dấu hiệu nào sau đây cho thấy khách hàng đang chuyển từ trạng thái bối rối sang bức xúc trong quá trình tương tác dịch vụ?", "options": ["Khách hàng im lặng trong một khoảng thời gian ngắn.", "Nhịp cảm xúc tăng nhanh qua lời nói, tốc độ phản hồi hoặc ngôn từ.", "Khách hàng né ánh mắt hoặc nói nhỏ.", "Khách hàng hỏi thêm thông tin về sản phẩm khác."], "answer": "Nhịp cảm xúc tăng nhanh qua lời nói, tốc độ phản hồi hoặc ngôn từ.", "explanation": ""},
+  {"question": "Khi khách hàng liên tục thể hiện sự mất kiên nhẫn nhưng chưa khiếu nại trực tiếp, nhân viên cần ưu tiên điều gì để ngăn xung đột leo thang?", "options": ["Chuyển tuyến ngay để tránh trách nhiệm", "Nhận diện sớm tín hiệu cảm xúc, chủ động hạ nhiệt và chuẩn bị chuyển kênh riêng.", "Chờ khách hàng phản ánh chính thức.", "Giải thích chi tiết quy trình nội bộ."], "answer": "Nhận diện sớm tín hiệu cảm xúc, chủ động hạ nhiệt và chuẩn bị chuyển kênh riêng.", "explanation": ""},
+  {"question": "Trong giao tiếp thấu cảm, biểu hiện gì của giao dịch viên giúp khách hàng cảm thấy “được tôn trọng” hơn cả? ", "options": ["Được giảm phí hoặc bồi thường", "Nhu cầu được bồi thường khi phát sinh sự cố", "Được lắng nghe, xưng hô và gọi đúng tên,  không phủ nhận hay xem nhẹ cảm xúc khách hàng.", "Được xử lý nhanh nhưng không cần cập nhật"], "answer": "Được lắng nghe, xưng hô và gọi đúng tên,  không phủ nhận hay xem nhẹ cảm xúc khách hàng.", "explanation": ""},
+  {"question": "Trong khung hạ nhiệt AAAA, bước “Apologize” cần được hiểu và thực hiện đúng theo cách nào dưới đây?", "options": ["Thừa nhận hoàn toàn lỗi thuộc về cá nhân hoặc đơn vị cung cấp dịch vụ.", "Xin lỗi để nhanh chóng kết thúc cuộc trao đổi với khách hàng.", "Xin lỗi khách hàng vì sự bất tiện hoặc trải nghiệm không mong muốn mà họ phải chịu.", "Xin lỗi thay cho toàn bộ hệ thống và quy trình nội bộ."], "answer": "Xin lỗi khách hàng vì sự bất tiện hoặc trải nghiệm không mong muốn mà họ phải chịu.", "explanation": ""},
+  {"question": "Vì sao bước “Action” được coi là bước quyết định trong khung hạ nhiệt AAAA?", "options": ["Thể hiện sự lịch sự và tôn trọng khách hàng.", "Giúp nhân viên giải thích rõ quy trình nội bộ.", "Biến sự thấu hiểu và xin lỗi thành hành động cụ thể để giải quyết vấn đề.", "giúp kết thúc nhanh cuộc trao đổi với khách hàng."], "answer": "Biến sự thấu hiểu và xin lỗi thành hành động cụ thể để giải quyết vấn đề.", "explanation": ""},
+  {"question": "Trong khung hạ nhiệt AAAA, nếu thiếu bước “Assure”, rủi ro lớn nhất nào sau đây có thể xảy ra đối với cảm nhận của khách hàng?", "options": ["Khách hàng chưa được lắng nghe và thấu hiểu đầy đủ.", "Khách hàng không thấy hành động cụ thể để xử lý vấn đề.", "Khách hàng không tin rằng vấn đề sẽ được theo dõi và giải quyết đến cùng.", "Khách hàng chưa nhận được lời xin lỗi phù hợp."], "answer": "Khách hàng không tin rằng vấn đề sẽ được theo dõi và giải quyết đến cùng.", "explanation": ""},
+  {"question": "Khi thực hiện handover từ bot sang nhân viên trong chăm sóc khách hàng số, điều nào sau đây không nên xảy ra để đảm bảo trải nghiệm liền mạch cho khách hàng?", "options": ["Nhân viên tiếp nhận được đầy đủ bối cảnh và lịch sử trao đổi trước đó.", "Khách hàng phải trình bày lại toàn bộ vấn đề từ đầu.", "Việc chuyển giao diễn ra nhanh chóng, không gián đoạn hội thoại.", "Mạch giao tiếp được duy trì liên tục giữa bot và nhân viên."], "answer": "Khách hàng phải trình bày lại toàn bộ vấn đề từ đầu.", "explanation": ""},
+  {"question": "Việc giữ một đầu mối chịu trách nhiệm xuyên suốt khi chuyển tuyến xử lý giúp khách hàng giảm cảm giác tâm lý tiêu cực nào sau đây?", "options": ["Cảm giác bị bỏ rơi, bị “đẩy qua đẩy lại” giữa các bộ phận.", "Cảm giác bị kiểm soát hoặc giám sát quá mức.", "Cảm giác bị đánh giá năng lực cá nhân.", "Cảm giác thiếu an toàn thông tin."], "answer": "Cảm giác bị bỏ rơi, bị “đẩy qua đẩy lại” giữa các bộ phận.", "explanation": ""},
+  {"question": "Trong tình huống giao dịch đang chờ xử lý (pending), hành động nào sau đây thể hiện đúng tinh thần “Time-value” đối với khách hàng?", "options": ["Chờ khách hàng liên hệ lại để hỏi tình trạng giao dịch.", "Cập nhật sớm tình trạng giao dịch và ước tính thời gian xử lý thực tế.", "Giải thích chi tiết toàn bộ quy trình nội bộ của ngân hàng.", "Chuyển ngay hồ sơ sang bộ phận kỹ thuật mà không cần thông báo."], "answer": "Cập nhật sớm tình trạng giao dịch và ước tính thời gian xử lý thực tế.", "explanation": ""},
+  {"question": "Yếu tố nào quyết định cảm nhận công bằng của khách hàng về phí?", "options": ["Mức phí thấp hơn so với đối thủ.", "Thời gian xử lý giao dịch nhanh.", "Sự minh bạch và giải thích rõ ràng về phí.", "Số lượng ưu đãi đi kèm."], "answer": "Sự minh bạch và giải thích rõ ràng về phí.", "explanation": ""},
+  {"question": "Trong tình huống phí hoặc điều kiện dịch vụ không được công bố rõ ràng, phản ứng chủ đạo nào sau đây thường xuất hiện ở khách hàng?", "options": ["Bức xúc vì mất nhiều thời gian chờ đợi.", "Lo lắng về việc giao dịch có được thực hiện hay không.", "Cảm giác thiếu công bằng và bị thiệt thòi.", "Thờ ơ vì phí không đáng kể."], "answer": "Cảm giác thiếu công bằng và bị thiệt thòi.", "explanation": ""},
+  {"question": "Khi khách hàng nghi ngờ có dấu hiệu lừa đảo, hành động nào sau đây giúp duy trì niềm tin của khách hàng một cách bền vững nhất?", "options": ["Chuyển ngay yêu cầu sang bộ phận kỹ thuật để kiểm tra.", "Giải thích chi tiết các quy trình kỹ thuật của hệ thống.", "Trấn an khách hàng kịp thời và cam kết hỗ trợ bảo vệ quyền lợi của họ.", "Yêu cầu khách hàng tự theo dõi và chờ kết quả xác minh."], "answer": "Trấn an khách hàng kịp thời và cam kết hỗ trợ bảo vệ quyền lợi của họ.", "explanation": ""},
+  {"question": "Khi khách hàng gặp lỗi eKYC, nguyên tắc Trust-first phát huy tác dụng như nào?", "options": ["Giải thích ngay quy trình eKYC và lý do kỹ thuật để khách hàng hiểu và tự chấp nhận lỗi.", "Yêu cầu khách hàng thực hiện lại eKYC nhiều lần cho đến khi hệ thống thành công.", "Trấn an khách hàng trước, thừa nhận bất tiện, cam kết hỗ trợ và hướng dẫn xử lý rõ ràng trong phạm vi cho phép.", "Tạm dừng giao dịch và yêu cầu khách hàng ra quầy để đảm bảo an toàn."], "answer": "Trấn an khách hàng trước, thừa nhận bất tiện, cam kết hỗ trợ và hướng dẫn xử lý rõ ràng trong phạm vi cho phép.", "explanation": ""},
+  {"question": "Khi xử lý phàn nàn công khai trên mạng xã hội, hành vi nào sau đây đi ngược nguyên tắc “Social-first”?", "options": ["Phản hồi sớm và công khai trên nền tảng nơi khách hàng phàn nàn.", "Giữ thái độ bình tĩnh, chuyên nghiệp khi trao đổi.", "Tranh cãi đúng – sai với khách hàng ngay trên không gian công khai.", "Đề nghị chuyển sang kênh riêng để xử lý chi tiết."], "answer": "Tranh cãi đúng – sai với khách hàng ngay trên không gian công khai.", "explanation": ""},
+  {"question": "Trong quá trình chăm sóc khách hàng chuyên nghiệp trong kỷ nguyên số, yếu tố nào giúp phân biệt rõ giữa “xử lý đúng nghiệp vụ” và “xử lý tốt trải nghiệm khách hàng”?", "options": ["Số lượng bước xử lý.", "Mức độ tự động hóa hệ thống.", "Cách nhân viên giao tiếp và đồng hành và thấu hiểu cảm xúc khách hàng.", "Thời gian hoàn tất giao dịch."], "answer": "Cách nhân viên giao tiếp và đồng hành và thấu hiểu cảm xúc khách hàng.", "explanation": ""},
+  {"question": "Khi khách hàng có sự hiểu lầm về phí và điều kiện cung ứng sản phẩm dịch vụ của ngân hàng, giao dịch viên thực hiện xem xét chính sách một cách linh hoạt cho khách hàng. Giao dịch viên đã thực hiện nguyên tắc nào trong chăm sóc khách hàng?", "options": ["Nguyên tắc Fairness – đảm bảo sự công bằng theo cảm nhận của khách hàng khi áp dụng chính sách.", "Nguyên tắc Trust-first – ưu tiên tạo niềm tin trước khi giải thích các vấn đề liên quan", "Nguyên tắc Loss aversion – giảm cảm giác mất mát cho khách hàng.", "Nguyên tắc Customer Effort – giảm nỗ lực mà khách hàng phải bỏ ra khi giao dịch."], "answer": "Nguyên tắc Fairness – đảm bảo sự công bằng theo cảm nhận của khách hàng khi áp dụng chính sách.", "explanation": ""},
+  {"question": "ChatGPT hỗ trợ cán bộ ngân hàng trong mảng CSKH qua tính năng nào?", "options": ["Tự động phê duyệt các hồ sơ giải ngân trực tuyến", "Chuẩn hóa giao tiếp, thấu hiểu khách hàng, xử lý tình huống khó", "Kiểm tra trực tiếp số dư tài khoản của khách hàng", "Thay thế hoàn toàn tổng đài viên trả lời mọi câu hỏi"], "answer": "Chuẩn hóa giao tiếp, thấu hiểu khách hàng, xử lý tình huống khó", "explanation": ""},
+  {"question": "AI giúp \"Phân tích nhanh chóng\" dữ liệu khách hàng thông qua cách thức nào?", "options": ["Đọc và ghi chép thủ công từng hồ sơ khách hàng", "Xử lý dữ liệu lớn trong thời gian ngắn, tiết kiệm nguồn lực", "Dự đoán nhu cầu dựa trên cảm tính cá nhân của máy tính", "Chỉ tập trung vào dữ liệu của những khách hàng mới mở tài khoản"], "answer": "Xử lý dữ liệu lớn trong thời gian ngắn, tiết kiệm nguồn lực", "explanation": ""},
+  {"question": "\"Nhóm nguy cơ rời bỏ\" trong quá trình phân nhóm khách hàng bằng AI phản ánh điều gì về hành vi khách hàng? ", "options": ["Những khách hàng mới lần đầu sử dụng dịch vụ tại chi nhánh", "Nhận diện khách hàng có nguy cơ rời bỏ thông qua phân tích hành vi giảm tương tác và giao dịch ", "Khách hàng thường xuyên thực hiện giao dịch nộp tiền tại quầy", "Nhóm khách hàng có số dư tiền gửi tiết kiệm lớn nhất"], "answer": "Nhận diện khách hàng có nguy cơ rời bỏ thông qua phân tích hành vi giảm tương tác và giao dịch ", "explanation": ""},
+  {"question": "AI nâng cao trải nghiệm khách hàng thông qua \"Gợi ý cá nhân hóa\" bằng cách nào?", "options": ["Đưa ra cùng một gói sản phẩm ưu đãi cho mọi đối tượng", "Phân tích dữ liệu khách hàng để đưa ra gợi ý phù hợp nhu cầu", "Chỉ thực hiện gợi ý những sản phẩm mang lại lợi nhuận cao nhất", "Tự động đăng ký các dịch vụ ngân hàng điện tử cho khách"], "answer": "Phân tích dữ liệu khách hàng để đưa ra gợi ý phù hợp nhu cầu", "explanation": ""},
+  {"question": "Trong CSKH, AI giúp cán bộ thắt chặt mối quan hệ lâu dài với khách hàng nhờ:", "options": ["Tự động thực hiện các thao tác trừ tiền trên tài khoản thanh toán", "Thấu hiểu sâu sắc nhu cầu và mong muốn thực tế của khách hàng", "Việc liên tục gửi các thông báo quảng cáo dịch vụ mỗi ngày", "Khả năng chỉ tập trung chăm sóc những khách hàng hay phàn nàn"], "answer": "Thấu hiểu sâu sắc nhu cầu và mong muốn thực tế của khách hàng", "explanation": ""},
+  {"question": "AI hỗ trợ cán bộ \"Giải quyết vấn đề\" thông qua phản hồi của khách hàng bằng cách:", "options": ["Tự động ẩn hoặc xóa các ý kiến phản hồi tiêu cực trên mạng", "Phát hiện các vấn đề lặp lại để thực hiện biện pháp khắc phục", "Thay thế hoàn toàn cán bộ trong việc xin lỗi khách hàng trực tiếp", "Chuyển toàn bộ nội dung phản hồi lên cấp lãnh đạo cao nhất"], "answer": "Phát hiện các vấn đề lặp lại để thực hiện biện pháp khắc phục", "explanation": ""},
+  {"question": "Việc AI \"Dự đoán nhu cầu tiềm ẩn\" giúp ích gì cho cán bộ CSKH tại Agribank?", "options": ["Giúp khách hàng chi tiêu và sử dụng vốn nhiều hơn mức cần thiết", "Nhận diện nhu cầu một cách chính xác, cải thiện trải nghiệm", "Giảm bớt thời gian cán bộ tiếp xúc trực tiếp với khách hàng", "Làm thay đổi hoàn toàn thói quen tiêu dùng của người dân"], "answer": "Nhận diện nhu cầu một cách chính xác, cải thiện trải nghiệm", "explanation": ""},
+  {"question": "Trọng tâm của tư duy xử lý khiếu nại thời đại số là gì?", "options": ["Giải quyết nhanh hồ sơ.", "Giải quyết vấn đề và phục hồi niềm tin.", "Giảm thiểu trách nhiệm.", "Tuân thủ quy trình."], "answer": "Giải quyết vấn đề và phục hồi niềm tin.", "explanation": ""},
+  {"question": "\"Minh bạch\" trong xử lý khiếu nại là gì?", "options": ["Cung cấp toàn bộ thông tin nội bộ cho khách hàng.", "Thông tin rõ ràng, đầy đủ và dễ hiểu cho khách hàng về quá trình xử lý.", "Công khai chi tiết toàn bộ quy trình nội bộ của ngân hàng.", "Báo cáo chi tiết cho cấp quản lý."], "answer": "Thông tin rõ ràng, đầy đủ và dễ hiểu cho khách hàng về quá trình xử lý.", "explanation": ""},
+  {"question": "Bước đầu tiên trong quy trình xử lý khiếu nại là:", "options": ["Xác minh.", "Phản hồi.", "Tiếp nhận và phân loại.", "Đóng vòng."], "answer": "Tiếp nhận và phân loại.", "explanation": ""},
+  {"question": "Khi phân loại khiếu nại, yếu tố nào cần được xem xét?", "options": ["Doanh thu và giá trị giao dịch của khách hàng.", "Mức độ rủi ro và trạng thái cảm xúc của khách hàng.", "Thời gian khách hàng phát sinh giao dịch gần nhất.", "Loại hình sản phẩm, dịch vụ mà khách hàng đang sử dụng."], "answer": "Mức độ rủi ro và trạng thái cảm xúc của khách hàng.", "explanation": ""},
+  {"question": "Phân loại sai khiếu nại ngay từ đầu dễ gây ra hệ quả gì?", "options": ["Trễ SLA, xử lý sai tuyến và làm mất niềm tin của khách hàng", "Tăng số lượng hồ sơ lưu trữ trên hệ thống", "Phát sinh thêm thủ tục hành chính", "Gia tăng chi phí đào tạo nhân sự"], "answer": "Trễ SLA, xử lý sai tuyến và làm mất niềm tin của khách hàng", "explanation": ""},
+  {"question": "Xác minh khiếu nại phải dựa trên cơ sở nào?", "options": ["Kinh nghiệm cá nhân.", "Cảm xúc khách hàng", "Ý kiến cấp trên.", "Dữ liệu và bằng chứng."], "answer": "Dữ liệu và bằng chứng.", "explanation": ""},
+  {"question": "“Đóng vòng” trong xử lý khiếu nại được thực hiện bằng cách nào?", "options": ["Kết thúc hồ sơ.", "Lưu CRM.", "Xác nhận khách hàng đã rõ và hài lòng.", "Báo cáo cấp trên."], "answer": "Xác nhận khách hàng đã rõ và hài lòng.", "explanation": ""},
+  {"question": "Phản hồi khiếu nại cấu trúc chuẩn gồm mấy phần? Gồm những phần nào?", "options": ["2 phần gồm: Kết quả xử lý; Căn cứ đưa ra quyết định.", "3 phần gồm: Căn cứ đưa ra quyết định; Hành động đã thực hiện; Cam kết trong tương lai.", "4 phần gồm: Kết quả xử lý; Căn cứ đưa ra quyết định; Hành động đã thực hiện; Cam kết trong tương lai.", "5 phần gồm: Kết quả xử lý; Tặng quà; Căn cứ đưa ra quyết định; Hành động đã thực hiện; Cam kết."], "answer": "4 phần gồm: Kết quả xử lý; Căn cứ đưa ra quyết định; Hành động đã thực hiện; Cam kết trong tương lai.", "explanation": ""},
+  {"question": "“Bài học hệ thống” trong xử lý khiếu nại dùng để:", "options": ["Đánh giá và xếp loại năng lực nhân sự.", "Truy trách nhiệm cá nhân liên quan.", "Tìm hiểu nguyên nhân gốc rễ và đề xuất cải tiến quy trình, sản phẩm và dịch vụ.", "Phục vụ công tác báo cáo định kỳ."], "answer": "Tìm hiểu nguyên nhân gốc rễ và đề xuất cải tiến quy trình, sản phẩm và dịch vụ.", "explanation": ""},
+  {"question": "\"Nhu cầu ẩn\" sau khiếu nại KHÔNG bao gồm nội dung nào dưới đây?", "options": ["Tôn trọng", "An toàn", "Công bằng", "Ưu đãi"], "answer": "Ưu đãi", "explanation": ""},
+  {"question": "Để đàm phán hiệu quả với khách hàng khiếu nại cần yếu tố nào dưới đây? ", "options": ["Nhượng bộ nhanh để kết thúc khiếu nại.", "Tranh luận đúng – sai để bảo vệ quan điểm ngân hàng.", "Tách người - tách vấn đề, tập trung vào giải pháp.", "Giữ lập trường nhằm tránh rủi ro."], "answer": "Tách người - tách vấn đề, tập trung vào giải pháp.", "explanation": ""},
+  {"question": "Khiếu nại trong môi trường số khác truyền thống ở điểm nào?", "options": ["Nhiều kênh, lan truyền nhanh và tác động rộng.", "Ít cảm xúc và dễ kiểm soát hơn.", "Chỉ phát sinh trên mạng xã hội.", "Ít rủi ro và dễ xử lý hơn."], "answer": "Nhiều kênh, lan truyền nhanh và tác động rộng.", "explanation": ""},
+  {"question": "Theo Quy định số  2345/QyĐ-NHNo-CSKH ngày 29/9/2023, khách hàng phân loại trực tiếp được Agribank phân loại thành bao nhiêu nhóm?", "options": ["1 nhóm (Khách hàng phổ thông)", "2 nhóm (Khách hàng thân thiết; Khách hàng phổ thông)", "3 nhóm (Khách hàng VIP; Khách hàng thân thiết; Khách hàng phổ thông)", "4 nhóm (Khách hàng VIP; Khách hàng thân thiết; Khách hàng phổ thông)"], "answer": "3 nhóm (Khách hàng VIP; Khách hàng thân thiết; Khách hàng phổ thông)", "explanation": ""},
+  {"question": "Theo Quy định số  2345/QyĐ-NHNo-CSKH ngày 29/9/2023, khách hàng VIP của Agribank được phân loại thành bao nhiêu hạng?", "options": ["1 hạng", " 2 hạng", "3 hạng", "4 hạng"], "answer": "4 hạng", "explanation": ""},
+  {"question": "Khách hàng cá nhân cần bao nhiêu điểm để có thể trở thành khách hàng VIP của Agribank?", "options": ["Từ 500 điểm trở lên ", "Từ 400 điểm trở lên ", "Từ 300 điểm trở lên", "Từ 200 điểm trở lên "], "answer": "Từ 300 điểm trở lên", "explanation": ""},
+  {"question": "Khách hàng tổ chức cần bao nhiêu điểm để có thể trở thành khách hàng VIP của Agribank?", "options": ["Từ 5.000 điểm trở lên ", "Từ 4.000 điểm trở lên ", "Từ 3.000 điểm trở lên ", "Từ 2.000 điểm trở lên"], "answer": "Từ 2.000 điểm trở lên", "explanation": ""},
+  {"question": "Khách hàng cá nhân cần bao nhiêu điểm để có thể trở thành khách hàng VIP hạng Platinum của Agribank?", "options": ["Từ 15.000 điểm trở lên ", "Từ 1.500 điểm trở lên.", "Từ 500 điểm trở lên ", "Từ 5.000 điểm trở lên "], "answer": "Từ 1.500 điểm trở lên.", "explanation": ""},
+  {"question": "Khách hàng tổ chức cần bao nhiêu điểm để có thể trở thành khách hàng VIP hạng Platinum của Agribank?", "options": ["Từ 50.000 điểm trở lên ", "Từ 5.000 điểm trở lên", "Từ 150.000 điểm trở lên ", "Từ 15.000 điểm trở lên "], "answer": "Từ 5.000 điểm trở lên", "explanation": ""},
+  {"question": "Chi nhánh nào được quyền nâng nhóm/hạng khách hàng?", "options": ["Chi nhánh đầu mối", "Chi nhánh phối hợp", "Chi nhánh bất kỳ"], "answer": "Chi nhánh đầu mối", "explanation": ""},
+  {"question": "Khách hàng bị điều chỉnh hạ nhóm/hạng trong trường hợp nào sau đây?", "options": ["Khách hàng chuyển nợ nhóm 2 trở lên tại Agribank và/ hoặc theo thông tin của Trung tâm Thông tin tín dụng Quốc gia (CIC)", "Khách hàng có nợ cơ cấu giữ nguyên nhóm nợ", "Agribank có thông tin tiêu cực về khách hàng/khách hàng có liên quan", "Tất cả các đáp án"], "answer": "Tất cả các đáp án", "explanation": ""},
+  {"question": "Khách hàng cá nhân thuộc nhóm khách hàng thân thiết được hưởng các ưu đãi nào sau đây?", "options": ["Khách hàng được miễn phí liên hệ Tổng đài 1800282855; miễn phí tư vấn, hỗ trợ qua các kênh điện tử của Agribank (E-mail, Fanpage...) ", "Khách hàng được ưu tiên về thời gian xử lý giao dịch", "Khách hàng được tư vấn, hỗ trợ hồ sơ, thủ tục, sản phẩm dịch vụ ngân hàng, … phù hợp với sản phẩm dịch vụ khách hàng đang sử dụng, nhu cầu, đặc điểm, nghề nghiệp của khách hàng", "Tất cả các đáp án trên"], "answer": "Khách hàng được tư vấn, hỗ trợ hồ sơ, thủ tục, sản phẩm dịch vụ ngân hàng, … phù hợp với sản phẩm dịch vụ khách hàng đang sử dụng, nhu cầu, đặc điểm, nghề nghiệp của khách hàng", "explanation": ""},
+  {"question": "Chi nhánh nào sau đây được ưu tiên là đơn vị đầu mối theo Quy định số 1566/QyĐ-NHNo-CSKH ngày 30/6/2023?", "options": ["Chi nhánh quản lý tài khoản tiền gửi thanh toán của khách hàng", "Chi nhánh có lợi ích mà khách hàng mang lại từ tiền vay cao nhất", "Chi nhánh được Hội đồng thành viên, Tổng Giám đốc giao"], "answer": "Chi nhánh được Hội đồng thành viên, Tổng Giám đốc giao", "explanation": ""},
+  {"question": "Chính sách chăm sóc khách hàng trong hệ thống Agribank áp dụng cho những đối tượng khách hàng nào?", "options": ["Khách hàng cá nhân", "Khách hàng cá nhân, khách hàng là Định chế tài chính", "Khách hàng cá nhân, tổ chức (Khách hàng là định chế tài chính thực hiện theo quy định riêng)", "Khách hàng tổ chức"], "answer": "Khách hàng cá nhân, tổ chức (Khách hàng là định chế tài chính thực hiện theo quy định riêng)", "explanation": ""},
+  {"question": "Lựa chọn đáp án đúng nhất về thời gian áp dụng chính sách chăm sóc khách hàng trong hệ thống Agribank?", "options": ["Áp dụng chính sách chăm sóc khách hàng trong 05 tháng tiếp theo kể từ ngày kết thúc kỳ phân loại", "Áp dụng chính sách chăm sóc khách hàng trong 07 tháng tiếp theo kể từ ngày kết thúc kỳ phân loại", "Từ ngày có kết quả phân loại khách hàng đến ngày liền kề của ngày có kết quả phân loại khách hàng của kỳ phân loại tiếp theo"], "answer": "Từ ngày có kết quả phân loại khách hàng đến ngày liền kề của ngày có kết quả phân loại khách hàng của kỳ phân loại tiếp theo", "explanation": ""},
+  {"question": "Thời gian thông báo nhóm, hạng khách hàng đối với khách hàng VIP không điều chỉnh nhóm, hạng trên Chương trình phân loại khách hàng?", "options": ["Trước ngày 20 tháng đầu tiên của kỳ phân loại", "Trước ngày 05 tháng đầu tiên của kỳ phân loại", "Trước ngày 03 tháng đầu tiên của kỳ phân loại", "Trước ngày 01 tháng đầu tiên của kỳ phân loại"], "answer": "Trước ngày 20 tháng đầu tiên của kỳ phân loại", "explanation": ""},
+  {"question": "Chọn đáp án đúng nhất về việc các hình thức nhận diện khách hàng VIP tại điểm giao dịch?", "options": ["Chương trình phân loại khách hàng", "Ứng dụng ngân hàng điện tử/Thẻ vật lý/E-mail/tin nhắn… của Agribank và các ứng dụng công nghệ khác để nhận diện khách hàng được phát triển và quy định trong từng thời kỳ", "Các hình thức nhận diện khác", "Tất cả các đáp án trên"], "answer": "Tất cả các đáp án trên", "explanation": ""},
+  {"question": "Chính sách ưu đãi liên quan đến Tư vấn, hỗ trợ dành cho khách hàng cá nhân VIP?", "options": ["Khách hàng được miễn phí liên hệ Tổng đài 1800282855; miễn phí tư vấn, hỗ trợ qua các kênh điện tử của Agribank (E-mail, Fanpage...)", "Có danh mục trên Website Agribank để khách hàng tra cứu tin tức sự kiện, các ưu đãi của Agribank/đối tác, điểm giao dịch ưu tiên…", "Khách hàng được tư vấn, hỗ trợ hồ sơ, thủ tục, sản phẩm dịch vụ ngân hàng, giải pháp tài chính, … phù hợp với sản phẩm dịch vụ khách hàng đang sử dụng, nhu cầu, đặc điểm, nghề nghiệp của khách hàng", "Tất cả các đáp án trên"], "answer": "Tất cả các đáp án trên", "explanation": ""},
+  {"question": "Khách hàng cá nhân cần có số dư tiền gửi có kỳ hạn bình quân tối thiểu là bao nhiêu để có thể trở thành khách hàng VIP của Agribank?", "options": [" 1 tỷ đồng ", " 2 tỷ đồng", " 3 tỷ đồng", " 4 tỷ đồng"], "answer": " 1 tỷ đồng ", "explanation": ""},
+  {"question": "Khách hàng cá nhân cần có số dư tiền gửi không kỳ hạn bình quân tối thiểu là bao nhiêu để có thể trở thành khách hàng VIP của Agribank?", "options": ["150 triệu đồng  ", " 500 triệu đồng", " 1tỷ đồng ", "2 tỷ đồng"], "answer": "150 triệu đồng  ", "explanation": ""},
+  {"question": "Khách hàng cá nhân có số dư tiền vay bình quân tối thiểu là bao nhiêu để có thể trở thành khách hàng VIP của Agribank?", "options": [" 2 tỷ đồng", "3 tỷ đồng", "4 tỷ đồng", "5 tỷ đồng"], "answer": " 2 tỷ đồng", "explanation": ""},
+  {"question": "Theo Quy định số  2345/QyĐ-NHNo-CSKH ngày 29/9/2023, khách hàng phân loại gián tiếp là khách hàng nào đưới đây?", "options": ["Khách hàng được đánh giá có khả năng đem lại lợi ích cho Agribank và có thông tin khách hàng trên hệ thống IPCAS", "Khách hàng có đóng góp, hỗ trợ các hoạt động của Agribank và có thông tin khách hàng trên hệ thống IPCAS", "Khách hàng có thông tin trên hệ thống IPCAS và sử dụng sản phẩm dịch vụ của Agribank trong kỳ phân loại", "Khách hàng được đánh giá có khả năng đem lại lợi ích và/ hoặc có đóng góp, hỗ trợ các hoạt động của Agribank nhưng chưa được phân loại trực tiếp"], "answer": "Khách hàng được đánh giá có khả năng đem lại lợi ích và/ hoặc có đóng góp, hỗ trợ các hoạt động của Agribank nhưng chưa được phân loại trực tiếp", "explanation": ""},
+  {"question": "Theo Quy định số  2345/QyĐ-NHNo-CSKH ngày 29/9/2023, kỳ phân loại đối với khách hàng gián tiếp được thực hiện như thế nào?", "options": ["Tối thiểu 02 tháng/lần", "Tại bất kỳ thời điểm nào trong năm, các đơn vị thực hiện rà soát, điều chỉnh phân loại khách hàng gián tiếp", "Tối thiểu 03 tháng/lần", "Tối thiểu 06 tháng/lần"], "answer": "Tại bất kỳ thời điểm nào trong năm, các đơn vị thực hiện rà soát, điều chỉnh phân loại khách hàng gián tiếp", "explanation": ""},
+  {"question": "Khách hàng được phân loại theo Quy định số 2345/QyĐ-NHNo-CSKH ngày 29/9/2023 gồm:", "options": ["Khách hàng phân loại trực tiếp và Khách hàng phân loại gián tiếp ", "Khách hàng thường xuyên và khách hàng vãng lai", "Tất cả các đáp án trên"], "answer": "Khách hàng phân loại trực tiếp và Khách hàng phân loại gián tiếp ", "explanation": ""},
+  {"question": "Khách hàng tổ chức  có số dư tiền vay bình quân là bao nhiêu để có thể trở thành khách hàng VIP?", "options": ["Từ 10 tỷ đồng", "15 tỷ đồng", "20 Tỷ đồng", "từ 25 Tỷ đồng"], "answer": "Từ 10 tỷ đồng", "explanation": ""},
+  {"question": "Khách hàng tổ chức  có số dư tiền vay bình quân là bao nhiêu để có thể trở thành khách hàng VIP hạng Platinum (Bạch kim) của Agribank?", "options": ["từ 25 Tỷ đồng", "30 Tỷ đồng", "35 tỷ đồng", "40 tỷ đồng"], "answer": "từ 25 Tỷ đồng", "explanation": ""},
+  {"question": "Trong phân loại khách hàng theo Quy định số 2345/QyĐ-NHNo-CSKH ngày 29/9/2023, hệ số ưu tiên sản phẩm dịch vụ (K) là gì?", "options": ["Là hệ số điều chỉnh áp dụng cụ thể khi phân loại khách hàng để đảm bảo sự tương quan giữa các sản phẩm khi đánh giá mức độ đóng góp của khách hàng đối với Agribank", "Là hệ số điều chỉnh đối với loại sản phẩm dịch vụ được ưu tiên phù hợp với tình hình thực tế, mục tiêu kinh doanh của Agribank từng thời kỳ", "Là hệ số điều chỉnh đối với loại sản phẩm dịch vụ "], "answer": "Là hệ số điều chỉnh đối với loại sản phẩm dịch vụ được ưu tiên phù hợp với tình hình thực tế, mục tiêu kinh doanh của Agribank từng thời kỳ", "explanation": ""},
+  {"question": "Gửi tin nhắn quảng cáo trong khung thời gian nào là vi phạm quy định tại Nghị định 91/2020/NĐ-CP ngày 14/8/2020?", "options": ["Gửi trong thời gian từ 09 giờ đến 19 giờ mỗi ngày", "Gửi trong thời gian từ 08 giờ đến 20 giờ mỗi ngày", "Gửi trong thời gian từ 05 giờ đến 06 giờ mỗi ngày"], "answer": "Gửi trong thời gian từ 05 giờ đến 06 giờ mỗi ngày", "explanation": ""},
+  {"question": "Theo Nghị định 91/2020/NĐ-CP ngày 14/8/2020, tin nhắn như thế nào được coi là tin nhắn rác?", "options": ["Tin nhắn quảng cáo mà không được sự đồng ý trước của người sử dụng", "Tín nhắn thông báo biến động số dư tài khoản khi khách hàng đã đăng ký dịch vụ", "Tin nhắn thông báo nhắc nợ vay khi khách hàng đã đăng ký dịch vụ "], "answer": "Tin nhắn quảng cáo mà không được sự đồng ý trước của người sử dụng", "explanation": ""},
+  {"question": "Theo Nghị định 91/2020/NĐ-CP ngày 14/8/2020, loại thư điện tử nào được coi là thư điện tử rác?", "options": ["Thư điện tử thông báo mở tài khoản trực tuyến thành công khi khách hàng đã đăng ký dịch vụ", "Thư điện tử quảng cáo không được sự đồng ý của người sử dụng", "Thư điện tử xác thực giao dịch thanh toán trực tuyến thẻ khi khách hàng đã đăng ký dịch vụ"], "answer": "Thư điện tử quảng cáo không được sự đồng ý của người sử dụng", "explanation": ""},
+  {"question": "Theo Văn bản số 7892/NHNo-CSKH, khung thời gian gửi tin nhắn SMS Brandname mang nội dung chăm sóc đến khách hàng?", "options": ["Sáng từ 8:00 - 12:00\nChiều từ 16:00 - 21:00", "Sáng từ 8:00 - 12:00", "Sáng từ 8:00 - 10:30\nChiều từ 13:30 - 16:00", "Chiều từ 16:00 - 21:00"], "answer": "Sáng từ 8:00 - 10:30\nChiều từ 13:30 - 16:00", "explanation": ""},
+  {"question": "Theo Văn bản số 7892/NHNo-CSKH, khung thời gian gửi tin nhắn SMS Brandname mang nội dung quảng cáo đến khách hàng?", "options": ["Sáng từ 8:00 - 12:00\nChiều từ 16:00 - 21:00", "Sáng từ 8:00 - 12:00", "Sáng từ 8:00 - 10:30\nChiều từ 13:30 - 16:00", "Chiều từ 16:00 - 21:00"], "answer": "Sáng từ 8:00 - 10:30\nChiều từ 13:30 - 16:00", "explanation": ""},
+  {"question": "Số lượng tin nhắn SMS Brandname quảng cáo mà Đơn vị/chi nhánh gửi tới một khách hàng? ", "options": ["Không được gửi quá 3 tin quảng cáo trong vòng 24 giờ trừ trường hợp có thỏa thuận khác với khách hàng", "Không được gửi quá 10 tin quảng cáo trong vòng 24 giờ trừ trường hợp có thỏa thuận khác với khách hàng", "Không được gửi quá 3 tin quảng cáo trong vòng 48 giờ trừ trường hợp có thỏa thuận khác với khách hàng", "Không được gửi quá 10 tin quảng cáo trong vòng 48 giờ"], "answer": "Không được gửi quá 3 tin quảng cáo trong vòng 24 giờ trừ trường hợp có thỏa thuận khác với khách hàng", "explanation": ""},
+  {"question": "Agribank hạ nhóm, hạng của khách hàng trong các trường hợp nào sau đây?", "options": ["Khách hàng chuyển nợ nhóm 2 trở lên tại Agribank và/ hoặc theo thông tin của Trung tâm Thông tin tín dụng Quốc gia (CIC)", "Khách hàng hủy đăng ký dịch vụ Agribank E-Mobile Banking", "Khách hàng không tăng dư nợ trong kỳ phân loại"], "answer": "Khách hàng chuyển nợ nhóm 2 trở lên tại Agribank và/ hoặc theo thông tin của Trung tâm Thông tin tín dụng Quốc gia (CIC)", "explanation": ""},
+  {"question": "Khách hàng A là khách hàng VIP tới giao dịch tại chi nhánh, Chi nhánh phục vụ khách hàng như thế nào?", "options": ["KH được ưu tiên phục vụ, chăm sóc bởi cán bộ giàu kinh nghiệm, nhiệt tình, kỹ năng tốt", "KH được ưu tiên phục vụ về thời gian xử lý giao dịch: Thực hiện nhanh, rút ngắn thời gian các giao dịch, xét duyệt hồ sơ của khách hàng đảm bảo chất lượng, đúng quy trình.", "Ưu tiên phục vụ ngoài giờ làm việc: Tùy theo điều kiện thực tế, đảm bảo các quy định về an toàn hoạt động của Agribank và quy định của Pháp luật có liên quan. ", "Tất cả các đáp án trên."], "answer": "Tất cả các đáp án trên.", "explanation": ""},
+  {"question": "Chính sách, ưu đãi liên quan đến Thời gian xử lý giao dịch dành cho khách hàng cá nhân VIP?", "options": ["Thực hiện xử lý như đối với khách hàng nhóm thân thiết, phổ thông", "Trả lời kết quả ngay tại thời điểm tiếp nhận, xét duyệt hồ sơ", "Thực hiện nhanh, rút ngắn thời gian các giao dịch, xét duyệt hồ sơ của khách hàng đảm bảo chất lượng, đúng quy trình", "Tất cả các đáp án trên"], "answer": "Thực hiện nhanh, rút ngắn thời gian các giao dịch, xét duyệt hồ sơ của khách hàng đảm bảo chất lượng, đúng quy trình", "explanation": ""},
+  {"question": "Trong nghi thức bắt tay chào hỏi, quy định nào thể hiện tính thứ bậc rõ ràng nhất?", "options": ["Người trẻ tuổi chủ động bắt tay người lớn tuổi.", "Người có chức vụ thấp hơn chủ động bắt tay trước.", "Người có chức vụ cao hơn chủ động bắt tay trước."], "answer": "Người có chức vụ cao hơn chủ động bắt tay trước.", "explanation": ""},
+  {"question": "Nguyên tắc nào được coi là bắt buộc khi viết email công việc tại Agribank?", "options": ["Dùng email do chính cá nhân lập", "Nội dung càng chi tiết càng tốt", "Phải kiểm tra lỗi chính tả trước khi gửi", "Có thể gộp nhiều nội dung không liên quan"], "answer": "Phải kiểm tra lỗi chính tả trước khi gửi", "explanation": ""},
+  {"question": "Câu chào nào sau đây không đúng theo quy định trong Cẩm nang văn hóa Agribank?", "options": [" Chào sếp!", " Chào Giám đốc!", " Chào bác!", " Chào anh!"], "answer": " Chào sếp!", "explanation": ""},
+  {"question": "Cán bộ Agribank được nhận quà tặng từ khách hàng, đối tác trong trường hợp nào?", "options": ["Quà tặng là một chiếc điện thoại thông minh đời mới.", " Quà tặng là một voucher mua hàng trị giá 1.000.000 đồng.", " Quà tặng là 500.000 đồng tiền mặt.", " Không được phép nhận quà."], "answer": " Không được phép nhận quà.", "explanation": ""},
+  {"question": "Theo Quy định số 1345/QyĐ-HĐTV-TTh ngày 15/11/2024, khi trao đổi công việc với đồng nghiệp ngang cấp, cán bộ Agribank cần:", "options": ["Tránh tranh luận để không làm mất lòng đồng nghiệp, tạo không khí làm việc vui vẻ ", "Chỉ đưa ra ý kiến khi chắc chắn đúng, tránh tranh luận để tạo không khí làm việc vui vẻ", "Tập trung vào ý kiến cá nhân hơn là thảo luận nhóm", "Trao đổi công việc công khai, cởi mở, sẵn sàng lắng nghe ý kiến, tranh luận và góp ý trên tinh thần cầu thị, xây dựng"], "answer": "Trao đổi công việc công khai, cởi mở, sẵn sàng lắng nghe ý kiến, tranh luận và góp ý trên tinh thần cầu thị, xây dựng", "explanation": ""},
+  {"question": "Nguyên tắc nào cần được áp dụng  khi giải quyết bất đồng quan điểm trong công việc theo Quy định số 1345/QyĐ-HĐTV-TTh ngày 15/11/2024?", "options": ["“Lắng nghe - Thẳng thắn - Hợp tác”", "“Minh bạch - Lắng nghe - Hợp tác”", "“Khiêm nhường - Hợp tác - Tôn trọng”", "“Lắng nghe - Cởi mở - Khiêm nhường”"], "answer": "“Minh bạch - Lắng nghe - Hợp tác”", "explanation": ""},
+  {"question": "Quy định Chuẩn mực đạo đức nghề nghiệp và quy tắc ứng xử của cán bộ Agribank góp phần bảo vệ, xây dựng và phát triển yếu tố nào của Agribank?", "options": ["Nguồn nhân lực chất lượng cao", "Văn hóa doanh nghiệp, văn hóa kinh doanh", "Các chiến lược đầu tư dài hạn", "Quan hệ đối tác với các ngân hàng quốc tế"], "answer": "Văn hóa doanh nghiệp, văn hóa kinh doanh", "explanation": ""},
+  {"question": "Một trong những yêu cầu về tính tuân thủ đối với cán bộ Agribank trong Quy định Chuẩn mực đạo đức nghề nghiệp và quy tắc ứng xử của cán bộ Agribank là gì?", "options": ["Chỉ cần nắm vững các quy trình nghiệp vụ cơ bản", "Nắm vững các quy trình, thủ tục, thuần thục các thao tác chuyên môn, nghiệp vụ", "Sử dụng thông tin và cơ hội kinh doanh của Agribank để thu lợi cá nhân", "Tập trung vào việc đạt được chỉ tiêu kinh doanh bằng mọi phương thức, có thể bỏ qua yêu cầu về tính tuân thủ"], "answer": "Nắm vững các quy trình, thủ tục, thuần thục các thao tác chuyên môn, nghiệp vụ", "explanation": ""},
+  {"question": "Theo Quy định số 238/QĐ-HĐTV-TTh ngày 07/5/2021, đồng phục áo dài đối với nữ được quy định như thế nào?", "options": ["Áo dài truyền thống, màu đỏ booc đô, viền cổ vàng; quần màu vàng", "Áo dài truyền thống, có cổ, màu đỏ booc đô; quần màu vàng", "Áo dài truyền thống, không cổ, màu đỏ booc đô; quần màu vàng", "Áo dài truyền thống, màu đỏ booc đô; quần màu đỏ"], "answer": "Áo dài truyền thống, có cổ, màu đỏ booc đô; quần màu vàng", "explanation": ""},
+  {"question": "Theo Quy định số 238/QĐ-HĐTV-TTh ngày 07/5/2021, trang phục đối với nữ trong thời gian mang thai được quy định thế nào?", "options": ["Chân váy ngang gối trở xuống hoặc quần âu màu đen hoặc xanh đen; Áo sơ mi trắng trơn, dài hoặc ngắn tay (phù hợp với người đang trong thời gian mang thai). Áo vest màu đen hoặc xanh đen cùng màu với màu chân váy/quần", "Váy liền: Phần thân trên (áo) màu trắng trơn, dài hoặc ngắn tay; phần thân dưới (chân váy) ngang gối trở xuống màu đen hoặc xanh đen. Áo vest màu đen hoặc xanh đen cùng màu với màu chân váy/quần", "Váy/áo yếm màu đen hoặc xanh đen, bên trong áo trắng trơn, dài hoặc ngắn tay. Áo vest màu đen hoặc xanh đen cùng màu với màu chân váy/quần", "Lựa chọn 1 trong 3 trang phục trên"], "answer": "Lựa chọn 1 trong 3 trang phục trên", "explanation": ""},
+  {"question": "Theo Quy định số 238/QĐ-HĐTV-TTh ngày 07/5/2021, trang phục nào không đúng với quy định về trang phục đối với nữ trong thời gian mang thai?", "options": ["Chân váy ngang gối trở xuống hoặc quần âu màu đen hoặc xanh đen; Áo sơ mi trắng trơn, dài hoặc ngắn tay (phù hợp với người đang trong thời gian mang thai). Áo vest màu đen hoặc xanh đen cùng màu với màu chân váy/quần", "Váy liền, váy/áo yếm lịch sự phù hợp với người đang trong thời gian mang thai", "Váy/áo yếm màu đen hoặc xanh đen, bên trong áo trắng trơn, dài hoặc ngắn tay. Áo vest màu đen hoặc xanh đen cùng màu với màu chân váy/quần", "Váy liền: Phần thân trên (áo) màu trắng trơn, dài hoặc ngắn tay; phần thân dưới (chân váy) ngang gối trở xuống màu đen hoặc xanh đen. Áo vest màu đen hoặc xanh đen cùng màu với màu chân váy/quần"], "answer": "Váy liền, váy/áo yếm lịch sự phù hợp với người đang trong thời gian mang thai", "explanation": ""},
+  {"question": "Hành vi nào KHÔNG đúng khi nói chuyện điện thoại?", "options": ["Nhấc máy sau hồi chuông thứ 2", "Giữ thái độ hòa nhã, bình tĩnh", "Nói ngắn gọn, tránh nói lòng vòng, rườm rà", "Ngắt điện thoại khi khách hàng tranh cãi"], "answer": "Ngắt điện thoại khi khách hàng tranh cãi", "explanation": ""},
+  {"question": "Trong ứng xử với khách hàng và đối tác, cán bộ Agribank cần có thái độ như thế nào theo Cẩm nang văn hóa Agribank?", "options": ["Tôn trọng, lịch sự, chân thành, thân thiện, đúng mực", " Tôn trọng, lịch sự, nhường nhịn, gần gũi", "Tôn trọng, lịch sự, thân thiện, nhiệt tình, hồ hởi ", "Tôn trọng, lịch sự, thẳng thắn, thân thiện, vồn vã"], "answer": "Tôn trọng, lịch sự, chân thành, thân thiện, đúng mực", "explanation": ""},
+  {"question": "Cán bộ Agribank được phép vỗ vai khách hàng trong trường hợp nào sau đây?", "options": ["Khách hàng đã quan hệ lâu năm để thể hiện sự thân mật, gần gũi.", "Để chia sẻ, an ủi.", "Khách hàng là người ít tuổi hơn.", "Không được phép."], "answer": "Không được phép.", "explanation": ""},
+  {"question": "Vị trí ngồi giữa ở ghế sau trong xe ô tô con 4 chỗ dành cho đối tượng nào?", "options": ["Đối tượng ưu tiên số 1.", "Đối tượng ưu tiên số 2.", "Người có chức vụ thấp hơn.", "Người có chức vụ cao hơn."], "answer": "Người có chức vụ thấp hơn.", "explanation": ""},
+  {"question": "Các hành vi KHÔNG được thực hiện khi tham gia hội họp là:", "options": ["Nói chuyện điện thoại hoặc nhắn tin ", "Không để điện thoại ở chế độ im lặng", "Nói chuyện riêng, làm việc riêng ", "Tất cả các phương án nêu trên "], "answer": "Tất cả các phương án nêu trên ", "explanation": ""},
+  {"question": "Theo cẩm nang văn hóa Agribank, các hành vi KHÔNG nên thực hiện trong thang máy, gồm: ", "options": ["Trao đổi công việc ", "Nói chuyện, nói điện thoại", "Ăn uống, hút thuốc lá", "Tất cả các phương án nêu trên "], "answer": "Tất cả các phương án nêu trên ", "explanation": ""},
+  {"question": "Đặc trưng văn hóa Agribank KHÔNG bao gồm đặc tính nào sau đây?", "options": ["Thân thiện.", "Tam nông.", "Hội nhập.", "Gắn kết."], "answer": "Hội nhập.", "explanation": ""},
+  {"question": "Theo Cẩm nang văn hóa Agribank, tầm nhìn của Agribank là:", "options": ["Tăng trưởng - an toàn - hiệu quả - bền vững.", "Phát triển - an toàn - hiệu quả - bền vững.", "Tăng trưởng - phát triển - bền vững - hiệu quả", "Tăng trưởng - an toàn - chất lượng - bền vững "], "answer": "Tăng trưởng - an toàn - hiệu quả - bền vững.", "explanation": ""},
+  {"question": "Việc giới thiệu và tự giới thiệu trong văn hóa Agribank được thực hiện theo thứ tự nào?", "options": ["Giới thiệu bản thân rồi đến những người đi cùng, giới thiệu người có chức vụ thấp rồi đến cao.", "Giới thiệu bản thân rồi đến những người đi cùng, giới thiệu người có chức vụ cao rồi đến thấp.", "Giới thiệu những người đi cùng rồi đến bản thân, giới thiệu người có chức vụ cao rồi đến thấp."], "answer": "Giới thiệu những người đi cùng rồi đến bản thân, giới thiệu người có chức vụ cao rồi đến thấp.", "explanation": ""},
+  {"question": "Hành vi nào sau đây là vi phạm Quy định Chuẩn mực đạo đức nghề nghiệp và quy tắc ứng xử của cán bộ Agribank?", "options": ["Hiểu biết pháp luật và tuân thủ đầy đủ quy định của pháp luật", "Tuân thủ quy định nội bộ, quy trình nghiệp vụ của ngành Ngân hàng và Agribank", "Nắm vững các quy trình, thủ tục, thuần thục các thao tác chuyên môn, nghiệp vụ", "Sử dụng thông tin, cơ hội kinh doanh và tài sản của Agribank để thu lợi cá nhân"], "answer": "Sử dụng thông tin, cơ hội kinh doanh và tài sản của Agribank để thu lợi cá nhân", "explanation": ""},
+  {"question": "Hành vi nào sau đây là vi phạm chuẩn mực về sự cẩn trọng (Theo Quy định số 1345/QyĐ-HĐTV-TTh ngày 15/11/2024)?", "options": ["Kỹ lưỡng trong quá trình giải quyết công việc", "Có tinh thần trách nhiệm, hết lòng vì công việc", "Tuân thủ nghiêm sự quản lý, kiểm tra, giám sát và kiểm toán theo quy định", "Bao che các hành vi gian lận hoặc làm tắt bỏ qua các bước trong quy trình nghiệp vụ"], "answer": "Bao che các hành vi gian lận hoặc làm tắt bỏ qua các bước trong quy trình nghiệp vụ", "explanation": ""},
+  {"question": "Theo Quy định số 1345/QyĐ-HĐTV-TTh, khi phát hiện hành vi vi phạm hoặc nguy cơ xảy ra vi phạm, cán bộ Agribank cần:", "options": ["Tự giải quyết theo kinh nghiệm cá nhân", "Làm lơ nếu không ảnh hưởng đến công việc của mình", "Báo cáo kịp thời cấp có thẩm quyền ", "Bảo mật thông tin để tránh ảnh hưởng đến danh tiếng cá nhân"], "answer": "Báo cáo kịp thời cấp có thẩm quyền ", "explanation": ""},
+  {"question": "Sự tận tâm, chuyên cần trong chuẩn mực đạo đức nghề nghiệp của cán bộ Agribank được quy định như thế nào (Theo Quy định số 1345/QyĐ-HĐTV-TTh ngày 15/11/2024)?", "options": ["Sẵn sàng nhận nhiệm vụ, thực hiện công việc với sự tận tâm, chu đáo, tác phong, thái độ lịch sự, nghiêm túc; quyết tâm hoàn thành đạt kết quả cao nhất vì sự phát triển bền vững của Agribank, khách hàng và cộng đồng", "Chuyên tâm, cần cù, chủ động học hỏi, tích luỹ kinh nghiệm, nâng cao kiến thức chuyên môn, khả năng sử dụng công nghệ, ngoại ngữ và kỹ năng quản trị, xử lý công việc.", "Tuyệt đối không lơ là, tắc trách, thiếu tinh thần trách nhiệm; không để quá hạn, bỏ sót nhiệm vụ được phân công.", "Tất cả các đáp án trên"], "answer": "Tất cả các đáp án trên", "explanation": ""},
+  {"question": "Nội dung nào sau đây KHÔNG đúng với quy định của chuẩn mực Sự tận tâm, chuyên cần (Theo Quy định số 1345/QyĐ-HĐTV-TTh ngày 15/11/2024)?", "options": ["Sẵn sàng nhận nhiệm vụ, thực hiện công việc với sự tận tâm, chu đáo", "Chuyên tâm, cần cù, chủ động học hỏi, tích luỹ kinh nghiệm, nâng cao kiến thức chuyên môn, khả năng sử dụng công nghệ, ngoại ngữ và kỹ năng quản trị, xử lý công việc.", "Bỏ qua những công việc khó và chỉ thực hiện nhiệm vụ dễ", "Tuyệt đối không lơ là, tắc trách, thiếu tinh thần trách nhiệm"], "answer": "Bỏ qua những công việc khó và chỉ thực hiện nhiệm vụ dễ", "explanation": ""},
+  {"question": "Theo Quy định số 1345/QyĐ-HĐTV-TTh ngày 15/11/2024, một cán bộ có tinh thần vượt khó sẽ:", "options": ["Tìm cách né tránh những công việc khó khăn", "Chỉ làm việc khi điều kiện thuận lợi", "Dám đối mặt, vượt qua khó khăn, thách thức để hoàn thành công việc", "Chờ đợi người khác giải quyết thay"], "answer": "Dám đối mặt, vượt qua khó khăn, thách thức để hoàn thành công việc", "explanation": ""},
+  {"question": "Cán bộ Agribank KHÔNG được phép làm gì trong giờ làm việc (Theo Quy định số 1345/QyĐ-HĐTV-TTh ngày 15/11/2024)?", "options": ["Làm việc riêng", "Sử dụng các thiết bị giải trí cá nhân ", "Tham gia các hoạt động khác không liên quan đến công việc trong giờ làm việc.", "Tất cả các đáp án trên"], "answer": "Tất cả các đáp án trên", "explanation": ""},
+  {"question": "Đâu KHÔNG phải trách nhiệm của cán bộ Agribank (Theo Quy định số 1345/QyĐ-HĐTV-TTh ngày 15/11/2024)?", "options": ["Trung thành vì lợi ích của Agribank", "Bảo vệ tài sản của Agribank", "Giảm sự tương tác giữa các phòng, ban để tránh xung đột", "Bảo mật thông tin của Agribank, khách hàng, đối tác"], "answer": "Giảm sự tương tác giữa các phòng, ban để tránh xung đột", "explanation": ""},
+  {"question": "\"Xây dựng và bảo vệ hình ảnh, thương hiệu, uy tín Agribank\" là trách nhiệm của ai (Theo Quy định số 1345/QyĐ-HĐTV-TTh)?", "options": ["Người lao động tại Ban Truyền thông ", "Người lao động tại Trường Đào tạo cán bộ", "Giao dịch viên Agribank ", "Toàn thể Ban lãnh đạo và người lao động Agribank "], "answer": "Toàn thể Ban lãnh đạo và người lao động Agribank ", "explanation": ""},
+  {"question": "Cán bộ cấp trên ứng xử với cán bộ cấp dưới thế nào theo quy định ứng xử nội bộ trong Quy định số 1345/QyĐ-HĐTV-TTh ngày 15/11/2024?", "options": ["Né tránh trách nhiệm khi có vấn đề xảy ra", "Chỉ thực hiện nhiệm vụ của mình mà không quan tâm đến cấp dưới", "Luôn gương mẫu về cách hành xử trong công việc, lối sống; tuyệt đối không né tránh trách nhiệm, không đùn đẩy công việc", "Phân công nhiệm vụ tùy ý mà không cần xem xét năng lực cấp dưới"], "answer": "Luôn gương mẫu về cách hành xử trong công việc, lối sống; tuyệt đối không né tránh trách nhiệm, không đùn đẩy công việc", "explanation": ""},
+  {"question": "Tác phong của nhân viên giao dịch được quy định như thế nào theo \"Tiêu chuẩn phục vụ khách hàng trong hệ thống Agribank\"?", "options": ["Thái độ làm việc nghiêm túc, không tụ tập nói chuyện, cười đùa, làm việc riêng trong giờ làm việc", "Tư thế ngồi làm việc ngay ngắn; Tác phong đi lại, làm việc nhanh nhẹn, khẩn trương, không kéo lê giày dép trên sàn", "Để điện thoại ở chế độ im lặng đảm bảo không ảnh hưởng đến khách hàng giao dịch và những người xung quanh", "Tất cả các đáp án trên"], "answer": "Tất cả các đáp án trên", "explanation": ""},
+  {"question": "Theo Quy định 999/QyĐ-NHNo-TTh, tiêu chuẩn Nhân viên giao dịch quy định thế nào khi kết thúc giao dịch?", "options": ["Cảm ơn và cúi chào khách hàng", "Cảm ơn và hẹn gặp lại khách hàng khi kết thúc giao dịch", "Nhắc nhở khách hàng kiểm tra lại tiền, giấy tờ (nếu có) trước khi rời quầy giao dịch. Cảm ơn và hẹn gặp lại khách hàng khi kết thúc giao dịch", "Nhắc nhở khách hàng kiểm tra lại tiền, giấy tờ (nếu có) trước khi rời quầy giao dịch. Đứng lên cảm ơn và chào khách hàng"], "answer": "Nhắc nhở khách hàng kiểm tra lại tiền, giấy tờ (nếu có) trước khi rời quầy giao dịch. Cảm ơn và hẹn gặp lại khách hàng khi kết thúc giao dịch", "explanation": ""},
+  {"question": "Hãy chọn đáp án đúng nhất về Quy định thái độ phục vụ theo \"Tiêu chuẩn phục vụ khách hàng trong hệ thống Agribank\"?", "options": ["Phục vụ khách hàng với thái độ niềm nở, quan tâm, thân thiện đúng mực, khuôn mặt vui tươi; Không phân biệt đối xử khách hàng", "Trong khi giao dịch kết hợp giao tiếp với khách hàng, trao đổi, tư vấn, hướng dẫn sản phẩm dịch vụ", "Chỉ giải thích cho khách hàng một lần để nhanh chóng hoàn thành giao dịch", "Cả đáp án 1 và 2"], "answer": "Cả đáp án 1 và 2", "explanation": ""},
+  {"question": "Khi khách hàng hiểu sai/chưa hiểu rõ vấn đề, Nhân viên giao dịch cần làm gì?", "options": ["Chuyển khách hàng lên cấp có thẩm quyền cao hơn hướng dẫn", "Hướng dẫn khách hàng liên hệ hotline Agribank ", "Chuyển khách hàng sang bộ phận khác hướng dẫn ", "Chủ động giải thích lại cho khách hàng với thái độ nhiệt tình, khéo léo, không tỏ vẻ khó chịu hoặc từ chối giải thích lại cho khách hàng"], "answer": "Chủ động giải thích lại cho khách hàng với thái độ nhiệt tình, khéo léo, không tỏ vẻ khó chịu hoặc từ chối giải thích lại cho khách hàng", "explanation": ""},
+  {"question": "Nếu khách hàng có nhu cầu giao dịch vào thời gian đóng cửa, Nhân viên giao dịch cần phải làm gì? ", "options": ["Vui vẻ tiếp khách hàng, không được từ chối ngay. ", "Cần giải thích và đưa ra biện pháp giải quyết khác cho khách hàng lựa chọn như: Nhận chứng từ hồ sơ giao dịch để xử lý vào đầu ngày làm việc tiếp theo. ", "Trường hợp khách hàng có nhu cầu giao dịch cấp bách thì báo cáo xin ý kiến chỉ đạo của lãnh đạo.", "Tất cả các đáp án trên."], "answer": "Tất cả các đáp án trên.", "explanation": ""},
+  {"question": "Theo Quy định \"Tiêu chuẩn phục vụ khách hàng trong hệ thống Agribank\", cán bộ Agribank cần phục vụ khách hàng với thái độ như thế nào?", "options": ["Lạnh lùng, nghiêm túc để thể hiện sự chuyên nghiệp.", "Vui đùa để tạo không khí cởi mở.", "Chỉ tập trung vào giao dịch, không cần quan tâm thái độ.", "Niềm nở, quan tâm, thân thiện đúng mực, khuôn mặt vui tươi."], "answer": "Niềm nở, quan tâm, thân thiện đúng mực, khuôn mặt vui tươi.", "explanation": ""},
+  {"question": "Trong quá trình giao tiếp, khi khách hàng đang trình bày vấn đề, nhân viên giao dịch cần làm gì (Theo Quy định \"Tiêu chuẩn phục vụ khách hàng trong hệ thống Agribank\")?", "options": ["Ngắt lời nếu thấy khách nói không đúng trọng tâm.", "Chỉ cần chăm chú lắng nghe, không cần phản hồi.", "Tỏ thái độ không kiên nhẫn khi khách nói dài.", "Chăm chú lắng nghe khách hàng trình bày. Có gật đầu hoặc nói “dạ/vâng” trong quá trình lắng nghe/giải thích/trao đổi với khách hàng."], "answer": "Chăm chú lắng nghe khách hàng trình bày. Có gật đầu hoặc nói “dạ/vâng” trong quá trình lắng nghe/giải thích/trao đổi với khách hàng.", "explanation": ""},
+  {"question": "Khi đề nghị khách hàng cung cấp giấy tờ/hồ sơ, nhân viên giao dịch cần có thái độ thế nào (Theo Quy định \"Tiêu chuẩn phục vụ khách hàng trong hệ thống Agribank\")?", "options": ["Thái độ mềm mỏng, hướng dẫn chi tiết.", "Từ chối luôn nếu khách hàng không mang đầy đủ hồ sơ/giấy tờ. ", "Khéo léo từ chối nếu khách hàng không mang đầy đủ hồ sơ/giấy tờ. ", "Đáp án 1 và 3."], "answer": "Đáp án 1 và 3.", "explanation": ""},
+  {"question": "Nhân viên giao dịch thực hiện kiểm tra chứng từ cho khách hàng cần tuân thủ điều gì (Theo Quy định \"Tiêu chuẩn phục vụ khách hàng trong hệ thống Agribank\")?", "options": ["Kiểm tra chứng từ giao dịch cẩn thận, có thể kéo dài, yêu cầu khách hàng chờ hoặc quay lại lấy kết quả sau.", "Kiểm tra nhanh chóng, trả kết quả ngay không cần kiểm tra kĩ để tiết kiệm thời gian.", "Thực hiện kiểm tra chứng từ giao dịch nhanh chóng, chính xác, không để khách hàng chờ đợi lâu.", "Đáp án 1 và 2."], "answer": "Thực hiện kiểm tra chứng từ giao dịch nhanh chóng, chính xác, không để khách hàng chờ đợi lâu.", "explanation": ""},
+  {"question": "Trong quá trình tư vấn cho khách hàng, nhân viên giao dịch cần tư vấn thế nào (Theo Quy định \"Tiêu chuẩn phục vụ khách hàng trong hệ thống Agribank\")?", "options": ["Tư vấn những điều khách hàng hỏi, tránh giải thích thêm kể cả những điểm cần lưu ý.", "Hướng dẫn khách hàng tự xem tờ rơi trước, nếu không hiểu thì mới giải thích và tư vấn.", "Tư vấn rõ ràng, dễ hiểu, chủ động hướng dẫn đầy đủ các thủ tục, giấy tờ cần thiết cho khách hàng, tránh để khách hàng hỏi trước, hoặc tự tìm hiểu.", "Tất cả các đáp án trên."], "answer": "Tư vấn rõ ràng, dễ hiểu, chủ động hướng dẫn đầy đủ các thủ tục, giấy tờ cần thiết cho khách hàng, tránh để khách hàng hỏi trước, hoặc tự tìm hiểu.", "explanation": ""},
+  {"question": "Hãy chọn đáp án không đúng về Thực hiện giao dịch theo \"Tiêu chuẩn phục vụ khách hàng trong hệ thống Agribank\"", "options": ["Nếu khách hàng có nhu cầu giao dịch vào thời gian đóng cửa, cần phải vui vẻ tiếp khách hàng, không được từ chối ngay. Cần giải thích và đưa ra biện pháp giải quyết khác cho khách hàng lựa chọn như: Nhận chứng từ hồ sơ giao dịch để xử lý vào đầu ngày làm việc tiếp theo. Trường hợp khách hàng có nhu cầu giao dịch cấp bách thì báo cáo xin ý kiến chỉ đạo của lãnh đạo", "Trong khi giao dịch với khách hàng, nếu có điện thoại gọi đến cần trả lời cuộc gọi ngay, không cần phải xin phép khách hàng", "Tư vấn rõ ràng, dễ hiểu, chủ động hướng dẫn đầy đủ các thủ tục, giấy tờ cần thiết cho khách hàng, tránh để khách hàng hỏi trước, hoặc tự tìm hiểu", "Chủ động nhận diện các thắc mắc/băn khoăn của khách hàng để hướng dẫn. Giải thích rõ hơn các điểm khách hàng cần lưu ý để sau này sử dụng sản phẩm không mắc các lỗi/vấn đề mà khách hàng khác đã mắc"], "answer": "Trong khi giao dịch với khách hàng, nếu có điện thoại gọi đến cần trả lời cuộc gọi ngay, không cần phải xin phép khách hàng", "explanation": ""},
+  {"question": "\"Có ý thức quản lý rủi ro, trách nhiệm bảo vệ tài sản và lợi ích hợp pháp của Agribank\" được quy định trong chuẩn mực đạo đức nghề nghiệp nào (Theo Quy định số 1345/QyĐ-HĐTV-TTh ngày 15/11/2024)?", "options": ["Sự tận tâm, chuyên cần", "Tính tuân thủ ", "Sự liêm chính", "Tính chuyên nghiệp"], "answer": "Sự liêm chính", "explanation": ""},
+  {"question": "Cán bộ Agribank bảo lưu ý kiến và báo cáo lãnh đạo cấp cao hơn trong trường hợp nào (Theo Quy định số 1345/QyĐ-HĐTV-TTh ngày 15/11/2024)?", "options": ["Khi nhiệm vụ được giao không phù hợp với sở thích cá nhân", "Khi không đồng ý với quyết định của cấp trên dù không có căn cứ", "Khi cảm thấy cấp trên xử lý công việc chậm trễ", "Dự báo được rủi ro, sai sót, trái quy định… nhưng cấp trên vẫn thực hiện, chỉ đạo thực hiện"], "answer": "Dự báo được rủi ro, sai sót, trái quy định… nhưng cấp trên vẫn thực hiện, chỉ đạo thực hiện", "explanation": ""},
+  {"question": "Khi xảy ra bất đồng quan điểm với đồng nghiệp ngang cấp, cán bộ Agribank cần:", "options": ["Sẵn sàng lắng nghe ý kiến, tranh luận và góp ý trên tinh thần cầu thị, xây dựng.", "Tránh đối thoại để hạn chế xung đột.", "Chỉ bày tỏ ý kiến khi đồng nghiệp đồng ý.", "Tìm cách bảo vệ ý kiến cá nhân bằng mọi cách."], "answer": "Sẵn sàng lắng nghe ý kiến, tranh luận và góp ý trên tinh thần cầu thị, xây dựng.", "explanation": ""},
+  {"question": "Trong việc giải quyết vướng mắc của khách hàng và đối tác, cán bộ Agribank cần làm gì (Theo Quy định số 1345/QyĐ-HĐTV-TTh ngày 15/11/2024)?", "options": ["Tận tâm, tận tình, tích cực trong giải quyết các vướng mắc, khó khăn của khách hàng, đối tác liên quan tới Agribank", "Chuyển vấn đề cho đồng nghiệp nếu thấy phức tạp", "Chỉ giải quyết các vấn đề lớn, bỏ qua các vấn đề nhỏ", "Chờ khách hàng chủ động yêu cầu thêm hỗ trợ"], "answer": "Tận tâm, tận tình, tích cực trong giải quyết các vướng mắc, khó khăn của khách hàng, đối tác liên quan tới Agribank", "explanation": ""},
+  {"question": "Điều nào sau đây KHÔNG đúng khi làm việc với khách hàng, đối tác (Theo Quy định số 1345/QyĐ-HĐTV-TTh ngày 15/11/2024)?", "options": ["Tận tâm, tận tình, tích cực trong giải quyết các vướng mắc, khó khăn của khách hàng, đối tác liên quan tới Agribank", "Phong cách chuyên nghiệp, thân thiện; tác phong nhanh nhẹn, chu đáo, thái độ niềm nở, tận tình tạo ấn tượng, hình ảnh tích cực cho khách hàng, đối tác", "Nhanh chóng giải quyết vấn đề bằng mọi cách, có thể bỏ qua một số quy định đề làm hài lòng khách hàng", "Tuân thủ quy định của Agribank đối với từng vị trí công việc"], "answer": "Nhanh chóng giải quyết vấn đề bằng mọi cách, có thể bỏ qua một số quy định đề làm hài lòng khách hàng", "explanation": ""},
+  {"question": "Cán bộ Agribank cần có thái độ như thế nào khi làm việc với các cơ quan Nhà nước và cơ quan thông tin đại chúng  (Theo Quy định số 1345/QyĐ-HĐTV-TTh ngày 15/11/2024)?", "options": ["Có thái độ lịch sự, tôn trọng và hợp tác với các cơ quan Nhà nước, cơ quan thông tin đại chúng", "Cứng rắn để thể hiện lập trường cá nhân", "Giữ khoảng cách để tránh rủi ro", "Tất cả các đáp án trên"], "answer": "Có thái độ lịch sự, tôn trọng và hợp tác với các cơ quan Nhà nước, cơ quan thông tin đại chúng", "explanation": ""},
+  {"question": "Theo Quy định số 1345/QyĐ-HĐTV-TTh ngày 15/11/2024, cán bộ Agribank khi ứng xử nơi công cộng cần:", "options": ["Lịch thiệp, thân thiện, nhã nhặn, đúng mực", "Cứng rắn, thể hiện quyền uy của bản thân", "Giữ khoảng cách với người xung quanh", "Chỉ lịch sự khi có người quen"], "answer": "Lịch thiệp, thân thiện, nhã nhặn, đúng mực", "explanation": ""},
+  {"question": "Theo Quy định số 1345/QyĐ-HĐTV-TTh ngày 15/11/2024, hành động KHÔNG đúng với quy tắc ứng xử nơi công cộng là:", "options": ["Xả rác bừa bãi và làm ảnh hưởng đến không gian chung", "Quan tâm, nhường nhịn, giúp đỡ người khuyết tật, phụ nữ có thai, người già, trẻ em", "Ứng xử lịch thiệp, thân thiện, nhã nhặn, đúng mực", "Đáp án 1 và 3"], "answer": "Xả rác bừa bãi và làm ảnh hưởng đến không gian chung", "explanation": ""},
+  {"question": "Cán bộ Agribank cần làm gì để phát huy trách nhiệm với cộng đồng (Theo Quy định số 1345/QyĐ-HĐTV-TTh ngày 15/11/2024)?", "options": ["Tôn trọng phong tục tập quán, kế thừa, phát huy bản sắc văn hóa dân tộc,  truyền thống của ngành Ngân hàng và Agribank - Ngân hàng thương mại hàng đầu Việt Nam với sứ mệnh vì “Tam nông”", "Tích cực tham gia giải quyết các vấn đề về môi trường, xã hội và quản trị, bảo vệ môi trường và tài nguyên thiên nhiên, hướng đến phát triển bền vững", "Tích cực tham gia hoạt động gắn kết nội bộ, gắn kết giữa các thế hệ cán bộ, gắn kết Agribank với cộng đồng", "Cả 3 đáp án trên"], "answer": "Cả 3 đáp án trên", "explanation": ""},
+  {"question": "Đâu KHÔNG phải chuẩn mực ứng xử trong quy tắc ứng xử của cán bộ Agribank (Theo Quy định số 1345/QyĐ-HĐTV-TTh ngày 15/11/2024)?", "options": ["Tôn trọng đối tượng giao tiếp và sự khác biệt của đối tượng giao tiếp", "Tuân thủ pháp luật Việt Nam khi có sự giám sát", "Thể hiện tác phong chuyên nghiệp, giữ bình tĩnh và kiểm soát cảm xúc", "Giải quyết vấn đề trên cơ sở hài hoà lợi ích giữa các bên và không xung đột lợi ích với Agribank"], "answer": "Tuân thủ pháp luật Việt Nam khi có sự giám sát", "explanation": ""},
+  {"question": "Đâu là chuẩn mực ứng xử trong quy tắc ứng xử của cán bộ Agribank (Theo Quy định số 1345/QyĐ-HĐTV-TTh ngày 15/11/2024)?", "options": ["Thể hiện tác phong chuyên nghiệp, giữ bình tĩnh và kiểm soát cảm xúc", "Giải quyết công việc theo cảm tính cá nhân", "Chỉ giữ bình tĩnh khi làm việc với khách hàng quan trọng", "Đáp án 2 và 3"], "answer": "Thể hiện tác phong chuyên nghiệp, giữ bình tĩnh và kiểm soát cảm xúc", "explanation": ""},
+  {"question": "\"Minh bạch\" trong giải quyết bất đồng quan điểm trong công việc được hiểu thế nào (Theo Quy định số 1345/QyĐ-HĐTV-TTh ngày 15/11/2024)?", "options": ["Giữ kín quan điểm cá nhân để tránh mâu thuẫn", "Chỉ trao đổi với những người mình tin tưởng", "Trình bày, truyền đạt nội dung rõ ràng, công khai tới tất cả các bên liên quan", "Đưa ra ý kiến cá nhân mà không cần giải thích rõ ràng"], "answer": "Trình bày, truyền đạt nội dung rõ ràng, công khai tới tất cả các bên liên quan", "explanation": ""},
+  {"question": "Một trong những yêu cầu của sự cẩn trọng đối với cán bộ Agribank là gì (Theo Quy định số 1345/QyĐ-HĐTV-TTh ngày 15/11/2024)?", "options": ["Giữ kỷ luật phát ngôn", "Hợp lý hóa quy trình bằng cách bỏ qua các bước không quan trọng", "Tin tưởng hoàn toàn vào đồng nghiệp mà không kiểm tra lại công việc", "Thực hiện công việc theo cảm tính nếu có kinh nghiệm lâu năm"], "answer": "Giữ kỷ luật phát ngôn", "explanation": ""},
+  {"question": "Theo Quy định số 1345/QyĐ-HĐTV-TTh ngày 15/11/2024, Trách nhiệm của cán bộ Agribank là gì?", "options": ["Đảm bảo an ninh, an toàn hoạt động ngân hàng", "Xây dựng và bảo vệ hình ảnh, thương hiệu, uy tín Agribank", "Bảo mật thông tin của Agribank, khách hàng, đối tác", "Cả 3 đáp án trên đều đúng"], "answer": "Cả 3 đáp án trên đều đúng", "explanation": ""},
+  {"question": "Theo Quy định số 1345/QyĐ-HĐTV-TTh ngày 15/11/2024, \"Lắng nghe\" trong giải quyết bất đồng quan điểm trong công việc được hiểu thế nào?", "options": ["Chỉ lắng nghe ý kiến có lợi cho mình và hướng mọi người theo ý mình.", "Chú ý lắng nghe ý kiến của đồng nghiệp trước khi trình bày quan điểm của mình; nhìn nhận vấn đề một cách toàn diện, khách quan, không suy diễn, đoán định", "Không ngắt lời đồng nghiệp và tập trung làm việc của mình", "Lắng nghe nhưng vẫn bảo vệ quan điểm của mình theo đoán định"], "answer": "Chú ý lắng nghe ý kiến của đồng nghiệp trước khi trình bày quan điểm của mình; nhìn nhận vấn đề một cách toàn diện, khách quan, không suy diễn, đoán định", "explanation": ""},
+  {"question": "Theo Quy định số 1345/QyĐ-HĐTV-TTh ngày 15/11/2024, hành vi nào bị nghiêm cấm khi cán bộ Agribank làm việc với các cơ quan Nhà nước?", "options": ["Thực hiện nghiêm túc các chỉ đạo của cơ quan Nhà nước", "Tìm cách kéo dài, gây khó khăn trong quá trình giải quyết công việc", "Tuân thủ các quy định pháp luật liên quan", "Tôn trọng và hợp tác để giải quyết công việc"], "answer": "Tìm cách kéo dài, gây khó khăn trong quá trình giải quyết công việc", "explanation": ""},
+  {"question": "Theo Văn bản hợp nhất 8374/VBHN-NHNo-TTh, Fanpage Agribank là gì?", "options": ["Là một trang riêng của Agribank được lập ra từ mạng xã hội facebook với mục đích quảng bá hình ảnh, thương hiệu, sản phẩm dịch vụ thông qua bài viết, hình ảnh, video clip, TVC, maket, banner… và hoạt động tương tác đa chiều (chia sẻ, bình luận).", "Là một trang riêng của Agribank được lập ra từ các nền tảng mạng xã hội để quảng bá hình ảnh, thương hiệu, sản phẩm dịch vụ.", "Là một trang của Agribank được lập ra từ các nền tảng mạng xã hội như Facebook, Zalo để quảng bá hình ảnh, thương hiệu thông qua bài viết, hình ảnh, video clip và hoạt động tương tác với đối tác, khách hàng.", "Là một nhóm riêng của Agribank được lập ra trên các nền tảng mạng xã hội như Facebook, Zalo để truyền tải thông tin và hoạt động tương tác với đối tác, khách hàng."], "answer": "Là một trang riêng của Agribank được lập ra từ mạng xã hội facebook với mục đích quảng bá hình ảnh, thương hiệu, sản phẩm dịch vụ thông qua bài viết, hình ảnh, video clip, TVC, maket, banner… và hoạt động tương tác đa chiều (chia sẻ, bình luận).", "explanation": ""},
+  {"question": "Việc cán bộ Agribank cần làm khi tham gia mạng xã hội?", "options": ["Sử dụng tài khoản mạng xã hội của cá nhân để tương tác, chia sẻ, đăng tải, cung cấp, định hướng thông tin có ích đối với Agribank, ngành Ngân hàng, xã hội và đất nước.", "Đăng tải bình luận, ý kiến nhận xét đúng mực, có văn hóa, có trách nhiệm về những vấn đề mà dư luận xã hội quan tâm.", "Thông báo cho cấp có thẩm quyền về những thông tin sai sự thật bị phát tán trên mạng xã hội có ảnh hưởng xấu, gây tổn hại đến lợi ích của Agribank, cộng đồng, đất nước, uy tín của tổ chức, cá nhân.", "Cả 3 đáp án trên"], "answer": "Cả 3 đáp án trên", "explanation": ""},
+  {"question": "Việc cán bộ Agribank KHÔNG được làm khi tham gia mạng xã hội?", "options": ["Đăng tải các tin, bài, hình ảnh, âm thanh trên mạng xã hội vì mục đích không trong sáng.", "Bình luận, chia sẻ quan điểm cá nhân hoặc trích đăng lại các bài phát biểu, ý kiến trái với đường lối, chủ trương, chính sách của Đảng và Nhà nước.", "Chia sẻ quan điểm cá nhân hoặc trích đăng lại các bài phát biểu, ý kiến trái với quan điểm của Agribank.", "Cả 3 đáp án trên"], "answer": "Cả 3 đáp án trên", "explanation": ""},
+  {"question": "Đâu là nội dung bị cấm đối với cán bộ Agribank khi tham gia mạng xã hội?", "options": ["Sử dụng mạng xã hội để đấu tranh, xóa bỏ thông tin sai lệch, xấu độc.", "Sử dụng hình ảnh, thương hiệu Agribank phục vụ mục đích cá nhân.", "Sử dụng mạng xã hội để chia sẻ thông tin tích cực về Agribank."], "answer": "Sử dụng hình ảnh, thương hiệu Agribank phục vụ mục đích cá nhân.", "explanation": ""},
+  {"question": "Cán bộ Agribank khi tham gia mạng xã hội cần phải làm gì?", "options": ["Cùng xây dựng, quản lý hình ảnh, thương hiệu, văn hóa Agribank và triển khai hoạt động truyền thông trên mạng xã hội", "Tích cực tham gia phát hiện, đấu tranh, xóa bỏ thông tin xấu độc trên mạng xã hội", "Thực hiện việc định danh tài khoản người sử dụng và tuân thủ nghiêm túc quy định của pháp luật và quy định liên quan của Agribank về sử dụng mạng xã hội", "Tất cả đáp án trên"], "answer": "Tất cả đáp án trên", "explanation": ""},
+  {"question": "Các trang mạng xã hội của Agribank được thiết lập, duy trì làm gì?", "options": ["Hỗ trợ hoạt động truyền thông, quảng bá thương hiệu, sản phẩm dịch vụ, thông tin hoạt động của Agribank đến khách hàng và cộng đồng", "Tiếp nhận và xử lý thông tin, tương tác với khách hàng về các vấn đề liên quan đến Agribank", "Là kênh thông tin để các đơn vị, cá nhân Agribank sử dụng đấu tranh với thông tin sai lệch, xấu độc, góp phần bảo vệ hình ảnh, thương hiệu Agribank", "Cả 3 phương án trên"], "answer": "Cả 3 phương án trên", "explanation": ""},
+  {"question": "Đâu KHÔNG phải nội dung cán bộ Agribank được làm khi tham gia mạng xã hội?", "options": ["Sử dụng tài khoản mạng xã hội của cá nhân để tương tác, chia sẻ, đăng tải, cung cấp, định hướng thông tin có ích đối với Agribank, ngành Ngân hàng, xã hội và đất nước.", "Đưa ra các bình luận, chia sẻ quan điểm cá nhân hoặc trích đăng lại các bài phát biểu, ý kiến trái với đường lối, chủ trương, chính sách của Đảng và Nhà nước; trái với quan điểm của Agribank.", "Đăng tải bình luận, ý kiến nhận xét đúng mực, có văn hóa, có trách nhiệm về những vấn đề mà dư luận xã hội quan tâm.", "Thông báo cho các cấp có thẩm quyền những thông tin sai sự thật bị phát tán trên mạng xã hội có ảnh hưởng xấu, gây tổn hại lợi ích của Agribank, cộng đồng, đất nước, uy tín của tổ chức, cá nhân."], "answer": "Đưa ra các bình luận, chia sẻ quan điểm cá nhân hoặc trích đăng lại các bài phát biểu, ý kiến trái với đường lối, chủ trương, chính sách của Đảng và Nhà nước; trái với quan điểm của Agribank.", "explanation": ""},
+  {"question": "Đâu không phải mạng xã hội có hiện diện chính thức của Agribank?", "options": ["Youtube", "Facebook", "Tiktok", "Zalo"], "answer": "Tiktok", "explanation": ""},
+  {"question": "Các nền tảng mạng xã hội có hiện diện chính thức của Agribank hiện nay?", "options": ["Facebook, TikTok", "Facebook, TikTok, Youtube", "Facebook, Zalo, Youtube", "Facebook, Zalo, TikTok, Youtube"], "answer": "Facebook, Zalo, Youtube", "explanation": ""},
+  {"question": "Khi nhận danh thiếp từ đối tác, cán bộ Agribank không nên làm gì?", "options": ["Đọc những thông tin cơ bản của danh thiếp. ", "Cất ngay danh thiếp vào túi.", "Viết lên danh thiếp khi đối tác đề nghị ghi chú thêm thông tin. ", "Cất danh thiếp trong túi ngực áo hoặc túi vạt áo bên trái (nếu thuận tay phải)."], "answer": "Cất ngay danh thiếp vào túi.", "explanation": ""},
+  {"question": "Khi kết thúc cuộc gọi điện thoại, bạn nên làm gì?", "options": ["Cúp máy ngay lập tức. ", "Chờ người nghe cúp máy trước khi đó là người có chức vụ cao hơn.", "Nói lời chào hoặc cảm ơn. ", "Cả (2) và (3) đều đúng."], "answer": "Cả (2) và (3) đều đúng.", "explanation": ""},
+  {"question": "Khi giao tiếp với khách hàng, đối tác thì cán bộ Agribank không nên làm gì?", "options": ["Tôn trọng ý kiến của khách hàng, đối tác, kể cả khi không đồng ý. ", "Vỗ vai khách hàng, đối tác thân thiết để thể hiện sự thân thiện.", "Chủ động chào hỏi khách hàng, đối tác khi gặp trong trụ sở làm việc dù khách hàng và đối tác đó không làm việc với mình.", "Thể hiện thái độ cầu thị, tiếp thu ý kiến của khách hàng, đối tác."], "answer": "Vỗ vai khách hàng, đối tác thân thiết để thể hiện sự thân thiện.", "explanation": ""},
+  {"question": "Khi viết thư cho khách hàng, đối tác, cán bộ Agribank nên lưu ý điều gì?", "options": ["Trang trí bì thư phải thật bắt mắt và ấn tượng.", "Viết bằng văn phong lịch sự, trân trọng. ", "Gửi trong phong bì thư riêng của Agribank. ", "Cả (2) và (3) đều đúng."], "answer": "Cả (2) và (3) đều đúng.", "explanation": ""},
+  {"question": "Cán bộ Agribank cần làm gì để đảm bảo lợi ích hợp lý cho khách hàng, đối tác?", "options": ["Luôn đặt lợi ích của Agribank lên hàng đầu, bất chấp lợi ích của khách hàng, đối tác. ", "Chia sẻ, hợp tác và thực hiện đúng cam kết với khách hàng, đối tác, đồng thời bảo đảm lợi ích của cả hai bên. ", "Từ chối yêu cầu của khách hàng, đối tác nếu thấy không phù hợp mà không cần tìm hiểu kỹ vấn đề. ", "Tất cả các đáp án trên."], "answer": "Chia sẻ, hợp tác và thực hiện đúng cam kết với khách hàng, đối tác, đồng thời bảo đảm lợi ích của cả hai bên. ", "explanation": ""},
+  {"question": "Khi tư vấn cho khách hàng, đối tác, cán bộ Agribank cần lưu ý điều gì?", "options": ["Luôn thể hiện thái độ hách dịch để khẳng định vị trí của bản thân. ", "Đặt mình vào vị trí của khách hàng, đối tác để hiểu đúng nhu cầu, nguyện vọng của họ.", "Cung cấp thông tin cho khách hàng, đối tác khi họ yêu cầu và không giải thích thêm nếu họ không hiểu. ", "Ép khách hàng, đối tác sử dụng sản phẩm, dịch vụ của Agribank mà không quan tâm đến nhu cầu của họ."], "answer": "Đặt mình vào vị trí của khách hàng, đối tác để hiểu đúng nhu cầu, nguyện vọng của họ.", "explanation": ""},
+  {"question": "Cán bộ Agribank không được phép làm gì sau đây?", "options": ["Sử dụng quyền hạn, vị trí công tác của mình để tư lợi cá nhân.", "Giải quyết vướng mắc của khách hàng khi chưa xin phép cấp trên.", "Tạo dựng mối quan hệ thân thiết với khách hàng, đối tác.", "Giới thiệu cho khách hàng, biết và hiểu về sản phẩm dịch vụ của Agribank khi họ không yêu cầu."], "answer": "Sử dụng quyền hạn, vị trí công tác của mình để tư lợi cá nhân.", "explanation": ""},
+  {"question": "Cán bộ Agribank cần thể hiện thái độ như thế nào đối với phong tục tập quán, văn hóa của địa phương nơi công tác, sinh sống?", "options": ["Tôn trọng và tích cực tham gia các lễ hội truyền thống. ", "Bỏ qua, không quan tâm đến phong tục tập quán, văn hóa địa phương. ", "Chỉ tham gia các lễ hội truyền thống do Agribank tổ chức hoặc tài trợ.", "Ép buộc người dân địa phương thay đổi phong tục tập quán, văn hóa để phù hợp với văn hóa của Agribank."], "answer": "Tôn trọng và tích cực tham gia các lễ hội truyền thống. ", "explanation": ""},
+  {"question": "Cán bộ Agribank có trách nhiệm gì trong việc bảo vệ môi trường?", "options": ["Sử dụng tài nguyên, nguồn năng lượng mà không cần phải tiết kiệm.", "Chung tay cùng cộng đồng bảo vệ môi trường. ", "Sử dụng các sản phẩm độc hại cho môi trường. ", "Không cần biết đến hay tham gia các hoạt động bảo vệ môi trường."], "answer": "Chung tay cùng cộng đồng bảo vệ môi trường. ", "explanation": ""}
+];
+
+const QUESTIONS = RAW_DATA.map((item, index) => {
+  const labels = ['A', 'B', 'C', 'D', 'E', 'F'];
+  const trimmedAns = item.answer.trim().toLowerCase();
+  const exactMatchIndex = item.options.findIndex(o => o.trim().toLowerCase() === trimmedAns);
+  const correctLabel = exactMatchIndex !== -1 ? labels[exactMatchIndex] : 'A';
+
+  return {
+    id: 'q_' + index,
+    number: index + 1,
+    question: item.question,
+    answer: correctLabel,
+    options: item.options.map((optText, i) => ({
+      label: labels[i],
+      text: optText,
+    })),
+    explanation: item.explanation
+  };
+});
+
+let currentSet = [], currentIndex = 0, answers = {}, checked = {};
+let isQuizActive = false;
+
+const $ = id => document.getElementById(id);
+const modeEl = $('mode'), searchEl = $('search');
+const quizCard = $('quizCard'), reviewCard = $('reviewCard'), reviewList = $('reviewList'), searchResults = $('searchResults');
+
+function safeText(v) { return String(v ?? '').replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim(); }
+function removeVietnameseTones(str) {
+  return safeText(str).normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D').toLowerCase().replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();
+}
+function getInitials(str) { return removeVietnameseTones(str).split(/\s+/).filter(Boolean).map(w => w[0]).join(''); }
+function escapeHtml(s) { return safeText(s).replace(/[&<>'"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[ch])); }
+function shuffle(a) {
+  const x = [...a];
+  for (let i = x.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [x[i], x[j]] = [x[j], x[i]]; }
+  return x;
+}
+
+function handleQuickSearch() {
+  const kw = removeVietnameseTones(searchEl.value);
+  if (!kw) {
+    searchResults.classList.add('hidden');
+    quizCard.classList.remove('hidden');
+    return;
+  }
+
+  quizCard.classList.add('hidden');
+  reviewCard.classList.add('hidden');
+  searchResults.classList.remove('hidden');
+
+  const matched = QUESTIONS.filter(q => {
+    const fullText = [q.question, ...q.options.map(o => o.text)].join(' ');
+    const noTones = removeVietnameseTones(fullText);
+    const initials = getInitials(fullText);
+    const qInitials = getInitials(q.question);
+    return noTones.includes(kw) || initials.includes(kw) || qInitials.includes(kw);
+  });
+
+  if (matched.length === 0) {
+    searchResults.innerHTML = '<div class="empty-state">Không tìm thấy câu hỏi nào phù hợp với từ khóa: <b>' + escapeHtml(searchEl.value) + '</b></div>';
+    return;
+  }
+
+  const html = matched.map(q => {
+    const correctOpt = q.options.find(o => o.label === q.answer);
+    return `
+      <div class="search-result-item">
+        <h3><span class="quiz-badge primary">Câu ${q.number}</span> ${escapeHtml(q.question)}</h3>
+        <div class="search-answer">✅ Đáp án: ${correctOpt ? escapeHtml(correctOpt.text) : q.answer}</div>
+      </div>
+    `;
+  }).join('');
+
+  searchResults.innerHTML = `<div class="search-hint">💡 Đang chế độ tra cứu: Đã tìm thấy ${matched.length} câu. (Xóa ô tìm kiếm để tiếp tục làm bài)</div>` + html;
+}
+
+searchEl.addEventListener('input', handleQuickSearch);
+$('clearSearchBtn').addEventListener('click', () => { searchEl.value = ''; handleQuickSearch(); searchEl.focus(); });
+
+function startQuiz(doShuffle = false) {
+  isQuizActive = true;
+  searchEl.value = ''; handleQuickSearch();
+  quizCard.classList.remove('hidden');
+  reviewCard.classList.add('hidden');
+
+  currentSet = [...QUESTIONS]; 
+  if (doShuffle) {
+    currentSet = shuffle(currentSet).map(q => ({ ...q, options: shuffle(q.options) }));
+  }
+  
+  currentIndex = 0;
+  answers = {};
+  checked = {};
+  
+  renderQuestion();
+  updateStats();
+  quizCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function chooseAnswer(id, label) {
+  if (checked[id] && modeEl.value === 'practice') return;
+  answers[id] = label;
+  if (modeEl.value === 'practice') checked[id] = true;
+  renderQuestion();
+  updateStats();
+}
+
+function renderQuestion() {
+  const q = currentSet[currentIndex];
+  if (!q) return;
+  
+  const selected = answers[q.id];
+  const showFb = checked[q.id];
+  const isPractice = modeEl.value === 'practice';
+  const correctOpt = q.options.find(o => o.label === q.answer);
+
+  const optsHtml = q.options.map(o => {
+    let cls = 'option-item';
+    if (selected === o.label) cls += ' selected';
+    if (showFb) {
+      if (o.label === q.answer) cls += ' correct';
+      else if (selected === o.label) cls += ' wrong';
+    }
+    
+    return `<div class="${cls}" onclick="chooseAnswer('${q.id}', '${o.label}')">
+              <div class="option-letter">${o.label}</div>
+              <div>${escapeHtml(o.text)}</div>
+            </div>`;
+  }).join('');
+
+  const fbHtml = showFb ? `
+    <div class="feedback-box show ${selected === q.answer ? 'correct' : 'incorrect'}">
+      <div class="feedback-title">${selected === q.answer ? '✅ Tuyệt vời! Đáp án chính xác.' : '❌ Rất tiếc! Đáp án chưa đúng.'}</div>
+      <div>Đáp án chuẩn: <b>${q.answer} - ${correctOpt ? escapeHtml(correctOpt.text) : ''}</b></div>
+      ${q.explanation ? `<div class="explanation-text">💡 Giải thích: ${escapeHtml(q.explanation)}</div>` : ''}
+    </div>
+  ` : '';
+
+  quizCard.innerHTML = `
+    <div class="quiz-header">
+      <span class="quiz-badge primary">CÂU ${currentIndex + 1} / ${currentSet.length}</span>
+      <span class="quiz-badge">${isPractice ? 'CHẾ ĐỘ ÔN LUYỆN' : 'CHẾ ĐỘ THI THỬ'}</span>
+    </div>
+    <h2 class="question-text">${escapeHtml(q.question)}</h2>
+    <div class="options-list">${optsHtml}</div>
+    ${fbHtml}
+    <div class="quiz-nav">
+      <button class="btn btn-outline" id="prevBtn" ${currentIndex === 0 ? 'disabled' : ''}>⬅ CÂU TRƯỚC</button>
+      <button class="btn btn-primary" id="nextBtn">${currentIndex === currentSet.length - 1 ? 'KẾT THÚC 🏁' : 'CÂU TIẾP ➡'}</button>
+    </div>
+  `;
+
+  $('prevBtn').onclick = () => { if (currentIndex > 0) { currentIndex--; renderQuestion(); } };
+  $('nextBtn').onclick = () => { if (currentIndex < currentSet.length - 1) { currentIndex++; renderQuestion(); } else { showReview(); } };
+  $('finishBtn').disabled = false;
+}
+
+function showReview() {
+  if (!currentSet.length) return;
+  isQuizActive = false;
+  quizCard.classList.add('hidden');
+  reviewCard.classList.remove('hidden');
+  $('finishBtn').disabled = true;
+  
+  currentSet.forEach(q => checked[q.id] = true);
+  
+  reviewList.innerHTML = currentSet.map((q, i) => {
+    const ua = answers[q.id] || 'Chưa làm';
+    const ok = ua === q.answer;
+    const co = q.options.find(o => o.label === q.answer);
+    return `
+      <div class="review-item ${ok ? 'ok' : 'bad'}">
+        <div class="review-question">Câu ${i + 1}: ${escapeHtml(q.question)}</div>
+        <div class="review-detail">
+          <span style="color: ${ok ? 'var(--green)' : 'var(--red)'}"><b>Bạn chọn:</b> ${escapeHtml(ua)}</span><br>
+          ${!ok ? `<span style="color: var(--green)"><b>Đáp án đúng:</b> ${q.answer} - ${co ? escapeHtml(co.text) : ''}</span>` : ''}
+        </div>
+      </div>`;
+  }).join('');
+  
+  updateStats();
+  reviewCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function resetQuiz() {
+  isQuizActive = false;
+  currentSet = []; answers = {}; checked = {}; currentIndex = 0;
+  quizCard.innerHTML = '<div class="empty-state">Đã xóa tiến trình.<br>Bấm <b>Bắt đầu làm bài</b> để tạo lượt thi mới.</div>';
+  quizCard.classList.remove('hidden');
+  reviewCard.classList.add('hidden');
+  $('finishBtn').disabled = true;
+  updateStats();
+}
+
+function updateStats() {
+  const total = currentSet.length || QUESTIONS.length;
+  const done = Object.keys(answers).length;
+  const correct = currentSet.filter(q => answers[q.id] === q.answer).length;
+  const score = total ? Math.round((correct / total) * 100) : 0;
+  const progress = total ? Math.min(100, Math.round((done / total) * 100)) : 0;
+  
+  $('totalStat').textContent = total;
+  $('doneStat').textContent = done;
+  $('correctStat').textContent = correct;
+  $('scoreStat').textContent = score + '%';
+  $('bar').style.width = progress + '%';
+}
+
+// Khởi tạo
+$('startBtn').onclick = () => startQuiz(false);
+$('shuffleBtn').onclick = () => startQuiz(true);
+$('finishBtn').onclick = showReview;
+$('resetBtn').onclick = resetQuiz;
+modeEl.onchange = resetQuiz;
+
+updateStats();
+
+</script>
+</body>
+</html>
